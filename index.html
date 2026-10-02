@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kiberxavfsizlik Sertifikati</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Great+Vibes&display=swap" rel="stylesheet">
-    <!-- QR kod generatsiya qiluvchi haqiqiy kutubxona -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -54,8 +53,28 @@
 
         .cert-footer { position: absolute; bottom: 40px; left: 50px; right: 50px; display: flex; justify-content: space-between; align-items: flex-end; }
         
-        /* QR Kod konteyneri */
-        .qr-section { width: 120px; height: 120px; display: flex; justify-content: center; align-items: center; background: #fff; padding: 5px; }
+        /* QR Kod va uning ichidagi rasm uchun o'rab turuvchi quti */
+        .qr-section { 
+            width: 120px; 
+            height: 120px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            background: #fff; 
+            position: relative; 
+        }
+        
+        /* QR kod o'rtasidagi kichik shaxsiy rasm */
+        .qr-center-logo {
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
 
         .signatures-area { display: flex; justify-content: space-between; align-items: flex-end; flex: 1; padding-left: 30px; }
         .sign-box { text-align: center; width: 200px; }
@@ -134,8 +153,11 @@
             </div>
 
             <div class="cert-footer">
-                <!-- Haqiqiy generatsiya qilinadigan QR kod joyi -->
-                <div class="qr-section" id="qrcode"></div>
+                <!-- QR kod va uning markazidagi kichik rasm -->
+                <div class="qr-section">
+                    <div id="qrcode"></div>
+                    <div class="qr-center-logo" id="qrCenterLogo"></div>
+                </div>
 
                 <div class="signatures-area">
                     <div class="sign-box">
@@ -228,10 +250,12 @@
             document.getElementById("certNameDisplay").innerText = userName;
             document.getElementById("userRibbonImage").style.backgroundImage = `url(${userPhotoDataUrl})`;
             
+            // QR kod markazidagi kichik rasmga ham shu rasmni qo'yamiz
+            document.getElementById("qrCenterLogo").style.backgroundImage = `url(${userPhotoDataUrl})`;
+            
             let randomId = "SEC-" + Math.floor(100000 + Math.random() * 900000);
             let verificationLink = `https://kiberxavfsizlik.uz/tasdiqlash?id=${randomId}&ism=${encodeURIComponent(userName)}`;
             
-            // Tozalash va yangi haqiqiy QR kodni chizish
             document.getElementById("qrcode").innerHTML = "";
             new QRCode(document.getElementById("qrcode"), {
                 text: verificationLink,
@@ -239,7 +263,7 @@
                 height: 110,
                 colorDark : "#000000",
                 colorLight : "#ffffff",
-                correctLevel : QRCode.CorrectLevel.H
+                correctLevel : QRCode.CorrectLevel.H // Yuqori darajadagi xatolarni to'g'rilash (o'rtasiga rasm qo'yish uchun shart)
             });
 
             setTimeout(() => {

@@ -10,7 +10,7 @@
         body { background: #e2e8f0; color: #333; font-family: 'Montserrat', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow-x: hidden; flex-direction: column; padding: 20px; }
         
         /* Boshlang'ich va Test ekranlari */
-        .app-container { background: #fff; padding: 30px; border-radius: 15px; width: 90%; max-width: 500px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; }
+        .app-container { background: #fff; padding: 30px; border-radius: 15px; width: 100%; max-width: 500px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; }
         .screen { display: none; animation: fadeIn 0.5s ease-in-out; }
         .active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -27,37 +27,44 @@
         .option { background: #f1f5f9; padding: 15px; border-radius: 8px; margin-bottom: 10px; cursor: pointer; border: 2px solid transparent; transition: 0.3s; font-weight: 600;}
         .option:hover { border-color: #f97316; background: #fff7ed; }
 
-        /* --- XUDDI MUTOLAADAGI SERTIFIKAT DIZAYNI --- */
-        #cert-screen { display: none; width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column; }
+        /* --- SERTIFIKAT EKRANI (To'liq ekran qoplamasi) --- */
+        #cert-screen { 
+            display: none; 
+            position: fixed; 
+            top: 0; left: 0; 
+            width: 100vw; height: 100vh; 
+            background: #e2e8f0; 
+            z-index: 1000; 
+            justify-content: center; 
+            align-items: center; 
+            flex-direction: column; 
+            overflow: hidden;
+        }
         
         .certificate-wrapper {
             background: #fff;
-            width: 1000px; /* Mutolaa proporsiyasi */
+            width: 1000px; 
             height: 700px;
             position: relative;
-            /* Tilla ramka yasash */
             border: 20px solid transparent;
             border-image: repeating-linear-gradient(45deg, #d4af37, #ffd700 10px, #b8860b 20px) 30;
             box-shadow: 0 15px 40px rgba(0,0,0,0.3);
             display: flex;
             background-color: #ffffff;
-            transform-origin: top center;
+            transform-origin: center center;
         }
 
-        /* Ichki ingichka ramka */
         .cert-inner-border {
             position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px;
             border: 1px solid #d4af37; pointer-events: none;
         }
 
-        /* Chap tomondagi Lenta (Zarg'aldoq/To'q sariq) */
         .left-ribbon {
             position: absolute; top: 0; left: 60px; width: 130px; height: 380px;
-            background: #f97316; /* Mutolaa rangi */
+            background: #f97316; 
             display: flex; flex-direction: column; align-items: center;
             padding-top: 30px; color: #fff;
         }
-        /* Lentaning pastki uchburchak kesimi */
         .left-ribbon::after {
             content: ''; position: absolute; bottom: -30px; left: 0;
             border-left: 65px solid #f97316; border-right: 65px solid #f97316; border-bottom: 30px solid transparent;
@@ -65,35 +72,27 @@
         
         .ribbon-logo { width: 50px; height: 50px; background: url('https://cdn-icons-png.flaticon.com/512/2092/2092663.png') center/cover; filter: brightness(0) invert(1); margin-bottom: 10px; }
         .ribbon-text { font-size: 11px; font-weight: 800; text-align: center; line-height: 1.2; margin-bottom: 30px; letter-spacing: 1px;}
-        
-        /* Qora rasm/Kitob o'rniga kiberxavfsizlik rasmi */
         .ribbon-image { width: 90px; height: 120px; background: url('https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=150&q=80') center/cover; border: 2px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
 
-        /* Asosiy qism (O'ng tomon) */
         .cert-main {
-            margin-left: 220px; /* Lentadan keyingi bo'sh joy */
+            margin-left: 220px; 
             width: calc(100% - 220px);
             padding: 80px 50px 0 20px;
             display: flex; flex-direction: column;
         }
 
         .cert-title { font-size: 65px; font-weight: 800; color: #f97316; letter-spacing: 2px; margin-bottom: 50px; }
-        
-        .cert-name { font-size: 40px; font-weight: 800; color: #000; border-bottom: 1px solid #000; padding-bottom: 10px; margin-bottom: 20px; width: 100%; display: inline-block; }
-        
+        .cert-name { font-size: 40px; font-weight: 800; color: #000; border-bottom: 1px solid #000; padding-bottom: 10px; margin-bottom: 20px; width: 100%; display: inline-block; text-transform: uppercase; }
         .cert-desc { font-size: 14px; color: #333; line-height: 1.6; font-weight: 500; max-width: 600px; }
 
-        /* Pastki qism: QR, Imzolar va Muhr */
         .cert-footer {
             position: absolute; bottom: 40px; left: 50px; right: 50px;
             display: flex; justify-content: space-between; align-items: flex-end;
         }
 
-        /* Chap burchakdagi QR */
         .qr-section { width: 150px; text-align: center; padding-left: 10px;}
         .qr-section img { width: 100px; height: 100px; }
 
-        /* Imzolar qismi */
         .signatures-area { display: flex; justify-content: space-between; align-items: flex-end; flex: 1; padding-left: 50px; }
         
         .sign-box { text-align: center; width: 200px; }
@@ -102,7 +101,6 @@
         .sign-name { font-size: 14px; font-weight: 800; color: #000; }
         .sign-title { font-size: 10px; color: #666; font-weight: 600; margin-top: 3px; }
 
-        /* O'rtadagi Dumaloq Muhr (Saviyali Kitobxon o'rniga) */
         .seal-box {
             width: 110px; height: 110px; border: 2px dashed #d4af37; border-radius: 50%;
             display: flex; justify-content: center; align-items: center; flex-direction: column;
@@ -116,22 +114,16 @@
             border-radius: 50%; z-index: -1; opacity: 0.2;
         }
 
-        /* Telefon ekraniga moslashtirish (Kichraytirish) */
-        @media (max-width: 1050px) {
-            .certificate-wrapper { transform: scale(0.9); }
-        }
-        @media (max-width: 900px) {
-            .certificate-wrapper { transform: scale(0.7); margin-top: -100px; }
-        }
-        @media (max-width: 600px) {
-            .certificate-wrapper { transform: scale(0.35); margin-top: -220px; }
-            #cert-screen { height: 350px; }
-        }
+        .back-btn { margin-bottom: 20px; background: #333; padding: 10px 30px; border-radius: 8px; color: white; border: none; font-weight: bold; cursor: pointer; z-index: 1001;}
+
+        @media (max-width: 1050px) { .certificate-wrapper { transform: scale(0.8); } }
+        @media (max-width: 800px) { .certificate-wrapper { transform: scale(0.6); } }
+        @media (max-width: 600px) { .certificate-wrapper { transform: scale(0.35); } }
+        @media (max-width: 400px) { .certificate-wrapper { transform: scale(0.3); } }
     </style>
 </head>
 <body>
 
-    <!-- 1. Ism kiritish ekrani -->
     <div id="start-screen" class="app-container screen active">
         <h1>Kiberxavfsizlik Markazi</h1>
         <p>Rasmiy QR-kodli sertifikat olish uchun ism va familiyangizni kiriting.</p>
@@ -139,43 +131,37 @@
         <button class="btn" onclick="startTest()">Testni boshlash</button>
     </div>
 
-    <!-- 2. Test ekrani -->
     <div id="quiz-screen" class="app-container screen">
         <h1 id="q-title">Savol 1/2</h1>
         <p id="q-text" style="color: #333; font-size: 18px; font-weight: 600;">Internetda shaxsiy ma'lumotlarni qanday himoya qilish kerak?</p>
         
         <div id="options-container">
             <div class="option" onclick="nextQuestion()">A) Hamma joyda bir xil parol ishlatish</div>
-            <div class="option" onclick="nextQuestion()">B) Kuchli parol va 2FA (ikki bosqichli) himoya o'rnatish</div>
+            <div class="option" onclick="nextQuestion()">B) Kuchli parol va 2FA o'rnatish</div>
             <div class="option" onclick="nextQuestion()">C) Parolni do'stlar bilan ulashish</div>
         </div>
     </div>
 
-    <!-- 3. Yuklanmoqda ekrani -->
     <div id="loading-screen" class="app-container screen">
         <h1>Tekshirilmoqda...</h1>
         <p>Sizning rasmiy sertifikatingiz tayyorlanmoqda...</p>
         <div style="font-size: 40px; animation: spin 1s linear infinite;">⏳</div>
     </div>
 
-    <!-- 4. XUDDI MUTOLAADAGI SERTIFIKAT EKRANI -->
     <div id="cert-screen">
-        <button class="btn" style="max-width: 300px; margin-bottom: 20px; background: #333;" onclick="location.reload()">Ortga qaytish</button>
+        <button class="back-btn" onclick="location.reload()">Ortga qaytish</button>
         
         <div class="certificate-wrapper">
             <div class="cert-inner-border"></div>
             
-            <!-- Chap Lenta -->
             <div class="left-ribbon">
                 <div class="ribbon-logo"></div>
                 <div class="ribbon-text">CYBER SECURITY<br>AGENCY</div>
                 <div class="ribbon-logo" style="width: 30px; height: 30px; margin-top: 10px;"></div>
                 <div class="ribbon-text" style="font-size: 10px;">KIBERXAVFSIZLIK<br>MARKAZI</div>
-                
                 <div class="ribbon-image"></div>
             </div>
 
-            <!-- Asosiy Yozuvlar -->
             <div class="cert-main">
                 <div class="cert-title">SERTIFIKAT</div>
                 <div class="cert-name" id="certNameDisplay">ISM SHARIF</div>
@@ -184,15 +170,12 @@
                 </div>
             </div>
 
-            <!-- Pastki Footer (QR, Imzolar, Muhr) -->
             <div class="cert-footer">
-                <!-- QR Kod xuddi rasmda chapda turganidek -->
                 <div class="qr-section">
                     <img id="qrImage" src="" alt="QR Code">
                 </div>
 
                 <div class="signatures-area">
-                    <!-- Chap Imzo -->
                     <div class="sign-box">
                         <div class="sign-graphic">A. Azizov</div>
                         <div class="sign-line"></div>
@@ -200,12 +183,10 @@
                         <div class="sign-title">Kiberxavfsizlik markazi rahbari</div>
                     </div>
 
-                    <!-- O'rta Muhr -->
                     <div class="seal-box">
                         <div class="seal-text">MALAKALI<br>MUTAXASSIS</div>
                     </div>
 
-                    <!-- O'ng Imzo -->
                     <div class="sign-box">
                         <div class="sign-graphic">A. Nematov</div>
                         <div class="sign-line"></div>
@@ -214,7 +195,6 @@
                     </div>
                 </div>
             </div>
-            
         </div>
     </div>
 
@@ -227,6 +207,12 @@
             { q: "Shubhali (notanish) havolaga bosish qanday xavf tug'diradi?", options: ["A) Qurilmani virus zararlaydi (Fishing)", "B) Internet tezlashadi", "C) Hech qanday xavf yo'q"] }
         ];
 
+        function hideAllScreens() {
+            document.getElementById("start-screen").classList.remove("active");
+            document.getElementById("quiz-screen").classList.remove("active");
+            document.getElementById("loading-screen").classList.remove("active");
+        }
+
         function startTest() {
             let nameInput = document.getElementById("userName").value.trim();
             if(nameInput.length < 3) {
@@ -234,7 +220,7 @@
                 return;
             }
             userName = nameInput;
-            document.getElementById("start-screen").classList.remove("active");
+            hideAllScreens();
             document.getElementById("quiz-screen").classList.add("active");
             loadQuestion();
         }
@@ -260,24 +246,22 @@
         }
 
         function generateCertificate() {
-            document.getElementById("quiz-screen").classList.remove("active");
+            hideAllScreens();
             document.getElementById("loading-screen").classList.add("active");
             
-            // Ismni sertifikatga yozish
+            // Kiritilgan ismni HTML ga joylash
             document.getElementById("certNameDisplay").innerText = userName;
             
-            // Tasodifiy ID
             let randomId = "SEC-" + Math.floor(100000 + Math.random() * 900000);
             
-            // 🔥 HAQIQIY RASMIY QR-KOD (Skaner qilinganda aynan sizning ismingiz va ID chiqadigan rasmiy linkka o'tadi)
+            // QR KOD ichiga kiritilgan ismni qo'shish
             let verificationLink = `https://kiberxavfsizlik.uz/tasdiqlash?id=${randomId}&ism=${encodeURIComponent(userName)}`;
             let qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(verificationLink)}&margin=10`;
             document.getElementById("qrImage").src = qrUrl;
 
-            // Natijani ko'rsatish
             setTimeout(() => {
-                document.getElementById("loading-screen").classList.remove("active");
-                document.getElementById("cert-screen").style.display = "flex";
+                hideAllScreens(); // Barcha oldingi oynalarni to'liq yopish
+                document.getElementById("cert-screen").style.display = "flex"; // Sertifikatni ustiga ochish
             }, 2000);
         }
     </script>

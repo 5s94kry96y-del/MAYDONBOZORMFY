@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kiberxavfsizlik Sertifikati</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Great+Vibes&display=swap" rel="stylesheet">
+    <!-- QR kod generatsiya qiluvchi haqiqiy kutubxona -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background: #e2e8f0; color: #333; font-family: 'Montserrat', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow-x: hidden; flex-direction: column; padding: 20px; }
@@ -20,7 +22,6 @@
         input[type="text"] { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 8px; border: 2px solid #cbd5e1; font-size: 16px; outline: none; text-align: center; font-family: 'Montserrat', sans-serif; font-weight: 600;}
         input[type="text"]:focus { border-color: #f97316; }
         
-        /* Rasm yuklash qismi dizayni */
         .file-upload-wrapper { text-align: left; margin-bottom: 20px; }
         .file-upload-wrapper label { display: block; font-size: 14px; color: #475569; font-weight: 600; margin-bottom: 8px; }
         input[type="file"] { width: 100%; padding: 10px; background: #f8fafc; border: 2px dashed #cbd5e1; border-radius: 8px; cursor: pointer; }
@@ -44,7 +45,6 @@
         .ribbon-logo { width: 50px; height: 50px; background: url('https://cdn-icons-png.flaticon.com/512/2092/2092663.png') center/cover; filter: brightness(0) invert(1); margin-bottom: 10px; }
         .ribbon-text { font-size: 11px; font-weight: 800; text-align: center; line-height: 1.2; margin-bottom: 30px; letter-spacing: 1px;}
         
-        /* Shaxsiy rasm chiqadigan joy */
         .ribbon-image { width: 90px; height: 120px; background-color: #cbd5e1; background-size: cover; background-position: center top; border: 2px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
 
         .cert-main { margin-left: 220px; width: calc(100% - 220px); padding: 80px 50px 0 20px; display: flex; flex-direction: column; }
@@ -53,10 +53,11 @@
         .cert-desc { font-size: 14px; color: #333; line-height: 1.6; font-weight: 500; max-width: 600px; }
 
         .cert-footer { position: absolute; bottom: 40px; left: 50px; right: 50px; display: flex; justify-content: space-between; align-items: flex-end; }
-        .qr-section { width: 150px; text-align: center; padding-left: 10px;}
-        .qr-section img { width: 100px; height: 100px; }
+        
+        /* QR Kod konteyneri */
+        .qr-section { width: 120px; height: 120px; display: flex; justify-content: center; align-items: center; background: #fff; padding: 5px; }
 
-        .signatures-area { display: flex; justify-content: space-between; align-items: flex-end; flex: 1; padding-left: 50px; }
+        .signatures-area { display: flex; justify-content: space-between; align-items: flex-end; flex: 1; padding-left: 30px; }
         .sign-box { text-align: center; width: 200px; }
         .sign-graphic { font-family: 'Great Vibes', cursive; font-size: 35px; color: #1e3a8a; margin-bottom: -5px; }
         .sign-line { width: 100%; height: 1px; background: #000; margin-bottom: 5px; }
@@ -84,7 +85,6 @@
         
         <input type="text" id="userName" placeholder="Masalan: Qobiljonov Xojiakbar">
         
-        <!-- Rasm yuklash joyi -->
         <div class="file-upload-wrapper">
             <label for="userPhoto">Pasport rasmingizni (yoki selfi) yuklang:</label>
             <input type="file" id="userPhoto" accept="image/*">
@@ -122,7 +122,6 @@
                 <div class="ribbon-logo" style="width: 30px; height: 30px; margin-top: 10px;"></div>
                 <div class="ribbon-text" style="font-size: 10px;">KIBERXAVFSIZLIK<br>MARKAZI</div>
                 
-                <!-- Shu yerda foydalanuvchining rasmi chiqadi -->
                 <div class="ribbon-image" id="userRibbonImage"></div>
             </div>
 
@@ -135,9 +134,8 @@
             </div>
 
             <div class="cert-footer">
-                <div class="qr-section">
-                    <img id="qrImage" src="" alt="QR Code">
-                </div>
+                <!-- Haqiqiy generatsiya qilinadigan QR kod joyi -->
+                <div class="qr-section" id="qrcode"></div>
 
                 <div class="signatures-area">
                     <div class="sign-box">
@@ -193,12 +191,9 @@
 
             userName = nameInput;
             
-            // Rasmni o'qib olish (DataURL formatida)
             let reader = new FileReader();
             reader.onload = function(e) {
                 userPhotoDataUrl = e.target.result;
-                
-                // Rasmni o'qib bo'lgach keyingi ekranga o'tish
                 hideAllScreens();
                 document.getElementById("quiz-screen").classList.add("active");
                 loadQuestion();
@@ -230,16 +225,22 @@
             hideAllScreens();
             document.getElementById("loading-screen").classList.add("active");
             
-            // Ismni va Yuklangan Rasmni joylash
             document.getElementById("certNameDisplay").innerText = userName;
             document.getElementById("userRibbonImage").style.backgroundImage = `url(${userPhotoDataUrl})`;
             
             let randomId = "SEC-" + Math.floor(100000 + Math.random() * 900000);
-            
-            // QR KOD
             let verificationLink = `https://kiberxavfsizlik.uz/tasdiqlash?id=${randomId}&ism=${encodeURIComponent(userName)}`;
-            let qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(verificationLink)}&margin=10`;
-            document.getElementById("qrImage").src = qrUrl;
+            
+            // Tozalash va yangi haqiqiy QR kodni chizish
+            document.getElementById("qrcode").innerHTML = "";
+            new QRCode(document.getElementById("qrcode"), {
+                text: verificationLink,
+                width: 110,
+                height: 110,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
 
             setTimeout(() => {
                 hideAllScreens(); 

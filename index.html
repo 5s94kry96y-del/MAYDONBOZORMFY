@@ -3,516 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maydon Bozor MFY - Portal</title>
+    <title>QXV PREMIUM</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        /* Umumiy sozlamalar (Premium qora va tillarang dizayn) */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; }
+        body { background-color: #0d0d0d; color: #fff; overflow-x: hidden; }
+
+        /* --- 1. BMW ANIMATSIYASI EKRANI --- */
+        #intro-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 9999;
+            display: flex; justify-content: center; align-items: center;
+            flex-direction: column; transition: opacity 1s ease-out;
+        }
+        .bmw-container { position: relative; width: 280px; transform: scale(0.1) translateY(200px); opacity: 0; animation: driveIn 2.5s forwards; }
+        .bmw-container img { width: 100%; border-radius: 10px; }
+        /* Mashina svetlari */
+        .headlight {
+            position: absolute; top: 55%; width: 30px; height: 30px;
+            background: #fff; border-radius: 50%;
+            box-shadow: 0 0 50px 30px rgba(255, 255, 255, 0.9);
+            opacity: 0; animation: flashLights 0.4s 4 1.5s; /* 1.5 soniyadan keyin 4 marta yonib o'chadi */
+        }
+        .left-light { left: 10%; }
+        .right-light { right: 10%; }
+        
+        @keyframes driveIn {
+            0% { transform: scale(0.1) translateY(200px); opacity: 0; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+        @keyframes flashLights {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+        .intro-text { margin-top: 30px; color: #d4af37; font-size: 24px; font-weight: bold; letter-spacing: 3px; opacity: 0; animation: fadeInText 1s forwards 2s; }
+        @keyframes fadeInText { to { opacity: 1; } }
+
+        /* --- 2. ASOSIY DASTUR (QXV PREMIUM) --- */
+        #main-app { display: none; padding-bottom: 80px; }
+        
+        /* Shapka qismi */
+        header { background: #1a1a1a; padding: 20px; text-align: center; border-bottom: 2px solid #d4af37; position: sticky; top: 0; z-index: 100;}
+        header h1 { color: #d4af37; font-size: 22px; text-transform: uppercase; letter-spacing: 2px; }
+        header p { color: #aaa; font-size: 12px; margin-top: 5px; }
+
+        /* Qidiruv qismi */
+        .search-container { padding: 15px 20px; background: #0d0d0d; }
+        .search-container input {
+            width: 100%; padding: 12px 20px; border-radius: 25px;
+            background: #222; border: 1px solid #d4af37; color: #fff;
+            font-size: 16px; outline: none; transition: 0.3s;
+        }
+        .search-container input:focus { box-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
+
+        /* Tovarlar Setkasi */
+        .products-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 15px; }
+        .product-card {
+            background: #1a1a1a; border-radius: 12px; overflow: hidden;
+            border: 1px solid #333; transition: 0.3s;
+        }
+        .product-card:hover { border-color: #d4af37; transform: translateY(-3px); }
+        .product-img { width: 100%; height: 160px; object-fit: cover; }
+        .product-info { padding: 12px; }
+        .product-title { font-size: 14px; font-weight: bold; color: #fff; margin-bottom: 5px; height: 35px; overflow: hidden; }
+        .product-price { color: #d4af37; font-size: 16px; font-weight: bold; margin-bottom: 10px; }
+        .order-btn {
+            width: 100%; padding: 10px; background: linear-gradient(45deg, #b8860b, #d4af37);
+            color: #000; border: none; border-radius: 8px; font-weight: bold;
+            font-size: 14px; cursor: pointer;
         }
 
-        body {
-            background: #050505;
-            color: #ffffff;
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
+        /* Support / Call Center qismi */
+        footer {
+            background: #111; padding: 20px; text-align: center; border-top: 1px solid #333; margin-top: 20px;
         }
+        footer h3 { color: #d4af37; margin-bottom: 10px; font-size: 16px; }
+        footer p { color: #bbb; font-size: 13px; line-height: 1.6; }
+        footer span { color: #fff; font-weight: bold; }
 
-        /* Fon Nur Effekti */
-        .animated-bg {
-            position: fixed;
-            top: -150px;
-            right: -150px;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.25) 0%, rgba(0,0,0,0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 1;
-            animation: pulseGlow 6s ease-in-out infinite alternate;
+        /* Buyurtma (Zakaz) Modali */
+        #order-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); z-index: 10000;
+            display: none; justify-content: center; align-items: center; padding: 20px;
         }
-
-        @keyframes pulseGlow {
-            0% { transform: scale(1) translate(0, 0); opacity: 0.6; }
-            50% { transform: scale(1.3) translate(-30px, 40px); opacity: 0.9; }
-            100% { transform: scale(1.1) translate(20px, -20px); opacity: 0.7; }
-        }
-
-        /* SPLASH SCREEN & FAST DOOR */
-        #door-splash {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            background: #000;
-        }
-
-        .door {
-            position: absolute;
-            top: 0;
-            width: 50%;
-            height: 100%;
-            background: #080808;
-            border: 2px solid #d4af37;
-            box-shadow: inset 0 0 100px rgba(0,0,0,1);
-            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
-            z-index: 10;
-        }
-
-        .door-left { left: 0; border-right: 1px solid #d4af37; }
-        .door-right { right: 0; border-left: 1px solid #d4af37; }
-
-        .splash-content {
-            position: relative;
-            z-index: 5;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .flag-box {
-            width: 120px;
-            height: 60px;
-            margin-bottom: 15px;
-            border-radius: 6px;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .flag-stripe { flex: 1; width: 100%; }
-        .flag-blue { background: #0099b5; position: relative; }
-        .flag-red1 { background: #ce1126; height: 3px; }
-        .flag-white { background: #ffffff; }
-        .flag-red2 { background: #ce1126; height: 3px; }
-        .flag-green { background: #1eb53a; }
-
-        .title-sub {
-            font-size: 0.9rem;
-            color: #d4af37;
-            letter-spacing: 2px;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        .title-main {
-            font-size: 1.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-top: 5px;
-        }
-
-        .num-fly {
-            font-size: 4rem;
-            font-weight: bold;
-            color: #ffffff;
-            text-shadow: 0 0 20px #d4af37;
-            margin-top: 15px;
-        }
-
-        /* Asosiy Kontent */
-        .main-content {
-            position: relative;
-            z-index: 10;
-            max-width: 550px;
-            margin: 0 auto;
-            padding: 20px;
-            display: none;
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-
-        .main-content.visible {
-            display: block;
-            opacity: 1;
-        }
-
-        .card {
-            background: rgba(18, 18, 18, 0.85);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.7);
-        }
-
-        .header-section {
-            text-align: center;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            padding-bottom: 15px;
-            margin-bottom: 15px;
-        }
-
-        .header-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #d4af37;
-            margin-top: 8px;
-        }
-
-        .header-location {
-            font-size: 0.85rem;
-            color: #bbb;
-            margin-top: 4px;
-        }
-
-        .btn-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .action-btn {
-            background: linear-gradient(135deg, #bf953f, #aa820a);
-            color: #000;
-            border: none;
-            width: 100%;
-            padding: 12px 16px;
-            border-radius: 10px;
-            font-weight: bold;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-align: left;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .action-btn:active {
-            transform: scale(0.98);
-        }
-
-        /* Street Details */
-        .street-block {
-            background: rgba(30, 30, 30, 0.6);
-            border-radius: 10px;
-            margin-bottom: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .street-header {
-            padding: 12px 15px;
-            background: rgba(212, 175, 55, 0.15);
-            color: #d4af37;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .street-content {
-            padding: 12px 15px;
-            display: none;
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
-        }
-
-        .street-content.active {
-            display: block;
-        }
-
-        .house-item {
-            padding: 8px 0;
-            border-bottom: 1px dashed rgba(255,255,255,0.1);
-            font-size: 0.9rem;
-        }
-
-        .house-item:last-child {
-            border-bottom: none;
-        }
-
-        .house-name {
-            font-weight: bold;
-            color: #fff;
-        }
-
-        .house-phone {
-            color: #aaa;
-            font-size: 0.85rem;
-            margin-top: 2px;
-        }
-
-        /* Modal (Murojaat uchun) */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(8px);
-            z-index: 10000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
         .modal-content {
-            background: #151515;
-            border: 1px solid #d4af37;
-            border-radius: 16px;
-            padding: 20px;
-            width: 100%;
-            max-width: 450px;
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            background: #1a1a1a; padding: 30px; border-radius: 15px; text-align: center;
+            border: 2px solid #d4af37; max-width: 400px;
         }
-
-        .modal-header {
-            font-size: 1.1rem;
-            color: #d4af37;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .modal-info {
-            font-size: 0.85rem;
-            color: #00ffcc;
-            background: rgba(0, 255, 204, 0.1);
-            padding: 10px;
-            border-radius: 8px;
-            margin-bottom: 12px;
-            border-left: 3px solid #00ffcc;
-        }
-
-        .modal-textarea {
-            width: 100%;
-            height: 100px;
-            background: #222;
-            border: 1px solid #444;
-            border-radius: 8px;
-            color: #fff;
-            padding: 10px;
-            font-size: 0.9rem;
-            outline: none;
-            resize: none;
-            margin-bottom: 12px;
-        }
-
-        .modal-btns {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn-submit {
-            flex: 1;
-            background: #d4af37;
-            color: #000;
-            border: none;
-            padding: 10px;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .btn-close {
-            flex: 1;
-            background: #333;
-            color: #fff;
-            border: none;
-            padding: 10px;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        .footer-note {
-            text-align: center;
-            font-size: 11px;
-            color: #888;
-            margin-top: 20px;
-            padding-bottom: 20px;
+        .modal-content h2 { color: #28a745; margin-bottom: 15px; }
+        .modal-content p { color: #fff; font-size: 15px; line-height: 1.5; margin-bottom: 20px; }
+        .modal-content button {
+            padding: 10px 25px; background: #d4af37; color: #000; border: none;
+            border-radius: 20px; font-weight: bold; cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-    <div class="animated-bg"></div>
-
-    <!-- SPLASH SCREEN (10-1 COUNTDOWN) -->
-    <div id="door-splash">
-        <div class="door door-left" id="door-left"></div>
-        <div class="door door-right" id="door-right"></div>
-
-        <div class="splash-content">
-            <div class="flag-box">
-                <div class="flag-stripe flag-blue"></div>
-                <div class="flag-red1"></div>
-                <div class="flag-stripe flag-white"></div>
-                <div class="flag-red2"></div>
-                <div class="flag-stripe flag-green"></div>
-            </div>
-            <div class="title-sub">O'ZBEKISTON RESPUBLIKASI</div>
-            <div class="title-main">ANDIJON VILOYATI ANDIJON SHAHAR<br>"MAYDON BOZOR" MFY</div>
-            <div class="num-fly" id="num-fly">10</div>
+    <!-- 1. BMW INTRO -->
+    <div id="intro-screen">
+        <div class="bmw-container">
+            <!-- BMW rasmi -->
+            <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=600&q=80" alt="BMW">
+            <div class="headlight left-light"></div>
+            <div class="headlight right-light"></div>
         </div>
+        <div class="intro-text">QXV PREMIUM</div>
     </div>
 
-    <!-- ASOSIY KONTENT -->
-    <div class="main-content" id="main-content">
-        
-        <!-- Sarlavha va Bayroq Card -->
-        <div class="card">
-            <div class="header-section">
-                <div class="flag-box" style="margin: 0 auto 10px auto;">
-                    <div class="flag-stripe flag-blue"></div>
-                    <div class="flag-red1"></div>
-                    <div class="flag-stripe flag-white"></div>
-                    <div class="flag-red2"></div>
-                    <div class="flag-stripe flag-green"></div>
-                </div>
-                <div class="title-sub" style="font-size: 0.75rem;">O'zbekiston Respublikasi</div>
-                <div class="header-title">"MAYDON BOZOR" MFY</div>
-                <div class="header-location">Andijon viloyati, Andijon shahri</div>
-            </div>
+    <!-- 2. ASOSIY ILOVA -->
+    <div id="main-app">
+        <header>
+            <h1>QXV Premium</h1>
+            <p>Sifatli Tovarlar</p>
+        </header>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" onkeyup="searchProducts()" placeholder="Tovarlarni qidiring (masalan: shim, soat, atir)...">
         </div>
 
-        <!-- Murojaat Bo'limi -->
-        <div class="card">
-            <div style="font-weight: bold; color: #d4af37; margin-bottom: 12px; font-size: 1.05rem;">Mahalla Mas'ullariga Murojaat</div>
-            <div class="btn-grid">
-                <button class="action-btn" onclick="openModal('Mahalla raisi Mavluda')">
-                    <span>Mahalla raisi: Mavluda</span>
-                    <span>➔</span>
-                </button>
-                <button class="action-btn" onclick="openModal('Yoshlar yetakchisi Yahyobek Zulunov')">
-                    <span>Yoshlar yetakchisi: Yahyobek Zulunov</span>
-                    <span>➔</span>
-                </button>
-                <button class="action-btn" onclick="openModal('Xotin-qizlar faoli')">
-                    <span>Xotin-qizlar faoliga murojaat</span>
-                    <span>➔</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- Mahallalar va Ko'chalar Ro'yxati -->
-        <div class="card">
-            <div style="font-weight: bold; color: #d4af37; margin-bottom: 12px; font-size: 1.05rem;">Mahallalar va Ko'chalar Ro'yxati</div>
+        <!-- Tovarlar Ro'yxati -->
+        <div class="products-grid" id="productsGrid">
             
-            <!-- Sunbula ko'chasi -->
-            <div class="street-block">
-                <div class="street-header" onclick="toggleStreet('sunbula')">
-                    <span>Sunbula ko'chasi</span>
-                    <span id="icon-sunbula">▼</span>
-                </div>
-                <div class="street-content" id="sunbula">
-                    <div class="house-item">
-                        <div class="house-name">Sunbula 10: Qobiljonov Xojiakbar</div>
-                        <div class="house-phone">Tel: +998906101976</div>
-                    </div>
-                    <div class="house-item">
-                        <div class="house-name">Sunbula 14: Muhammad Yusuf</div>
-                        <div class="house-phone">Tel: Telefon raqami mavjud emas</div>
-                    </div>
+            <div class="product-card" data-name="dolce gabana d&g soat uzbek gerbi">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=500&q=80" class="product-img">
+                <div class="product-info">
+                    <div class="product-title">D&G Soat (O'zbek Gerbi bilan)</div>
+                    <div class="product-price">1 500 000 UZS</div>
+                    <button class="order-btn" onclick="openModal()">ZAKAZ QILISH</button>
                 </div>
             </div>
 
-            <!-- Muazzam ko'chasi -->
-            <div class="street-block">
-                <div class="street-header" onclick="toggleStreet('muazzam')">
-                    <span>Muazzam ko'chasi</span>
-                    <span id="icon-muazzam">▼</span>
+            <div class="product-card" data-name="dolce gabana d&g soat uzbek gerbi vip">
+                <img src="https://images.unsplash.com/photo-1587836374828-cb438786197b?auto=format&fit=crop&w=500&q=80" class="product-img">
+                <div class="product-info">
+                    <div class="product-title">D&G Soat (VIP Tillarang Gerb)</div>
+                    <div class="product-price">3 200 000 UZS</div>
+                    <button class="order-btn" onclick="openModal()">ZAKAZ QILISH</button>
                 </div>
-                <div class="street-content" id="muazzam">
-                    <div class="house-item">
-                        <div class="house-name">Mahdum Azam 47: Mamatova Yoqutxon</div>
-                        <div class="house-phone">Uy manzili: 47-uy</div>
-                    </div>
+            </div>
+
+            <div class="product-card" data-name="atir parfumeriya mashxur qxv">
+                <img src="https://images.unsplash.com/photo-1594035910387-fea477274976?auto=format&fit=crop&w=500&q=80" class="product-img">
+                <div class="product-info">
+                    <div class="product-title">QXV Premium Atir (Erkaklar uchun)</div>
+                    <div class="product-price">450 000 UZS</div>
+                    <button class="order-btn" onclick="openModal()">ZAKAZ QILISH</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-name="shim shimlar klassik">
+                <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=500&q=80" class="product-img">
+                <div class="product-info">
+                    <div class="product-title">QXV Klassik Shimlar</div>
+                    <div class="product-price">300 000 UZS</div>
+                    <button class="order-btn" onclick="openModal()">ZAKAZ QILISH</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-name="kepka kepkalar bosh kiyim">
+                <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=500&q=80" class="product-img">
+                <div class="product-info">
+                    <div class="product-title">Premium Qora Kepka</div>
+                    <div class="product-price">120 000 UZS</div>
+                    <button class="order-btn" onclick="openModal()">ZAKAZ QILISH</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-name="noutbuk noutbuklar macbook asus">
+                <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=500&q=80" class="product-img">
+                <div class="product-info">
+                    <div class="product-title">Noutbuk MacBook Pro M3</div>
+                    <div class="product-price">15 000 000 UZS</div>
+                    <button class="order-btn" onclick="openModal()">ZAKAZ QILISH</button>
                 </div>
             </div>
 
         </div>
 
-        <div class="footer-note">Siz uchun manfaatlik bo'lsa biz xursandmiz — Qobiljonov Xojiakbar</div>
-
+        <!-- Call Center va Support -->
+        <footer>
+            <h3>Qo'llab-quvvatlash Markazi</h3>
+            <p>Qandaydir savol va taklifingiz bo'lsa biz bilan bog'laning:</p><br>
+            <p>📞 CALL CENTER: <span>+998 90 610 19 76</span></p>
+            <p>✈️ TELEGRAM: <span>@qxvBRAND</span></p>
+            <p>📸 INSTAGRAM: <span>@kobiljonov.x</span></p>
+        </footer>
     </div>
 
-    <!-- MODAL OYNA -->
-    <div class="modal" id="appeal-modal">
+    <!-- Zakaz qilinganda chiqadigan oyna -->
+    <div id="order-modal">
         <div class="modal-content">
-            <div class="modal-header" id="modal-target">Murojaat yuborish</div>
-            <div class="modal-info">Murojaatingizni yozing va platformada javobimizni bildirishnomada yuboramiz.</div>
-            <textarea class="modal-textarea" id="appeal-text" placeholder="Murojaat matnini shu yerga yozing..."></textarea>
-            <div class="modal-btns">
-                <button class="btn-submit" onclick="sendAppeal()">Yuborish</button>
-                <button class="btn-close" onclick="closeModal()">Yopish</button>
-            </div>
+            <h2>MUVAFFAQIYATLI! ✅</h2>
+            <p>ZAKAZ QABUL QILINDI!<br><br>Iltimos, tasdiqlash uchun Telegramdan <b>@qxvBRAND</b> ga murojaat qiling va biz buyurtmani muvaffaqiyatli qabul qilamiz.</p>
+            <button onclick="closeModal()">TUSHUNARLI</button>
         </div>
     </div>
 
     <script>
-        const doorLeft = document.getElementById('door-left');
-        const doorRight = document.getElementById('door-right');
-        const numFly = document.getElementById('num-fly');
-
-        // 1-soniyada eshiklar ochiladi
+        // 1. BMW Animatsiyasini boshqarish
         setTimeout(() => {
-            doorLeft.style.transform = 'translateX(-100%)';
-            doorRight.style.transform = 'translateX(100%)';
-        }, 100);
+            let intro = document.getElementById('intro-screen');
+            intro.style.opacity = '0'; // Sekin yo'qolish
+            setTimeout(() => {
+                intro.style.display = 'none'; // Butunlay olib tashlash
+                document.getElementById('main-app').style.display = 'block'; // Dasturni ko'rsatish
+            }, 1000);
+        }, 3500); // 3.5 soniya BMW yonib o'chadi
 
-        // 10 dan 1 gacha sanoq
-        let count = 10;
-        const numTimer = setInterval(() => {
-            count--;
-            if (count > 0) {
-                numFly.innerText = count;
-            } else {
-                clearInterval(numTimer);
-                document.getElementById('door-splash').style.display = 'none';
-                const mainContent = document.getElementById('main-content');
-                mainContent.classList.add('visible');
-            }
-        }, 1000);
+        // 2. Qidiruv tizimi (Search)
+        function searchProducts() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('product-card');
 
-        // Ko'chalarni ochish/yopish
-        function toggleStreet(id) {
-            const el = document.getElementById(id);
-            const icon = document.getElementById('icon-' + id);
-            if (el.classList.contains('active')) {
-                el.classList.remove('active');
-                icon.innerText = '▼';
-            } else {
-                el.classList.add('active');
-                icon.innerText = '▲';
+            for (let i = 0; i < cards.length; i++) {
+                // Har bir kartadagi "data-name" ni tekshiradi
+                let name = cards[i].getAttribute('data-name');
+                if (name.includes(input)) {
+                    cards[i].style.display = "block";
+                } else {
+                    cards[i].style.display = "none";
+                }
             }
         }
 
-        // Modal oyna funksiyalari
-        function openModal(target) {
-            document.getElementById('modal-target').innerText = target + " ga murojaat";
-            document.getElementById('appeal-text').value = '';
-            document.getElementById('appeal-modal').style.display = 'flex';
+        // 3. Zakaz oynasini ochish va yopish
+        function openModal() {
+            document.getElementById('order-modal').style.display = 'flex';
         }
 
         function closeModal() {
-            document.getElementById('appeal-modal').style.display = 'none';
-        }
-
-        function sendAppeal() {
-            const text = document.getElementById('appeal-text').value.trim();
-            if (!text) {
-                alert("Iltimos, murojaat matnini kiriting!");
-                return;
-            }
-            alert("Murojaatingiz qabul qilindi! Platformamizda javobimizni bildirishnomada yuboramiz.");
-            closeModal();
+            document.getElementById('order-modal').style.display = 'none';
         }
     </script>
 </body>

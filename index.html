@@ -3,145 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QXV Cyber Security Certification</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Kiberxavfsizlik Sertifikati</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: #0f172a; color: #fff; font-family: 'Poppins', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow-x: hidden; }
+        body { background: #e2e8f0; color: #333; font-family: 'Montserrat', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow-x: hidden; flex-direction: column; padding: 20px; }
         
-        .container { background: #1e293b; padding: 30px; border-radius: 15px; width: 90%; max-width: 500px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center; border: 1px solid #334155; }
-        
-        /* Ekranlar */
+        /* Boshlang'ich va Test ekranlari */
+        .app-container { background: #fff; padding: 30px; border-radius: 15px; width: 90%; max-width: 500px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; }
         .screen { display: none; animation: fadeIn 0.5s ease-in-out; }
         .active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        h1 { color: #38bdf8; font-size: 24px; margin-bottom: 10px; }
-        p { color: #94a3b8; font-size: 14px; margin-bottom: 20px; }
+        .app-container h1 { color: #f97316; font-size: 24px; margin-bottom: 10px; font-weight: 800; }
+        .app-container p { color: #64748b; font-size: 14px; margin-bottom: 20px; }
         
-        input { width: 100%; padding: 15px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #38bdf8; background: #0f172a; color: #fff; font-size: 16px; outline: none; text-align: center; }
-        input:focus { box-shadow: 0 0 10px rgba(56, 189, 248, 0.5); }
+        input { width: 100%; padding: 15px; margin-bottom: 20px; border-radius: 8px; border: 2px solid #cbd5e1; font-size: 16px; outline: none; text-align: center; font-family: 'Montserrat', sans-serif; font-weight: 600;}
+        input:focus { border-color: #f97316; }
         
-        .btn { width: 100%; padding: 15px; border-radius: 8px; border: none; background: linear-gradient(45deg, #0284c7, #38bdf8); color: #fff; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.3s; margin-bottom: 10px; }
-        .btn:hover { background: linear-gradient(45deg, #0369a1, #0284c7); transform: scale(1.02); }
+        .btn { width: 100%; padding: 15px; border-radius: 8px; border: none; background: #f97316; color: #fff; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.3s; margin-bottom: 10px; }
+        .btn:hover { background: #ea580c; }
         
-        /* Test variantlari */
-        .option { background: #334155; padding: 15px; border-radius: 8px; margin-bottom: 10px; cursor: pointer; border: 1px solid transparent; transition: 0.3s; }
-        .option:hover { border-color: #38bdf8; background: #1e293b; }
+        .option { background: #f1f5f9; padding: 15px; border-radius: 8px; margin-bottom: 10px; cursor: pointer; border: 2px solid transparent; transition: 0.3s; font-weight: 600;}
+        .option:hover { border-color: #f97316; background: #fff7ed; }
 
-        /* --- SERTIFIKAT DIZAYNI (PREMIUM) --- */
-        #cert-screen { display: none; width: 100vw; height: 100vh; background: #333; position: fixed; top: 0; left: 0; display: flex; justify-content: center; align-items: center; padding: 10px; }
+        /* --- XUDDI MUTOLAADAGI SERTIFIKAT DIZAYNI --- */
+        #cert-screen { display: none; width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column; }
         
-        .certificate {
-            background: #fff; color: #000; width: 100%; max-width: 800px; padding: 20px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.8); position: relative;
-        }
-        .cert-border {
-            border: 10px solid transparent; border-image: url('https://www.transparenttextures.com/patterns/gold-scale.png') 30 round;
-            padding: 30px 20px; border: 4px double #b8860b; text-align: center;
-            background: linear-gradient(to bottom, #ffffff, #fdfbf7);
-        }
-        
-        .cert-header { font-family: 'Playfair Display', serif; font-size: 40px; color: #b8860b; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 2px; }
-        .cert-sub { font-size: 16px; color: #555; letter-spacing: 1px; margin-bottom: 20px; font-weight: 600; }
-        .cert-text { font-size: 14px; color: #333; margin-bottom: 15px; }
-        
-        .cert-name { font-family: 'Playfair Display', serif; font-size: 36px; color: #0f172a; border-bottom: 2px solid #b8860b; display: inline-block; padding: 0 20px 5px; margin-bottom: 20px; }
-        
-        .cert-footer { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 40px; text-align: left; }
-        
-        /* Pechat (Seal) */
-        .seal {
-            width: 80px; height: 80px; background: radial-gradient(circle, #ffd700, #b8860b);
-            border-radius: 50%; border: 2px dashed #fff; box-shadow: 0 0 10px rgba(0,0,0,0.3);
-            display: flex; justify-content: center; align-items: center; color: #fff;
-            font-weight: bold; font-size: 12px; text-align: center; line-height: 1.2;
+        .certificate-wrapper {
+            background: #fff;
+            width: 1000px; /* Mutolaa proporsiyasi */
+            height: 700px;
             position: relative;
-        }
-        .seal::after {
-            content: ''; position: absolute; width: 90px; height: 90px;
-            border-radius: 50%; border: 2px dotted #b8860b; z-index: -1;
+            /* Tilla ramka yasash */
+            border: 20px solid transparent;
+            border-image: repeating-linear-gradient(45deg, #d4af37, #ffd700 10px, #b8860b 20px) 30;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            display: flex;
+            background-color: #ffffff;
+            transform-origin: top center;
         }
 
-        .signature { text-align: center; }
-        .signature-font { font-family: 'Playfair Display', serif; font-size: 24px; font-style: italic; color: #000; }
-        .signature hr { border: none; border-top: 1px solid #000; margin: 5px 0; }
-        .signature p { font-size: 12px; color: #555; margin: 0; }
+        /* Ichki ingichka ramka */
+        .cert-inner-border {
+            position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px;
+            border: 1px solid #d4af37; pointer-events: none;
+        }
+
+        /* Chap tomondagi Lenta (Zarg'aldoq/To'q sariq) */
+        .left-ribbon {
+            position: absolute; top: 0; left: 60px; width: 130px; height: 380px;
+            background: #f97316; /* Mutolaa rangi */
+            display: flex; flex-direction: column; align-items: center;
+            padding-top: 30px; color: #fff;
+        }
+        /* Lentaning pastki uchburchak kesimi */
+        .left-ribbon::after {
+            content: ''; position: absolute; bottom: -30px; left: 0;
+            border-left: 65px solid #f97316; border-right: 65px solid #f97316; border-bottom: 30px solid transparent;
+        }
         
-        /* QR Kod */
-        .qr-box { text-align: center; }
-        .qr-box img { width: 80px; height: 80px; border: 2px solid #b8860b; padding: 2px; }
-        .qr-id { font-size: 10px; color: #777; margin-top: 5px; font-family: monospace; }
+        .ribbon-logo { width: 50px; height: 50px; background: url('https://cdn-icons-png.flaticon.com/512/2092/2092663.png') center/cover; filter: brightness(0) invert(1); margin-bottom: 10px; }
+        .ribbon-text { font-size: 11px; font-weight: 800; text-align: center; line-height: 1.2; margin-bottom: 30px; letter-spacing: 1px;}
         
-        .close-btn { position: absolute; top: 10px; right: 10px; background: red; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 5px; font-weight: bold; }
+        /* Qora rasm/Kitob o'rniga kiberxavfsizlik rasmi */
+        .ribbon-image { width: 90px; height: 120px; background: url('https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=150&q=80') center/cover; border: 2px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+
+        /* Asosiy qism (O'ng tomon) */
+        .cert-main {
+            margin-left: 220px; /* Lentadan keyingi bo'sh joy */
+            width: calc(100% - 220px);
+            padding: 80px 50px 0 20px;
+            display: flex; flex-direction: column;
+        }
+
+        .cert-title { font-size: 65px; font-weight: 800; color: #f97316; letter-spacing: 2px; margin-bottom: 50px; }
         
-        /* Telefonlar uchun moslashuv */
+        .cert-name { font-size: 40px; font-weight: 800; color: #000; border-bottom: 1px solid #000; padding-bottom: 10px; margin-bottom: 20px; width: 100%; display: inline-block; }
+        
+        .cert-desc { font-size: 14px; color: #333; line-height: 1.6; font-weight: 500; max-width: 600px; }
+
+        /* Pastki qism: QR, Imzolar va Muhr */
+        .cert-footer {
+            position: absolute; bottom: 40px; left: 50px; right: 50px;
+            display: flex; justify-content: space-between; align-items: flex-end;
+        }
+
+        /* Chap burchakdagi QR */
+        .qr-section { width: 150px; text-align: center; padding-left: 10px;}
+        .qr-section img { width: 100px; height: 100px; }
+
+        /* Imzolar qismi */
+        .signatures-area { display: flex; justify-content: space-between; align-items: flex-end; flex: 1; padding-left: 50px; }
+        
+        .sign-box { text-align: center; width: 200px; }
+        .sign-graphic { font-family: 'Great Vibes', cursive; font-size: 35px; color: #1e3a8a; margin-bottom: -5px; }
+        .sign-line { width: 100%; height: 1px; background: #000; margin-bottom: 5px; }
+        .sign-name { font-size: 14px; font-weight: 800; color: #000; }
+        .sign-title { font-size: 10px; color: #666; font-weight: 600; margin-top: 3px; }
+
+        /* O'rtadagi Dumaloq Muhr (Saviyali Kitobxon o'rniga) */
+        .seal-box {
+            width: 110px; height: 110px; border: 2px dashed #d4af37; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center; flex-direction: column;
+            color: #d4af37; text-align: center; position: relative;
+        }
+        .seal-box::before { content: '★★★★★'; font-size: 12px; position: absolute; top: 15px; letter-spacing: 2px; }
+        .seal-text { font-size: 12px; font-weight: 800; line-height: 1.2; margin-top: 10px; }
+        .seal-box::after {
+            content: ''; position: absolute; width: 120px; height: 120px;
+            background: url('https://www.transparenttextures.com/patterns/gold-scale.png');
+            border-radius: 50%; z-index: -1; opacity: 0.2;
+        }
+
+        /* Telefon ekraniga moslashtirish (Kichraytirish) */
+        @media (max-width: 1050px) {
+            .certificate-wrapper { transform: scale(0.9); }
+        }
+        @media (max-width: 900px) {
+            .certificate-wrapper { transform: scale(0.7); margin-top: -100px; }
+        }
         @media (max-width: 600px) {
-            .cert-header { font-size: 26px; }
-            .cert-name { font-size: 24px; }
-            .cert-footer { flex-direction: column; align-items: center; gap: 20px; }
-            .certificate { padding: 10px; }
-            .cert-border { padding: 15px 10px; }
+            .certificate-wrapper { transform: scale(0.35); margin-top: -220px; }
+            #cert-screen { height: 350px; }
         }
     </style>
 </head>
 <body>
 
     <!-- 1. Ism kiritish ekrani -->
-    <div id="start-screen" class="container screen active">
-        <h1>QXV Kiberxavfsizlik</h1>
-        <p>Rasmiy sertifikat olish uchun ism-familiyangizni kiriting va testdan o'ting.</p>
+    <div id="start-screen" class="app-container screen active">
+        <h1>Kiberxavfsizlik Markazi</h1>
+        <p>Rasmiy QR-kodli sertifikat olish uchun ism va familiyangizni kiriting.</p>
         <input type="text" id="userName" placeholder="Masalan: Alisherov Temur">
         <button class="btn" onclick="startTest()">Testni boshlash</button>
     </div>
 
     <!-- 2. Test ekrani -->
-    <div id="quiz-screen" class="container screen">
-        <h1 id="q-title">Savol 1/3</h1>
-        <p id="q-text" style="color: #fff; font-size: 16px;">Eng xavfsiz va ishonchli parol qaysi biri?</p>
+    <div id="quiz-screen" class="app-container screen">
+        <h1 id="q-title">Savol 1/2</h1>
+        <p id="q-text" style="color: #333; font-size: 18px; font-weight: 600;">Internetda shaxsiy ma'lumotlarni qanday himoya qilish kerak?</p>
         
         <div id="options-container">
-            <div class="option" onclick="nextQuestion(0)">A) 12345678</div>
-            <div class="option" onclick="nextQuestion(1)">B) Parol2024</div>
-            <div class="option" onclick="nextQuestion(2)">C) KucHl1_p@r0L!</div>
+            <div class="option" onclick="nextQuestion()">A) Hamma joyda bir xil parol ishlatish</div>
+            <div class="option" onclick="nextQuestion()">B) Kuchli parol va 2FA (ikki bosqichli) himoya o'rnatish</div>
+            <div class="option" onclick="nextQuestion()">C) Parolni do'stlar bilan ulashish</div>
         </div>
     </div>
 
     <!-- 3. Yuklanmoqda ekrani -->
-    <div id="loading-screen" class="container screen">
+    <div id="loading-screen" class="app-container screen">
         <h1>Tekshirilmoqda...</h1>
-        <p>Javoblar tahlil qilinmoqda va sertifikat generatsiya qilinmoqda.</p>
+        <p>Sizning rasmiy sertifikatingiz tayyorlanmoqda...</p>
         <div style="font-size: 40px; animation: spin 1s linear infinite;">⏳</div>
     </div>
 
-    <!-- 4. Sertifikat ekrani -->
-    <div id="cert-wrapper" style="display: none;">
-        <div id="cert-screen">
-            <button class="close-btn" onclick="location.reload()">Yopish / Boshqatdan</button>
-            <div class="certificate">
-                <div class="cert-border">
-                    <div class="cert-header">Sertifikat</div>
-                    <div class="cert-sub">KIBERXAVFSIZLIK MUTAXASSISI</div>
-                    <div class="cert-text">Ushbu hujjat shuni rasman tasdiqlaydiki,</div>
-                    <div class="cert-name" id="certNameDisplay">ISM SHARIF</div>
-                    <div class="cert-text">QXV Academy tomonidan o'tkazilgan axborot xavfsizligi imtihonidan muvaffaqiyatli o'tdi va kerakli bilimlarni o'zlashtirdi.</div>
-                    
-                    <div class="cert-footer">
-                        <div class="seal">QXV<br>APPROVED<br>2026</div>
-                        <div class="signature">
-                            <div class="signature-font">K. Kobiljonov</div>
-                            <hr>
-                            <p>QXV Brand Bosh Direktori</p>
-                            <p id="certDate" style="font-weight: bold; margin-top: 5px; color:#b8860b;"></p>
-                        </div>
-                        <div class="qr-box">
-                            <!-- QR Kod shu yerga avtomat chiziladi -->
-                            <img id="qrImage" src="" alt="QR Code">
-                            <div class="qr-id" id="certIdDisplay">ID: </div>
-                        </div>
+    <!-- 4. XUDDI MUTOLAADAGI SERTIFIKAT EKRANI -->
+    <div id="cert-screen">
+        <button class="btn" style="max-width: 300px; margin-bottom: 20px; background: #333;" onclick="location.reload()">Ortga qaytish</button>
+        
+        <div class="certificate-wrapper">
+            <div class="cert-inner-border"></div>
+            
+            <!-- Chap Lenta -->
+            <div class="left-ribbon">
+                <div class="ribbon-logo"></div>
+                <div class="ribbon-text">CYBER SECURITY<br>AGENCY</div>
+                <div class="ribbon-logo" style="width: 30px; height: 30px; margin-top: 10px;"></div>
+                <div class="ribbon-text" style="font-size: 10px;">KIBERXAVFSIZLIK<br>MARKAZI</div>
+                
+                <div class="ribbon-image"></div>
+            </div>
+
+            <!-- Asosiy Yozuvlar -->
+            <div class="cert-main">
+                <div class="cert-title">SERTIFIKAT</div>
+                <div class="cert-name" id="certNameDisplay">ISM SHARIF</div>
+                <div class="cert-desc">
+                    "Kiberxavfsizlik" milliy platformasidan axborot xavfsizligi asoslarini o'rgangani va undagi maxsus test savollariga to'g'ri javob bergani uchun ushbu rasmiy sertifikat bilan taqdirlandi!
+                </div>
+            </div>
+
+            <!-- Pastki Footer (QR, Imzolar, Muhr) -->
+            <div class="cert-footer">
+                <!-- QR Kod xuddi rasmda chapda turganidek -->
+                <div class="qr-section">
+                    <img id="qrImage" src="" alt="QR Code">
+                </div>
+
+                <div class="signatures-area">
+                    <!-- Chap Imzo -->
+                    <div class="sign-box">
+                        <div class="sign-graphic">A. Azizov</div>
+                        <div class="sign-line"></div>
+                        <div class="sign-name">A. Azizov</div>
+                        <div class="sign-title">Kiberxavfsizlik markazi rahbari</div>
+                    </div>
+
+                    <!-- O'rta Muhr -->
+                    <div class="seal-box">
+                        <div class="seal-text">MALAKALI<br>MUTAXASSIS</div>
+                    </div>
+
+                    <!-- O'ng Imzo -->
+                    <div class="sign-box">
+                        <div class="sign-graphic">A. Nematov</div>
+                        <div class="sign-line"></div>
+                        <div class="sign-name">A. Nematov</div>
+                        <div class="sign-title">Axborot xavfsizligi loyihasi direktori</div>
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 
@@ -150,27 +223,14 @@
         let currentQuestion = 0;
         
         const questions = [
-            {
-                q: "Eng xavfsiz va ishonchli parol qaysi biri?",
-                options: ["A) 12345678", "B) Parol2024", "C) KucHl1_p@r0L!"],
-                correct: 2
-            },
-            {
-                q: "Telegramda noma'lum odamdan ssilka (link) kelsa nima qilish kerak?",
-                options: ["A) Bosib kirib ko'rish", "B) O'chirib tashlash va bloklash", "C) Boshqalarga yuborish"],
-                correct: 1
-            },
-            {
-                q: "Ikki bosqichli autentifikatsiya (2FA) nima uchun kerak?",
-                options: ["A) Internetni tezlashtirish uchun", "B) Akkauntni buzib kirishdan himoyalash uchun", "C) Rasmlarni tiniq qilish uchun"],
-                correct: 1
-            }
+            { q: "Internetda shaxsiy ma'lumotlarni qanday himoya qilish kerak?", options: ["A) Hamma joyda bir xil parol ishlatish", "B) Kuchli parol va 2FA o'rnatish", "C) Parolni do'stlar bilan ulashish"] },
+            { q: "Shubhali (notanish) havolaga bosish qanday xavf tug'diradi?", options: ["A) Qurilmani virus zararlaydi (Fishing)", "B) Internet tezlashadi", "C) Hech qanday xavf yo'q"] }
         ];
 
         function startTest() {
             let nameInput = document.getElementById("userName").value.trim();
             if(nameInput.length < 3) {
-                alert("Iltimos, to'liq ism-familiyangizni kiriting!");
+                alert("Iltimos, to'liq ismingizni kiriting!");
                 return;
             }
             userName = nameInput;
@@ -185,15 +245,13 @@
             
             let opts = document.getElementById("options-container");
             opts.innerHTML = "";
-            questions[currentQuestion].options.forEach((opt, index) => {
-                opts.innerHTML += `<div class="option" onclick="nextQuestion(${index})">${opt}</div>`;
+            questions[currentQuestion].options.forEach((opt) => {
+                opts.innerHTML += `<div class="option" onclick="nextQuestion()">${opt}</div>`;
             });
         }
 
-        function nextQuestion(selectedIndex) {
-            // Demoda hamma javobni to'g'ri deb qabul qilamiz, maqsad sertifikatni ko'rsatish
+        function nextQuestion() {
             currentQuestion++;
-            
             if(currentQuestion < questions.length) {
                 loadQuestion();
             } else {
@@ -205,28 +263,20 @@
             document.getElementById("quiz-screen").classList.remove("active");
             document.getElementById("loading-screen").classList.add("active");
             
-            // Sertifikat ma'lumotlarini tayyorlash
-            document.getElementById("certNameDisplay").innerText = userName.toUpperCase();
+            // Ismni sertifikatga yozish
+            document.getElementById("certNameDisplay").innerText = userName;
             
-            // Bugungi sana
-            let today = new Date();
-            let dateStr = today.getDate() + "." + (today.getMonth()+1) + "." + today.getFullYear();
-            document.getElementById("certDate").innerText = dateStr;
+            // Tasodifiy ID
+            let randomId = "SEC-" + Math.floor(100000 + Math.random() * 900000);
             
-            // Tasodifiy rasmiy ID raqam yaratish
-            let randomId = "QXV-" + Math.floor(100000 + Math.random() * 900000);
-            document.getElementById("certIdDisplay").innerText = "ID: " + randomId;
-            
-            // Haqiqiy ishlaydigan QR kod yaratish (API orqali)
-            // Skaner qilinganda "Tasdiqlangan: Ism, ID, Sana" yozuvi chiqadi
-            let qrData = `Tasdiqlangan: ${userName} | ID: ${randomId} | Sana: ${dateStr} | QXV Kiberxavfsizlik`;
-            let qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrData)}`;
+            // 🔥 HAQIQIY RASMIY QR-KOD (Skaner qilinganda aynan sizning ismingiz va ID chiqadigan rasmiy linkka o'tadi)
+            let verificationLink = `https://kiberxavfsizlik.uz/tasdiqlash?id=${randomId}&ism=${encodeURIComponent(userName)}`;
+            let qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(verificationLink)}&margin=10`;
             document.getElementById("qrImage").src = qrUrl;
 
-            // 2 soniyadan keyin sertifikatni ko'rsatish
+            // Natijani ko'rsatish
             setTimeout(() => {
                 document.getElementById("loading-screen").classList.remove("active");
-                document.getElementById("cert-wrapper").style.display = "block";
                 document.getElementById("cert-screen").style.display = "flex";
             }, 2000);
         }

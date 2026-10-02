@@ -9,7 +9,6 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background: #e2e8f0; color: #333; font-family: 'Montserrat', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow-x: hidden; flex-direction: column; padding: 20px; }
         
-        /* Boshlang'ich va Test ekranlari */
         .app-container { background: #fff; padding: 30px; border-radius: 15px; width: 100%; max-width: 500px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; }
         .screen { display: none; animation: fadeIn 0.5s ease-in-out; }
         .active { display: block; }
@@ -18,8 +17,13 @@
         .app-container h1 { color: #f97316; font-size: 24px; margin-bottom: 10px; font-weight: 800; }
         .app-container p { color: #64748b; font-size: 14px; margin-bottom: 20px; }
         
-        input { width: 100%; padding: 15px; margin-bottom: 20px; border-radius: 8px; border: 2px solid #cbd5e1; font-size: 16px; outline: none; text-align: center; font-family: 'Montserrat', sans-serif; font-weight: 600;}
-        input:focus { border-color: #f97316; }
+        input[type="text"] { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 8px; border: 2px solid #cbd5e1; font-size: 16px; outline: none; text-align: center; font-family: 'Montserrat', sans-serif; font-weight: 600;}
+        input[type="text"]:focus { border-color: #f97316; }
+        
+        /* Rasm yuklash qismi dizayni */
+        .file-upload-wrapper { text-align: left; margin-bottom: 20px; }
+        .file-upload-wrapper label { display: block; font-size: 14px; color: #475569; font-weight: 600; margin-bottom: 8px; }
+        input[type="file"] { width: 100%; padding: 10px; background: #f8fafc; border: 2px dashed #cbd5e1; border-radius: 8px; cursor: pointer; }
         
         .btn { width: 100%; padding: 15px; border-radius: 8px; border: none; background: #f97316; color: #fff; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.3s; margin-bottom: 10px; }
         .btn:hover { background: #ea580c; }
@@ -27,92 +31,42 @@
         .option { background: #f1f5f9; padding: 15px; border-radius: 8px; margin-bottom: 10px; cursor: pointer; border: 2px solid transparent; transition: 0.3s; font-weight: 600;}
         .option:hover { border-color: #f97316; background: #fff7ed; }
 
-        /* --- SERTIFIKAT EKRANI (To'liq ekran qoplamasi) --- */
-        #cert-screen { 
-            display: none; 
-            position: fixed; 
-            top: 0; left: 0; 
-            width: 100vw; height: 100vh; 
-            background: #e2e8f0; 
-            z-index: 1000; 
-            justify-content: center; 
-            align-items: center; 
-            flex-direction: column; 
-            overflow: hidden;
-        }
+        /* --- SERTIFIKAT EKRANI --- */
+        #cert-screen { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #e2e8f0; z-index: 1000; justify-content: center; align-items: center; flex-direction: column; overflow: hidden; }
         
-        .certificate-wrapper {
-            background: #fff;
-            width: 1000px; 
-            height: 700px;
-            position: relative;
-            border: 20px solid transparent;
-            border-image: repeating-linear-gradient(45deg, #d4af37, #ffd700 10px, #b8860b 20px) 30;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-            display: flex;
-            background-color: #ffffff;
-            transform-origin: center center;
-        }
+        .certificate-wrapper { background: #fff; width: 1000px; height: 700px; position: relative; border: 20px solid transparent; border-image: repeating-linear-gradient(45deg, #d4af37, #ffd700 10px, #b8860b 20px) 30; box-shadow: 0 15px 40px rgba(0,0,0,0.3); display: flex; transform-origin: center center; }
 
-        .cert-inner-border {
-            position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px;
-            border: 1px solid #d4af37; pointer-events: none;
-        }
+        .cert-inner-border { position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px; border: 1px solid #d4af37; pointer-events: none; }
 
-        .left-ribbon {
-            position: absolute; top: 0; left: 60px; width: 130px; height: 380px;
-            background: #f97316; 
-            display: flex; flex-direction: column; align-items: center;
-            padding-top: 30px; color: #fff;
-        }
-        .left-ribbon::after {
-            content: ''; position: absolute; bottom: -30px; left: 0;
-            border-left: 65px solid #f97316; border-right: 65px solid #f97316; border-bottom: 30px solid transparent;
-        }
+        .left-ribbon { position: absolute; top: 0; left: 60px; width: 130px; height: 380px; background: #f97316; display: flex; flex-direction: column; align-items: center; padding-top: 30px; color: #fff; }
+        .left-ribbon::after { content: ''; position: absolute; bottom: -30px; left: 0; border-left: 65px solid #f97316; border-right: 65px solid #f97316; border-bottom: 30px solid transparent; }
         
         .ribbon-logo { width: 50px; height: 50px; background: url('https://cdn-icons-png.flaticon.com/512/2092/2092663.png') center/cover; filter: brightness(0) invert(1); margin-bottom: 10px; }
         .ribbon-text { font-size: 11px; font-weight: 800; text-align: center; line-height: 1.2; margin-bottom: 30px; letter-spacing: 1px;}
-        .ribbon-image { width: 90px; height: 120px; background: url('https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=150&q=80') center/cover; border: 2px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        
+        /* Shaxsiy rasm chiqadigan joy */
+        .ribbon-image { width: 90px; height: 120px; background-color: #cbd5e1; background-size: cover; background-position: center top; border: 2px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
 
-        .cert-main {
-            margin-left: 220px; 
-            width: calc(100% - 220px);
-            padding: 80px 50px 0 20px;
-            display: flex; flex-direction: column;
-        }
-
+        .cert-main { margin-left: 220px; width: calc(100% - 220px); padding: 80px 50px 0 20px; display: flex; flex-direction: column; }
         .cert-title { font-size: 65px; font-weight: 800; color: #f97316; letter-spacing: 2px; margin-bottom: 50px; }
         .cert-name { font-size: 40px; font-weight: 800; color: #000; border-bottom: 1px solid #000; padding-bottom: 10px; margin-bottom: 20px; width: 100%; display: inline-block; text-transform: uppercase; }
         .cert-desc { font-size: 14px; color: #333; line-height: 1.6; font-weight: 500; max-width: 600px; }
 
-        .cert-footer {
-            position: absolute; bottom: 40px; left: 50px; right: 50px;
-            display: flex; justify-content: space-between; align-items: flex-end;
-        }
-
+        .cert-footer { position: absolute; bottom: 40px; left: 50px; right: 50px; display: flex; justify-content: space-between; align-items: flex-end; }
         .qr-section { width: 150px; text-align: center; padding-left: 10px;}
         .qr-section img { width: 100px; height: 100px; }
 
         .signatures-area { display: flex; justify-content: space-between; align-items: flex-end; flex: 1; padding-left: 50px; }
-        
         .sign-box { text-align: center; width: 200px; }
         .sign-graphic { font-family: 'Great Vibes', cursive; font-size: 35px; color: #1e3a8a; margin-bottom: -5px; }
         .sign-line { width: 100%; height: 1px; background: #000; margin-bottom: 5px; }
         .sign-name { font-size: 14px; font-weight: 800; color: #000; }
         .sign-title { font-size: 10px; color: #666; font-weight: 600; margin-top: 3px; }
 
-        .seal-box {
-            width: 110px; height: 110px; border: 2px dashed #d4af37; border-radius: 50%;
-            display: flex; justify-content: center; align-items: center; flex-direction: column;
-            color: #d4af37; text-align: center; position: relative;
-        }
+        .seal-box { width: 110px; height: 110px; border: 2px dashed #d4af37; border-radius: 50%; display: flex; justify-content: center; align-items: center; flex-direction: column; color: #d4af37; text-align: center; position: relative; }
         .seal-box::before { content: '★★★★★'; font-size: 12px; position: absolute; top: 15px; letter-spacing: 2px; }
         .seal-text { font-size: 12px; font-weight: 800; line-height: 1.2; margin-top: 10px; }
-        .seal-box::after {
-            content: ''; position: absolute; width: 120px; height: 120px;
-            background: url('https://www.transparenttextures.com/patterns/gold-scale.png');
-            border-radius: 50%; z-index: -1; opacity: 0.2;
-        }
+        .seal-box::after { content: ''; position: absolute; width: 120px; height: 120px; background: url('https://www.transparenttextures.com/patterns/gold-scale.png'); border-radius: 50%; z-index: -1; opacity: 0.2; }
 
         .back-btn { margin-bottom: 20px; background: #333; padding: 10px 30px; border-radius: 8px; color: white; border: none; font-weight: bold; cursor: pointer; z-index: 1001;}
 
@@ -126,8 +80,16 @@
 
     <div id="start-screen" class="app-container screen active">
         <h1>Kiberxavfsizlik Markazi</h1>
-        <p>Rasmiy QR-kodli sertifikat olish uchun ism va familiyangizni kiriting.</p>
-        <input type="text" id="userName" placeholder="Masalan: Alisherov Temur">
+        <p>Rasmiy QR-kodli sertifikat olish uchun ism-familiyangiz va rasmingizni kiriting.</p>
+        
+        <input type="text" id="userName" placeholder="Masalan: Qobiljonov Xojiakbar">
+        
+        <!-- Rasm yuklash joyi -->
+        <div class="file-upload-wrapper">
+            <label for="userPhoto">Pasport rasmingizni (yoki selfi) yuklang:</label>
+            <input type="file" id="userPhoto" accept="image/*">
+        </div>
+
         <button class="btn" onclick="startTest()">Testni boshlash</button>
     </div>
 
@@ -159,7 +121,9 @@
                 <div class="ribbon-text">CYBER SECURITY<br>AGENCY</div>
                 <div class="ribbon-logo" style="width: 30px; height: 30px; margin-top: 10px;"></div>
                 <div class="ribbon-text" style="font-size: 10px;">KIBERXAVFSIZLIK<br>MARKAZI</div>
-                <div class="ribbon-image"></div>
+                
+                <!-- Shu yerda foydalanuvchining rasmi chiqadi -->
+                <div class="ribbon-image" id="userRibbonImage"></div>
             </div>
 
             <div class="cert-main">
@@ -200,6 +164,7 @@
 
     <script>
         let userName = "";
+        let userPhotoDataUrl = "";
         let currentQuestion = 0;
         
         const questions = [
@@ -215,14 +180,30 @@
 
         function startTest() {
             let nameInput = document.getElementById("userName").value.trim();
+            let photoInput = document.getElementById("userPhoto");
+
             if(nameInput.length < 3) {
                 alert("Iltimos, to'liq ismingizni kiriting!");
                 return;
             }
+            if(photoInput.files.length === 0) {
+                alert("Iltimos, sertifikat uchun rasmingizni yuklang!");
+                return;
+            }
+
             userName = nameInput;
-            hideAllScreens();
-            document.getElementById("quiz-screen").classList.add("active");
-            loadQuestion();
+            
+            // Rasmni o'qib olish (DataURL formatida)
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                userPhotoDataUrl = e.target.result;
+                
+                // Rasmni o'qib bo'lgach keyingi ekranga o'tish
+                hideAllScreens();
+                document.getElementById("quiz-screen").classList.add("active");
+                loadQuestion();
+            }
+            reader.readAsDataURL(photoInput.files[0]);
         }
 
         function loadQuestion() {
@@ -249,19 +230,20 @@
             hideAllScreens();
             document.getElementById("loading-screen").classList.add("active");
             
-            // Kiritilgan ismni HTML ga joylash
+            // Ismni va Yuklangan Rasmni joylash
             document.getElementById("certNameDisplay").innerText = userName;
+            document.getElementById("userRibbonImage").style.backgroundImage = `url(${userPhotoDataUrl})`;
             
             let randomId = "SEC-" + Math.floor(100000 + Math.random() * 900000);
             
-            // QR KOD ichiga kiritilgan ismni qo'shish
+            // QR KOD
             let verificationLink = `https://kiberxavfsizlik.uz/tasdiqlash?id=${randomId}&ism=${encodeURIComponent(userName)}`;
             let qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(verificationLink)}&margin=10`;
             document.getElementById("qrImage").src = qrUrl;
 
             setTimeout(() => {
-                hideAllScreens(); // Barcha oldingi oynalarni to'liq yopish
-                document.getElementById("cert-screen").style.display = "flex"; // Sertifikatni ustiga ochish
+                hideAllScreens(); 
+                document.getElementById("cert-screen").style.display = "flex"; 
             }, 2000);
         }
     </script>

@@ -10,7 +10,7 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background: #e2e8f0; color: #333; font-family: 'Montserrat', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow-x: hidden; flex-direction: column; padding: 20px; }
         
-        .app-container { background: #fff; padding: 30px; border-radius: 15px; width: 100%; max-width: 500px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; }
+        .app-container { background: #fff; padding: 30px; border-radius: 15px; width: 100%; max-width: 550px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; }
         .screen { display: none; animation: fadeIn 0.5s ease-in-out; }
         .active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -28,7 +28,7 @@
         .btn { width: 100%; padding: 15px; border-radius: 8px; border: none; background: #f97316; color: #fff; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.3s; margin-bottom: 10px; }
         .btn:hover { background: #ea580c; }
         
-        .option { background: #f1f5f9; padding: 15px; border-radius: 8px; margin-bottom: 10px; cursor: pointer; border: 2px solid transparent; transition: 0.3s; font-weight: 600;}
+        .option { background: #f1f5f9; padding: 12px 15px; border-radius: 8px; margin-bottom: 10px; cursor: pointer; border: 2px solid transparent; transition: 0.3s; font-weight: 600; text-align: left; font-size: 14px;}
         .option:hover { border-color: #f97316; background: #fff7ed; }
 
         /* --- SERTIFIKAT EKRANI --- */
@@ -53,28 +53,8 @@
 
         .cert-footer { position: absolute; bottom: 40px; left: 50px; right: 50px; display: flex; justify-content: space-between; align-items: flex-end; }
         
-        /* QR Kod va uning ichidagi rasm uchun o'rab turuvchi quti */
-        .qr-section { 
-            width: 120px; 
-            height: 120px; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            background: #fff; 
-            position: relative; 
-        }
-        
-        /* QR kod o'rtasidagi kichik shaxsiy rasm */
-        .qr-center-logo {
-            position: absolute;
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            border: 2px solid #fff;
-            background-size: cover;
-            background-position: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        }
+        .qr-section { width: 120px; height: 120px; display: flex; justify-content: center; align-items: center; background: #fff; position: relative; }
+        .qr-center-logo { position: absolute; width: 26px; height: 26px; border-radius: 50%; border: 2px solid #fff; background-size: cover; background-position: center; box-shadow: 0 2px 5px rgba(0,0,0,0.3); }
 
         .signatures-area { display: flex; justify-content: space-between; align-items: flex-end; flex: 1; padding-left: 30px; }
         .sign-box { text-align: center; width: 200px; }
@@ -100,32 +80,27 @@
 
     <div id="start-screen" class="app-container screen active">
         <h1>Kiberxavfsizlik Markazi</h1>
-        <p>Rasmiy QR-kodli sertifikat olish uchun ism-familiyangiz va rasmingizni kiriting.</p>
+        <p>Rasmiy sertifikat olish uchun 40 ta kiberxavfsizlik savoliga to'g'ri javob berishingiz kerak.</p>
         
-        <input type="text" id="userName" placeholder="Masalan: Qobiljonov Xojiakbar">
+        <input type="text" id="userName" placeholder="Ism va Familiyangizni kiriting">
         
         <div class="file-upload-wrapper">
-            <label for="userPhoto">Pasport rasmingizni (yoki selfi) yuklang:</label>
+            <label for="userPhoto">Pasport rasmingizni yuklang:</label>
             <input type="file" id="userPhoto" accept="image/*">
         </div>
 
-        <button class="btn" onclick="startTest()">Testni boshlash</button>
+        <button class="btn" onclick="startTest()">Testni boshlash (40 ta savol)</button>
     </div>
 
     <div id="quiz-screen" class="app-container screen">
-        <h1 id="q-title">Savol 1/2</h1>
-        <p id="q-text" style="color: #333; font-size: 18px; font-weight: 600;">Internetda shaxsiy ma'lumotlarni qanday himoya qilish kerak?</p>
-        
-        <div id="options-container">
-            <div class="option" onclick="nextQuestion()">A) Hamma joyda bir xil parol ishlatish</div>
-            <div class="option" onclick="nextQuestion()">B) Kuchli parol va 2FA o'rnatish</div>
-            <div class="option" onclick="nextQuestion()">C) Parolni do'stlar bilan ulashish</div>
-        </div>
+        <h1 id="q-title">Savol 1/40</h1>
+        <p id="q-text" style="color: #333; font-size: 16px; font-weight: 600; margin-bottom: 15px;"></p>
+        <div id="options-container"></div>
     </div>
 
     <div id="loading-screen" class="app-container screen">
-        <h1>Tekshirilmoqda...</h1>
-        <p>Sizning rasmiy sertifikatingiz tayyorlanmoqda...</p>
+        <h1>Tabriklaymiz!</h1>
+        <p>Barcha 40 ta savolga to'g'ri javob berdingiz. Sertifikatingiz tayyorlanmoqda...</p>
         <div style="font-size: 40px; animation: spin 1s linear infinite;">⏳</div>
     </div>
 
@@ -148,12 +123,11 @@
                 <div class="cert-title">SERTIFIKAT</div>
                 <div class="cert-name" id="certNameDisplay">ISM SHARIF</div>
                 <div class="cert-desc">
-                    "Kiberxavfsizlik" milliy platformasidan axborot xavfsizligi asoslarini o'rgangani va undagi maxsus test savollariga to'g'ri javob bergani uchun ushbu rasmiy sertifikat bilan taqdirlandi!
+                    "Kiberxavfsizlik" milliy platformasidan axborot xavfsizligi asoslarini o'rgangani va barcha 40 ta maxsus test savollariga to'g'ri javob bergani uchun ushbu rasmiy sertifikat bilan taqdirlandi!
                 </div>
             </div>
 
             <div class="cert-footer">
-                <!-- QR kod va uning markazidagi kichik rasm -->
                 <div class="qr-section">
                     <div id="qrcode"></div>
                     <div class="qr-center-logo" id="qrCenterLogo"></div>
@@ -187,9 +161,48 @@
         let userPhotoDataUrl = "";
         let currentQuestion = 0;
         
+        // 40 ta kiberxavfsizlik savollari (ans: to'g'ri javob indeksi 0, 1 yoki 2)
         const questions = [
-            { q: "Internetda shaxsiy ma'lumotlarni qanday himoya qilish kerak?", options: ["A) Hamma joyda bir xil parol ishlatish", "B) Kuchli parol va 2FA o'rnatish", "C) Parolni do'stlar bilan ulashish"] },
-            { q: "Shubhali (notanish) havolaga bosish qanday xavf tug'diradi?", options: ["A) Qurilmani virus zararlaydi (Fishing)", "B) Internet tezlashadi", "C) Hech qanday xavf yo'q"] }
+            { q: "1. Kuchli parol quyidagilardan qaysi birini o'z ichiga olishi kerak?", options: ["Harflar, raqamlar va maxsus belgilar", "Faqat tug'ilgan yilni", "Faqat ism va familiyani"], ans: 0 },
+            { q: "2. Fishing (Phishing) hujumi nima?", options: ["Ijtimoiy tarmoqda do'st orttirish", "Soxta havolalar orqali shaxsiy ma'lumotlarni o'g'irlash", "Kompyuterni tozalash dasturi"], ans: 1 },
+            { q: "3. Ikki bosqichli autentifikatsiya (2FA) nima beradi?", options: ["Internet tezligini oshiradi", "Hisobingizga qo'shimcha xavfsizlik qatlamini qo'shadi", "Parolni eslab qolishga yordam beradi"], ans: 1 },
+            { q: "4. Jamoat joylaridagi ochiq Wi-Fi tarmoqlaridan foydalanganda nima tavsiya etiladi?", options: ["VPN dan foydalanish", "Barcha bank ilovalariga kirish", "Parolsiz tarmoqlarga ulanib ishlayverish"], ans: 0 },
+            { q: "5. Ransomware (tovlamachi virus) kompyuterga tushsa nima qiladi?", options: ["Fayllarni shifrlab, pul talab qiladi", "Kompyuterni tezlashtiradi", "Faqat ekran rangini o'zgartiradi"], ans: 0 },
+            { q: "6. SSL/TLS sertifikati veb-saytda nimani bildiradi?", options: ["Saytning dizayni zo'rligini", "Ma'lumotlar shifrlangan holda xavfsiz uzatilishini", "Sayt bepul ekanligini"], ans: 1 },
+            { q: "7. Brauzerda 'Incognito' (Maxfiy) rejimi nimani kafolatlaydi?", options: ["Internet provayderidan to'liq yashirinishni", "Kompyuterda qidiruv tarixi va kuki saqlanmasligini", "Viruslardan 100% himoyani"], ans: 1 },
+            { q: "8. Shubhali havolalarni tekshirish uchun nima qilish kerak?", options: ["Darhol bosib ko'rish", "Havolani nusxalab xavfsiz analizatorlarga (masalan, VirusTotal) qo'yish", "Do'stlarga yuborish"], ans: 1 },
+            { q: "9. Kompyuter va telefon dasturlarini doimiy yangilab turish nima uchun kerak?", options: ["Joyni to'ldirish uchun", "Topilgan xavfsizlik teshiklarini (paatchlarni) yopish uchun", "Batareyani tez tugatish uchun"], ans: 1 },
+            { q: "10. Zaxira nusxa (Backup) olishdan asosiy maqsad nima?", options: ["Ma'lumotlar yo'qolganda ularni tiklab olish", "Kompyuter xotirasini to'ldirish", "Internet trafigini tejash"], ans: 0 },
+            { q: "11. 'Social Engineering' (Ijtimoiy muhandislik) deganda nimani tushunasiz?", options: ["Insonlar psixologiyasiga ta'sir o'tkazib ma'lumot olish", "Dasturlash tillarini o'rganish", "Ijtimoiy tarmoqlar dizayni"], ans: 0 },
+            { q: "12. Elektron pochtaga notanish odamdan shubhali fayl kelsa nima qilish kerak?", options: ["Darhol ochib ko'rish", "Ochmasdan o'chirib tashlash", "Kompyuter ish stoliga saqlash"], ans: 1 },
+            { q: "13. Smartfonda ekran blokirovkasi (PIN yoki yuz tanish) nima uchun muhim?", options: ["Telefon yo'qolganda ma'lumotlar himoyasi uchun", "Batareya tejamkorligi uchun", "Zaryad tezroq to'lishi uchun"], ans: 0 },
+            { q: "14. Cookie fayllarini vaqti-vaqti bilan tozalab turish nima uchun foydali?", options: ["Maxfiylikni saqlash va kuzatuvlarni kamaytirish uchun", "Internetni o'chirib qo'yish uchun", "Hech qanday foydasi yo'q"], ans: 0 },
+            { q: "15. Parollarni qayerda saqlash xavfsizroq?", options: ["Maxsus parol menejerlarida", "Bloknotga yozib monitorga yopishtirib qo'yish", "Brauzerda hech qanday himoyasiz saqlash"], ans: 0 },
+            { q: "16. VPN nima vazifani bajaradi?", options: ["Internetni o'chiradi", "Internet trafigini shifrlaydi va IP manzilni yashiradi", "Kompyuterni tezlashtiradi"], ans: 1 },
+            { q: "17. DDoS hujumi qanday maqsadga qaratilgan?", options: ["Sayt yoki serverni ishdan chiqarish (ortiqcha yuklab)", "Foydalanuvchi parolini o'g'irlash", "Rasmlarni o'chirish"], ans: 0 },
+            { q: "18. Antivirus dasturi nima qiladi?", options: ["Zararli dasturlarni aniqlaydi va bloklaydi", "Faqat o'yinlarni tezlashtiradi", "Internet tezligini oshiradi"], ans: 0 },
+            { q: "19. Bank kartasi kodini (CVV yoki SMS kod) kimga aytish mumkin?", options: ["Hech kimga, hatto bank xodimiga ham", "Do'stlarga", "Ijtimoiy tarmoqdagi tanishlarga"], ans: 0 },
+            { q: "20. Ochiq va ishonchsiz USB fleshkani kompyuterga taqish qanday xavf tug'diradi?", options: ["Zararli kodlar kompyuterga o'tishi mumkin", "Hech qanday xavfi yo'q", "Fleshka buzilib qoladi"], ans: 0 },
+            { q: "21. Kiberxavfsizlikda 'Zero Trust' (Nol ishonch) tamoyili nima?", options: ["Hech kimga va hech qanday qurilmaga avtomatik ishonmaslik", "Hamma bilan parollarni ulashish", "Xavfsizlik tizimini o'chirib qo'yish"], ans: 0 },
+            { q: "22. Bluetooth yoki Wi-Fi ishlatmaganda nima qilish kerak?", options: ["O'chirib qo'yish xavfsizlikni oshiradi", "Doim yoqiq qoldirish kerak", "Farqi yo'q"], ans: 0 },
+            { q: "23. Smartfoningizga ilovalarni qayerdan yuklab olish xavfsiz?", options: ["Faqat rasmiy App Store yoki Google Play dan", "Noma'lum saytlardan APK fayl ko'rinishida", "Telegramdagi shubhali kanallardan"], ans: 0 },
+            { q: "24. 'Malware' so'zi nimani anglatadi?", options: ["Zararli dasturiy ta'minot", "Sifatli o'yin", "Tezkor internet"], ans: 0 },
+            { q: "25. Skrining (Screen sharing) paytida nimalarga ehtiyot bo'lish kerak?", options: ["Shaxsiy ma'lumotlar va parollar ko'rinib qolishiga", "Faqat ovozga", "Hech narsaga"], ans: 0 },
+            { q: "26. Spam xabarlarga javob berish yoki havolasini bosish nima olib keladi?", options: ["Firibgarlar tuzog'iga tushishga", "Sovg'a yutib olishga", "Hech narsaga"], ans: 0 },
+            { q: "27. Veb-sayt manzilida 'http://' o'rniga 'https://' bo'lishi nimani anglatadi?", options: ["Xavfsiz va shifrlangan ulanishni", "Sayt ishlamasligini", "Reklama ko'pligini"], ans: 0 },
+            { q: "28. Kompyuter parolini murakkab qilish uchun qancha belgi bo'lishi tavsiya etiladi?", options: ["Kamida 8-12 ta va undan ortiq", "Faqat 3 ta raqam", "1 ta harf"], ans: 0 },
+            { q: "29. Shaxsiy ma'lumotlarni internetga (masalan, pasport rasmini) joylash xavflimi?", options: ["Ha, firibgarlar undan suiiste'mol qilishlari mumkin", "Yo'q, mutlaqo xavfsiz", "Faqat kechasi xavfli"], ans: 0 },
+            { q: "30. 'Brute Force' (Qo'pol kuch) hujumi nima?", options: ["Parollarni avtomatik ravishda barcha variantlar bo'yicha terib ko'rish", "Kompyuterni urib sindirish", "Internetni uzib qo'yish"], ans: 0 },
+            { q: "31. Wi-Fi tarmog'iga kuchli shifrlash protokoli qaysi?", options: ["WPA3 (yoki WPA2)", "Ochiq tarmoq", "WEP"], ans: 0 },
+            { q: "32. Brauzerda 'Save Password' (Parolni saqlash) funksiyasidan foydalanish qachon xavfli?", options: ["Agar kompyuterdan boshqalar ham foydalansa", "Faqat o'zingiz ishlatganingizda", "Hech qachon xavfli emas"], ans: 0 },
+            { q: "33. Kibergigiyena nima?", options: ["Raqamli muhitda xavfsizlik qoidalariga rioya qilish", "Kompyuterni latta bilan artish", "Telefonni sovunlab yuvish"], ans: 0 },
+            { q: "34. Shubhali qo'ng'iroq qilib o'zingizni bank xodimi deb tanishtirib kodni so'rashsa:", options: ["Darhol go'shakni qo'yish kerak", "Barcha kodlarni aytish kerak", "Pul berishni so'rash kerak"], ans: 0 },
+            { q: "35. Fayl kengaytmasi '.exe' bo'lgan fayl internetdan yuklansa u nima?", options: ["Ijro etiluvchi dastur (ehtiyot bo'lish kerak)", "Oddiy matnli hujjat", "Musiqa fayli"], ans: 0 },
+            { q: "36. Shaxsiy akkauntingizga begona qurilmadan kirgandan keyin nima qilish shart?", options: ["Seansni (Session) yopish / Chiqish (Log out) qilish", "Hech narsa qilmaslik", "Telefonni o'chirish"], ans: 0 },
+            { q: "37. Ziyonkor dasturlardan himoyalanishda eng birinchi qadam nima?", options: ["Doimo hushyor bo'lish va xavfsizlik qoidalarini bilish", "Kompyuterni yoqmaslik", "Internetni o'chirish"], ans: 0 },
+            { q: "38. Qaysi biri kuchli parolga misol bo'la oladi?", options: ["Tr#7$mP9!xQ", "12345678", "password"], ans: 0 },
+            { q: "39. Xavfsizlikni ta'minlashda xodimlar (foydalanuvchilar) o'rni qanday?", options: ["Eng muhim bo'g'in (inson omili)", "Ahamiyatsiz", "Faqat to'sqinlik qiladi"], ans: 0 },
+            { q: "40. Agar kiberhujumga uchrasangiz yoki ma'lumotlaringiz o'g'irlansa nima qilish kerak?", options: ["Darhol mutaxassislarga va tegishli idoralarga xabar berish", "Jim o'tirish", "Barchaga tarqatish"], ans: 0 }
         ];
 
         function hideAllScreens() {
@@ -216,6 +229,7 @@
             let reader = new FileReader();
             reader.onload = function(e) {
                 userPhotoDataUrl = e.target.result;
+                currentQuestion = 0;
                 hideAllScreens();
                 document.getElementById("quiz-screen").classList.add("active");
                 loadQuestion();
@@ -229,17 +243,29 @@
             
             let opts = document.getElementById("options-container");
             opts.innerHTML = "";
-            questions[currentQuestion].options.forEach((opt) => {
-                opts.innerHTML += `<div class="option" onclick="nextQuestion()">${opt}</div>`;
+            
+            // Variantlarni har safar aralashtirmasdan chiqarish yoki to'g'ri/noto'g'riligini tekshirish uchun:
+            let q = questions[currentQuestion];
+            q.options.forEach((optText, index) => {
+                opts.innerHTML += `<div class="option" onclick="checkAnswer(${index})">${optText}</div>`;
             });
         }
 
-        function nextQuestion() {
-            currentQuestion++;
-            if(currentQuestion < questions.length) {
-                loadQuestion();
+        function checkAnswer(selectedIndex) {
+            let correctIndex = questions[currentQuestion].ans;
+            
+            if (selectedIndex === correctIndex) {
+                // To'g'ri javob
+                currentQuestion++;
+                if(currentQuestion < questions.length) {
+                    loadQuestion();
+                } else {
+                    generateCertificate();
+                }
             } else {
-                generateCertificate();
+                // Noto'g'ri javob berilsa
+                alert("❌ Noto'g'ri javob! Sertifikat olish uchun barcha savollarga to'g'ri javob berishingiz shart. Test boshidan boshlanadi.");
+                location.reload();
             }
         }
 
@@ -249,8 +275,6 @@
             
             document.getElementById("certNameDisplay").innerText = userName;
             document.getElementById("userRibbonImage").style.backgroundImage = `url(${userPhotoDataUrl})`;
-            
-            // QR kod markazidagi kichik rasmga ham shu rasmni qo'yamiz
             document.getElementById("qrCenterLogo").style.backgroundImage = `url(${userPhotoDataUrl})`;
             
             let randomId = "SEC-" + Math.floor(100000 + Math.random() * 900000);
@@ -263,7 +287,7 @@
                 height: 110,
                 colorDark : "#000000",
                 colorLight : "#ffffff",
-                correctLevel : QRCode.CorrectLevel.H // Yuqori darajadagi xatolarni to'g'rilash (o'rtasiga rasm qo'yish uchun shart)
+                correctLevel : QRCode.CorrectLevel.H
             });
 
             setTimeout(() => {

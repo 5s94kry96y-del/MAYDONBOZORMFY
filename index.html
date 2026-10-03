@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kiberxavfsizlik Sertifikati</title>
+    <title>Kiberxavfsizlik Sertifikati - Maydon Bozor MFY</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Great+Vibes&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
@@ -15,8 +15,9 @@
         .active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .app-container h1 { color: #f97316; font-size: 24px; margin-bottom: 10px; font-weight: 800; }
-        .app-container p { color: #64748b; font-size: 14px; margin-bottom: 20px; }
+        .app-container h1 { color: #f97316; font-size: 22px; margin-bottom: 5px; font-weight: 800; }
+        .app-container h3 { color: #1e293b; font-size: 14px; margin-bottom: 15px; font-weight: 600; }
+        .app-container p { color: #64748b; font-size: 13px; margin-bottom: 20px; }
         
         input[type="text"] { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 8px; border: 2px solid #cbd5e1; font-size: 16px; outline: none; text-align: center; font-family: 'Montserrat', sans-serif; font-weight: 600;}
         input[type="text"]:focus { border-color: #f97316; }
@@ -42,31 +43,32 @@
         .left-ribbon::after { content: ''; position: absolute; bottom: -30px; left: 0; border-left: 65px solid #f97316; border-right: 65px solid #f97316; border-bottom: 30px solid transparent; }
         
         .ribbon-logo { width: 50px; height: 50px; background: url('https://cdn-icons-png.flaticon.com/512/2092/2092663.png') center/cover; filter: brightness(0) invert(1); margin-bottom: 10px; }
-        .ribbon-text { font-size: 11px; font-weight: 800; text-align: center; line-height: 1.2; margin-bottom: 30px; letter-spacing: 1px;}
+        .ribbon-text { font-size: 10px; font-weight: 800; text-align: center; line-height: 1.2; margin-bottom: 20px; letter-spacing: 0.5px;}
         
-        .ribbon-image { width: 90px; height: 120px; background-color: #cbd5e1; background-size: cover; background-position: center top; border: 2px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .ribbon-image { width: 90px; height: 110px; background-color: #cbd5e1; background-size: cover; background-position: center top; border: 2px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
 
-        .cert-main { margin-left: 220px; width: calc(100% - 220px); padding: 80px 50px 0 20px; display: flex; flex-direction: column; }
-        .cert-title { font-size: 65px; font-weight: 800; color: #f97316; letter-spacing: 2px; margin-bottom: 50px; }
-        .cert-name { font-size: 40px; font-weight: 800; color: #000; border-bottom: 1px solid #000; padding-bottom: 10px; margin-bottom: 20px; width: 100%; display: inline-block; text-transform: uppercase; }
-        .cert-desc { font-size: 14px; color: #333; line-height: 1.6; font-weight: 500; max-width: 600px; }
+        .cert-main { margin-left: 220px; width: calc(100% - 220px); padding: 50px 50px 0 20px; display: flex; flex-direction: column; }
+        .cert-location { font-size: 11px; font-weight: 700; color: #475569; text-transform: uppercase; margin-bottom: 5px; letter-spacing: 1px; }
+        .cert-title { font-size: 55px; font-weight: 800; color: #f97316; letter-spacing: 2px; margin-bottom: 25px; }
+        .cert-name { font-size: 35px; font-weight: 800; color: #000; border-bottom: 1px solid #000; padding-bottom: 5px; margin-bottom: 15px; width: 100%; display: inline-block; text-transform: uppercase; }
+        .cert-desc { font-size: 13px; color: #333; line-height: 1.5; font-weight: 500; max-width: 600px; }
 
-        .cert-footer { position: absolute; bottom: 40px; left: 50px; right: 50px; display: flex; justify-content: space-between; align-items: flex-end; }
+        .cert-footer { position: absolute; bottom: 35px; left: 50px; right: 50px; display: flex; justify-content: space-between; align-items: flex-end; }
         
-        .qr-section { width: 120px; height: 120px; display: flex; justify-content: center; align-items: center; background: #fff; position: relative; }
-        .qr-center-logo { position: absolute; width: 26px; height: 26px; border-radius: 50%; border: 2px solid #fff; background-size: cover; background-position: center; box-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+        .qr-section { width: 110px; height: 110px; display: flex; justify-content: center; align-items: center; background: #fff; position: relative; }
+        .qr-center-logo { position: absolute; width: 24px; height: 24px; border-radius: 50%; border: 2px solid #fff; background-size: cover; background-position: center; box-shadow: 0 2px 5px rgba(0,0,0,0.3); }
 
-        .signatures-area { display: flex; justify-content: space-between; align-items: flex-end; flex: 1; padding-left: 30px; }
-        .sign-box { text-align: center; width: 200px; }
-        .sign-graphic { font-family: 'Great Vibes', cursive; font-size: 35px; color: #1e3a8a; margin-bottom: -5px; }
+        .signatures-area { display: flex; justify-content: space-between; align-items: flex-end; flex: 1; padding-left: 25px; }
+        .sign-box { text-align: center; width: 180px; }
+        .sign-graphic { font-family: 'Great Vibes', cursive; font-size: 32px; color: #1e3a8a; margin-bottom: -5px; }
         .sign-line { width: 100%; height: 1px; background: #000; margin-bottom: 5px; }
-        .sign-name { font-size: 14px; font-weight: 800; color: #000; }
-        .sign-title { font-size: 10px; color: #666; font-weight: 600; margin-top: 3px; }
+        .sign-name { font-size: 13px; font-weight: 800; color: #000; }
+        .sign-title { font-size: 9px; color: #666; font-weight: 600; margin-top: 3px; line-height: 1.2; }
 
-        .seal-box { width: 110px; height: 110px; border: 2px dashed #d4af37; border-radius: 50%; display: flex; justify-content: center; align-items: center; flex-direction: column; color: #d4af37; text-align: center; position: relative; }
-        .seal-box::before { content: '★★★★★'; font-size: 12px; position: absolute; top: 15px; letter-spacing: 2px; }
-        .seal-text { font-size: 12px; font-weight: 800; line-height: 1.2; margin-top: 10px; }
-        .seal-box::after { content: ''; position: absolute; width: 120px; height: 120px; background: url('https://www.transparenttextures.com/patterns/gold-scale.png'); border-radius: 50%; z-index: -1; opacity: 0.2; }
+        .seal-box { width: 100px; height: 100px; border: 2px dashed #d4af37; border-radius: 50%; display: flex; justify-content: center; align-items: center; flex-direction: column; color: #d4af37; text-align: center; position: relative; }
+        .seal-box::before { content: '★★★★★'; font-size: 10px; position: absolute; top: 12px; letter-spacing: 2px; }
+        .seal-text { font-size: 10px; font-weight: 800; line-height: 1.2; margin-top: 8px; }
+        .seal-box::after { content: ''; position: absolute; width: 110px; height: 110px; background: url('https://www.transparenttextures.com/patterns/gold-scale.png'); border-radius: 50%; z-index: -1; opacity: 0.2; }
 
         .back-btn { margin-bottom: 20px; background: #333; padding: 10px 30px; border-radius: 8px; color: white; border: none; font-weight: bold; cursor: pointer; z-index: 1001;}
 
@@ -79,8 +81,9 @@
 <body>
 
     <div id="start-screen" class="app-container screen active">
-        <h1>Kiberxavfsizlik Markazi</h1>
-        <p>Rasmiy sertifikat olish uchun 40 ta kiberxavfsizlik savoliga to'g'ri javob berishingiz kerak.</p>
+        <h1>Andijon viloyati Andijon shahar</h1>
+        <h3>Maydon Bozor MFY</h3>
+        <p>Yoshlarni kiberxavfsizlik mahoratini va IT ko'nikmalarini sinash uchun 40 ta savol. Sertifikat olish uchun kamida 35 ta to'g'ri javob kerak!</p>
         
         <input type="text" id="userName" placeholder="Ism va Familiyangizni kiriting">
         
@@ -93,37 +96,35 @@
     </div>
 
     <div id="quiz-screen" class="app-container screen">
-        <h1 id="q-title">Savol 1/40</h1>
-        <p id="q-text" style="color: #333; font-size: 16px; font-weight: 600; margin-bottom: 15px;"></p>
+        <h1 id="q-title" style="font-size: 18px; margin-bottom: 10px;">Savol 1/40</h1>
+        <p id="q-text" style="color: #333; font-size: 15px; font-weight: 600; margin-bottom: 15px;"></p>
         <div id="options-container"></div>
     </div>
 
     <div id="loading-screen" class="app-container screen">
-        <h1>Tabriklaymiz!</h1>
-        <p>Barcha 40 ta savolga to'g'ri javob berdingiz. Sertifikatingiz tayyorlanmoqda...</p>
-        <div style="font-size: 40px; animation: spin 1s linear infinite;">⏳</div>
+        <h1>Natija tekshirilmoqda...</h1>
+        <p id="result-message">Sertifikat tayyorlanmoqda...</p>
+        <div style="font-size: 40px; margin-top: 15px;">⏳</div>
     </div>
 
     <div id="cert-screen">
-        <button class="back-btn" onclick="location.reload()">Ortga qaytish</button>
+        <button class="back-btn" onclick="location.reload()">Qaytadan urinish</button>
         
         <div class="certificate-wrapper">
             <div class="cert-inner-border"></div>
             
             <div class="left-ribbon">
                 <div class="ribbon-logo"></div>
-                <div class="ribbon-text">CYBER SECURITY<br>AGENCY</div>
-                <div class="ribbon-logo" style="width: 30px; height: 30px; margin-top: 10px;"></div>
-                <div class="ribbon-text" style="font-size: 10px;">KIBERXAVFSIZLIK<br>MARKAZI</div>
-                
+                <div class="ribbon-text">MAYDON BOZOR MFY<br>YOSHLAR MARKAZI</div>
                 <div class="ribbon-image" id="userRibbonImage"></div>
             </div>
 
             <div class="cert-main">
+                <div class="cert-location">Andijon viloyati, Andijon shahar, Maydon Bozor MFY</div>
                 <div class="cert-title">SERTIFIKAT</div>
                 <div class="cert-name" id="certNameDisplay">ISM SHARIF</div>
                 <div class="cert-desc">
-                    "Kiberxavfsizlik" milliy platformasidan axborot xavfsizligi asoslarini o'rgangani va barcha 40 ta maxsus test savollariga to'g'ri javob bergani uchun ushbu rasmiy sertifikat bilan taqdirlandi!
+                    Maydon Bozor MFY yoshlarini axborot texnologiyalaridan foydalanish qobiliyatini tekshirish va kiberxavfsizlik mahoratini sinash jarayonida 40 ta maxsus savoldan muvaffaqiyatli o'tib, yuqori natija ko'rsatgani uchun ushbu rasmiy sertifikat bilan taqdirlandi!
                 </div>
             </div>
 
@@ -135,21 +136,21 @@
 
                 <div class="signatures-area">
                     <div class="sign-box">
-                        <div class="sign-graphic">A. Azizov</div>
+                        <div class="sign-graphic">Y. Zulunov</div>
                         <div class="sign-line"></div>
-                        <div class="sign-name">A. Azizov</div>
-                        <div class="sign-title">Kiberxavfsizlik markazi rahbari</div>
+                        <div class="sign-name">Y. Zulunov</div>
+                        <div class="sign-title">Mahalla yoshlar yetakchisi (Raxbatlantiruvchi)</div>
                     </div>
 
                     <div class="seal-box">
-                        <div class="seal-text">MALAKALI<br>MUTAXASSIS</div>
+                        <div class="seal-text">MAXSUS<br>SERTIFIKAT</div>
                     </div>
 
                     <div class="sign-box">
-                        <div class="sign-graphic">A. Nematov</div>
+                        <div class="sign-graphic">Qobiljonov X.</div>
                         <div class="sign-line"></div>
-                        <div class="sign-name">A. Nematov</div>
-                        <div class="sign-title">Axborot xavfsizligi loyihasi direktori</div>
+                        <div class="sign-name">Qobiljonov X.</div>
+                        <div class="sign-title">Kiberxavfsizlik muhandisi & Platforma asoschisi</div>
                     </div>
                 </div>
             </div>
@@ -160,8 +161,8 @@
         let userName = "";
         let userPhotoDataUrl = "";
         let currentQuestion = 0;
+        let score = 0;
         
-        // 40 ta kiberxavfsizlik savollari (ans: to'g'ri javob indeksi 0, 1 yoki 2)
         const questions = [
             { q: "1. Kuchli parol quyidagilardan qaysi birini o'z ichiga olishi kerak?", options: ["Harflar, raqamlar va maxsus belgilar", "Faqat tug'ilgan yilni", "Faqat ism va familiyani"], ans: 0 },
             { q: "2. Fishing (Phishing) hujumi nima?", options: ["Ijtimoiy tarmoqda do'st orttirish", "Soxta havolalar orqali shaxsiy ma'lumotlarni o'g'irlash", "Kompyuterni tozalash dasturi"], ans: 1 },
@@ -171,7 +172,7 @@
             { q: "6. SSL/TLS sertifikati veb-saytda nimani bildiradi?", options: ["Saytning dizayni zo'rligini", "Ma'lumotlar shifrlangan holda xavfsiz uzatilishini", "Sayt bepul ekanligini"], ans: 1 },
             { q: "7. Brauzerda 'Incognito' (Maxfiy) rejimi nimani kafolatlaydi?", options: ["Internet provayderidan to'liq yashirinishni", "Kompyuterda qidiruv tarixi va kuki saqlanmasligini", "Viruslardan 100% himoyani"], ans: 1 },
             { q: "8. Shubhali havolalarni tekshirish uchun nima qilish kerak?", options: ["Darhol bosib ko'rish", "Havolani nusxalab xavfsiz analizatorlarga (masalan, VirusTotal) qo'yish", "Do'stlarga yuborish"], ans: 1 },
-            { q: "9. Kompyuter va telefon dasturlarini doimiy yangilab turish nima uchun kerak?", options: ["Joyni to'ldirish uchun", "Topilgan xavfsizlik teshiklarini (paatchlarni) yopish uchun", "Batareyani tez tugatish uchun"], ans: 1 },
+            { q: "9. Kompyuter va telefon dasturlarini doimiy yangilab turish nima uchun kerak?", options: ["Joyni to'ldirish uchun", "Topilgan xavfsizlik teshiklarini yopish uchun", "Batareyani tez tugatish uchun"], ans: 1 },
             { q: "10. Zaxira nusxa (Backup) olishdan asosiy maqsad nima?", options: ["Ma'lumotlar yo'qolganda ularni tiklab olish", "Kompyuter xotirasini to'ldirish", "Internet trafigini tejash"], ans: 0 },
             { q: "11. 'Social Engineering' (Ijtimoiy muhandislik) deganda nimani tushunasiz?", options: ["Insonlar psixologiyasiga ta'sir o'tkazib ma'lumot olish", "Dasturlash tillarini o'rganish", "Ijtimoiy tarmoqlar dizayni"], ans: 0 },
             { q: "12. Elektron pochtaga notanish odamdan shubhali fayl kelsa nima qilish kerak?", options: ["Darhol ochib ko'rish", "Ochmasdan o'chirib tashlash", "Kompyuter ish stoliga saqlash"], ans: 1 },
@@ -216,20 +217,21 @@
             let photoInput = document.getElementById("userPhoto");
 
             if(nameInput.length < 3) {
-                alert("Iltimos, to'liq ismingizni kiriting!");
+                alert("Iltimos, ism va familiyangizni to'liq kiriting!");
                 return;
             }
             if(photoInput.files.length === 0) {
-                alert("Iltimos, sertifikat uchun rasmingizni yuklang!");
+                alert("Iltimos, pasport rasmingizni yuklang!");
                 return;
             }
 
             userName = nameInput;
+            score = 0;
+            currentQuestion = 0;
             
             let reader = new FileReader();
             reader.onload = function(e) {
                 userPhotoDataUrl = e.target.result;
-                currentQuestion = 0;
                 hideAllScreens();
                 document.getElementById("quiz-screen").classList.add("active");
                 loadQuestion();
@@ -244,9 +246,7 @@
             let opts = document.getElementById("options-container");
             opts.innerHTML = "";
             
-            // Variantlarni har safar aralashtirmasdan chiqarish yoki to'g'ri/noto'g'riligini tekshirish uchun:
-            let q = questions[currentQuestion];
-            q.options.forEach((optText, index) => {
+            questions[currentQuestion].options.forEach((optText, index) => {
                 opts.innerHTML += `<div class="option" onclick="checkAnswer(${index})">${optText}</div>`;
             });
         }
@@ -255,17 +255,33 @@
             let correctIndex = questions[currentQuestion].ans;
             
             if (selectedIndex === correctIndex) {
-                // To'g'ri javob
-                currentQuestion++;
-                if(currentQuestion < questions.length) {
-                    loadQuestion();
-                } else {
-                    generateCertificate();
-                }
+                score++;
+            }
+            
+            currentQuestion++;
+            if(currentQuestion < questions.length) {
+                loadQuestion();
             } else {
-                // Noto'g'ri javob berilsa
-                alert("❌ Noto'g'ri javob! Sertifikat olish uchun barcha savollarga to'g'ri javob berishingiz shart. Test boshidan boshlanadi.");
-                location.reload();
+                finishQuiz();
+            }
+        }
+
+        function finishQuiz() {
+            hideAllScreens();
+            document.getElementById("loading-screen").classList.add("active");
+            
+            let resMsg = document.getElementById("result-message");
+            
+            if(score >= 35) {
+                resMsg.innerText = `Tabriklaymiz! 40 tadan ${score} ta to'g'ri topdingiz (Yetarli ball). Sertifikat berilmoqda...`;
+                setTimeout(() => {
+                    generateCertificate();
+                }, 2000);
+            } else {
+                resMsg.innerHTML = `❌ Afsuski, 40 tadan bor yo'g'i <b>${score} ta</b> to'g'ri topdingiz.<br>Sertifikat olish uchun kamida 35 ta to'g'ri javob kerak edi. Qaytadan urinib ko'ring!`;
+                setTimeout(() => {
+                    location.reload();
+                }, 4000);
             }
         }
 
@@ -277,14 +293,14 @@
             document.getElementById("userRibbonImage").style.backgroundImage = `url(${userPhotoDataUrl})`;
             document.getElementById("qrCenterLogo").style.backgroundImage = `url(${userPhotoDataUrl})`;
             
-            let randomId = "SEC-" + Math.floor(100000 + Math.random() * 900000);
-            let verificationLink = `https://kiberxavfsizlik.uz/tasdiqlash?id=${randomId}&ism=${encodeURIComponent(userName)}`;
+            let randomId = "ANDIJAN-MAYDON-" + Math.floor(100000 + Math.random() * 900000);
+            let verificationLink = `https://kiberxavfsizlik.uz/andijon/maydonbozor?id=${randomId}&ism=${encodeURIComponent(userName)}&score=${score}`;
             
             document.getElementById("qrcode").innerHTML = "";
             new QRCode(document.getElementById("qrcode"), {
                 text: verificationLink,
-                width: 110,
-                height: 110,
+                width: 100,
+                height: 100,
                 colorDark : "#000000",
                 colorLight : "#ffffff",
                 correctLevel : QRCode.CorrectLevel.H
@@ -293,7 +309,7 @@
             setTimeout(() => {
                 hideAllScreens(); 
                 document.getElementById("cert-screen").style.display = "flex"; 
-            }, 2000);
+            }, 1000);
         }
     </script>
 </body>

@@ -1,132 +1,220 @@
-Yaxshi — men to‘liq ishlaydigan demo HTML/CSS/JS faylini tayyorlab qo‘ydim. Uni brauzerda ochsangiz sahifani "ichiga kirib" namoyish qila olasiz (server yoki haqiqiy to‘lovlar ishlamaydi — hammasi lokal-demo). Iltimos quyidagilarni bajaring:
+Quyida so‘raganing bo‘yicha to‘liq, uzun va batafsil HTML + CSS + JavaScript fayli. Barcha funksiyalar brauzer ichida ishlaydi (server yo‘q) va to‘lovlarni simulyatsiya qiladi. Faylni .html sifatida saqlab, brauzerda oching. Kod ichida izohlar (o‘zbek tilida) berilgan.
 
-1) Matn muharririda yangi fayl yarating: index.html
-2) Quyidagi butun kodni shu faylga to‘liq ko‘chirib joylang va saqlang.
-3) Brauzerda index.html faylini oching (double-click yoki drag & drop).
-
-Eslatma: Bu faqat demo. Hech qanday haqiqiy to‘lov yoki o‘yin serveriga ulanmaydi.
-
-index.html fayl kodi:
+Kod:
 <!doctype html>
 <html lang="uz">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>QXVcasino — Demo</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>qxvBET - To'liq Demo (uz)</title>
 <style>
+/ ===== Styling va theme ===== /
 :root{
-  --bg:#0f1724; --panel:#0b1220; --accent:#ffcc00; --muted:#9aa4b2; --card:#111827;
+--bg: #0f1724;
+--card: #0b1220;
+--muted: #9aa7b2;
+--accent: #ffd166;
+--accent-2: #ff8ba7;
+--glass: rgba(255,255,255,0.03);
+--success: #22c55e;
+--danger: #ff6b6b;
+--radius: 12px;
+--shadow: 0 8px 28px rgba(2,6,23,0.6);
+font-size: 15px;
+font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
-*{box-sizing:border-box;font-family:Inter,Arial,Helvetica,sans-serif;color:#e6eef8}
-body{margin:0;background:linear-gradient(180deg,#061226 0%, #07101a 100%);min-height:100vh}
-.app{display:flex;gap:16px;padding:16px}
-.sidebar{width:320px;background:linear-gradient(180deg,var(--panel),#071427);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:12px}
-.topbar-row{display:flex;justify-content:space-between;align-items:center}
-.balance-btn{background:#06202a;padding:10px 12px;border-radius:8px;cursor:pointer;border:1px solid rgba(255,255,255,0.04)}
-.balance-btn .label{font-size:12px;color:var(--muted)} .balance-btn .value{font-weight:700;margin-top:4px;font-size:18px}
-.deposit{background:linear-gradient(180deg,#081a2a,#051021);padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.03)}
-.deposit h3{margin:0 0 8px 0;font-size:16px}
-.pay-row{display:flex;gap:8px}
-.pay-btn{flex:1;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
-.small{font-size:12px;color:var(--muted)}
-.history{background:var(--card);padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);flex:1;overflow:auto}
-.history-item{display:flex;justify-content:space-between;padding:8px;border-bottom:1px dashed rgba(255,255,255,0.02);align-items:center}
-.tag{background:rgba(255,204,0,0.12);color:var(--accent);padding:4px 8px;border-radius:999px;font-weight:600;font-size:12px}
-.main{flex:1;display:flex;flex-direction:column;gap:12px}
-.header{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,#061b2a,#071829);border:1px solid rgba(255,255,255,0.02)}
-.brand{display:flex;align-items:center;gap:12px}
-.logo{font-weight:800;color:var(--accent);font-size:20px;letter-spacing:1px}
-.nav{display:flex;gap:8px;align-items:center}
-.nav button{background:transparent;border:1px solid rgba(255,255,255,0.03);padding:8px 12px;border-radius:8px;color:var(--muted);cursor:pointer}
-.nav button.active{background:rgba(255,255,255,0.03);color:#fff;border-color:rgba(255,255,255,0.06)}
-.clock{font-size:14px;color:var(--muted)}
-.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
-.card{background:linear-gradient(180deg,#071a28,#02121a);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03)}
-.card .title-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.live{background:#ff2e63;color:#fff;padding:4px 8px;border-radius:6px;font-weight:700;font-size:12px}
-.players{font-size:12px;color:var(--muted)}
-.odds{display:flex;gap:8px;margin-top:10px}
-.odd{flex:1;padding:8px;border-radius:8px;background:linear-gradient(180deg,#0b1a2b,#081421);text-align:center;cursor:pointer;border:1px solid rgba(255,255,255,0.02)}
-.footer{padding:10px;border-radius:8px;text-align:center;color:var(--muted);font-size:13px}
-@media(max-width:900px){
-  .app{flex-direction:column}
-  .sidebar{width:100%}
+[data-theme="light"]{
+--bg: #f5f7fb;
+--card: #ffffff;
+--muted: #546171;
+--accent: #d4af37;
+--accent-2: #e07a90;
+--glass: rgba(0,0,0,0.03);
+--shadow: 0 8px 30px rgba(16,24,40,0.06);
 }
-/ small modal /
-.modal-back{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:40}
-.modal{background:#071427;padding:16px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);width:320px;color:#e6eef8}
-.modal input{width:100%;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#fff}
-.row{display:flex;gap:8px;margin-top:8px}
-.btn{padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--muted);cursor:pointer}
-.btn.primary{background:var(--accent);color:#071427;border:none}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+margin:0;
+min-height:100%;
+background: radial-gradient(1200px 600px at 10% 10%, rgba(255,221,150,0.03), transparent 10%),
+            radial-gradient(900px 500px at 90% 90%, rgba(255,138,144,0.02), transparent 10%),
+            var(--bg);
+color:#eef2f7;
+display:flex;
+flex-direction:column;
+transition:background .25s, color .25s;
+}
+header{
+display:flex;
+align-items:center;
+gap:12px;
+padding:16px 20px;
+position:sticky;
+top:0;
+backdrop-filter: blur(6px);
+z-index:50;
+}
+.brand{
+display:flex;
+gap:12px;
+align-items:center;
+font-weight:800;
+letter-spacing:1px;
+}
+.logo{
+width:40px;
+height:40px;
+background:linear-gradient(135deg,var(--accent),var(--accent-2));
+border-radius:10px;
+display:grid;
+place-items:center;
+color:#071126;
+font-weight:900;
+}
+.top-right{margin-left:auto;display:flex;gap:10px;align-items:center}
+.btn{
+border:0;padding:10px 14px;border-radius:10px;background:var(--accent);color:#021018;font-weight:700;cursor:pointer;
+box-shadow:var(--shadow);
+}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+.small{font-size:13px;color:var(--muted)}
+main{padding:20px;display:flex;gap:20px;flex:1;align-items:flex-start}
+/ sidebar /
+.sidebar{
+width:320px;
+max-width:40%;
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+.card{
+background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+padding:14px;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid rgba(255,255,255,0.03);
+}
+.balance{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.balance .amt{font-size:28px;font-weight:900}
+.balance .currency{font-size:14px;color:var(--muted)}
+.actions{display:flex;gap:8px;margin-top:10px}
+.actions .btn{flex:1}
+
+/ center area - games /
+.content{flex:1;display:flex;flex-direction:column;gap:18px}
+.filters{display:flex;gap:8px;align-items:center}
+.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.game{
+padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+border:1px solid rgba(255,255,255,0.03);box-shadow:0 8px 24px rgba(2,6,23,0.4);
+display:flex;flex-direction:column;gap:10px;
+}
+.game h3{margin:0;font-size:18px}
+.game .meta{display:flex;justify-content:space-between;align-items:center;color:var(--muted)}
+.form-row{display:flex;gap:8px;align-items:center}
+input[type="number"], input[type="text"], select{
+background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:8px;color:inherit;flex:1;
+}
+.history{max-height:360px;overflow:auto;padding-right:6px}
+.tx{display:flex;justify-content:space-between;padding:8px;border-radius:8px;margin-bottom:6px;background:linear-gradient(90deg, rgba(255,255,255,0.01), transparent)}
+.tx .type{font-weight:700}
+.tx.win{border-left:4px solid var(--success)}
+.tx.loss{border-left:4px solid var(--danger)}
+
+footer{padding:12px;text-align:center;color:var(--muted)}
+
+/ overlay / modal /
+.overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:linear-gradient(rgba(2,6,23,0.6), rgba(2,6,23,0.8));z-index:1000}
+.overlay.show{display:flex}
+.modal{background:var(--card);padding:18px;border-radius:14px;width:520px;max-width:92%;box-shadow:var(--shadow)}
+.row{display:flex;gap:8px;align-items:center}
+.choose{display:flex;gap:6px;flex-wrap:wrap}
+
+/ responsive /
+@media (max-width:900px){
+main{flex-direction:column;padding:14px}
+.sidebar{width:100%}
+}
+
+/ animations /
+.pulse{animation:pulse 2s infinite}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1)}}
+
+/ accessibility focus /
+:focus{outline:3px solid rgba(255,209,102,0.15);outline-offset:2px;border-radius:8px}
 </style>
 </head>
-<body>
-<div class="app">
-<!-- LEFT SIDEBAR -->
+<body data-theme="dark">
+<header>
+<div class="brand" title="qxvBET demo">
+<div class="logo">QX</div>
+<div>
+  <div style="font-size:16px">qxvBET</div>
+  <div class="small">Demo — brauzerda ishlaydi</div>
+</div>
+</div>
+
+<div style="margin-left:12px" class="small">Til:
+<select id="langSelect" aria-label="Tilni tanlash" style="margin-left:6px;padding:6px;border-radius:6px;background:transparent;color:inherit;border:1px solid rgba(255,255,255,0.04)">
+  <option value="uz">O'zbek (uz)</option>
+  <option value="en">English (en)</option>
+  <option value="ru">Русский (ru)</option>
+</select>
+</div>
+
+<div class="top-right">
+<button id="themeToggle" class="btn ghost" title="Toggle theme">T/q</button>
+<div id="userBox" class="card" style="display:flex;gap:10px;align-items:center;">
+  <div>
+    <div class="small">Foydalanuvchi</div>
+    <div id="username" style="font-weight:800">GUEST</div>
+  </div>
+  <div style="text-align:right">
+    <div class="small">Balans</div>
+    <div id="balTop" style="font-weight:900">0.00</div>
+  </div>
+</div>
+<button id="openSettings" class="btn">Sozlamalar</button>
+</div>
+</header>
+
+<main>
 <aside class="sidebar">
-  <div class="topbar-row">
-    <div class="balance-btn" id="balanceBtn" title="Balans">
-      <div class="label">Balans</div>
-      <div class="value" id="balanceValue">0.00 UZS</div>
+<div class="card">
+  <div style="display:flex;align-items:center;gap:10px;">
+    <div style="width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;font-weight:900;color:#071018">U</div>
+    <div>
+      <div id="userFullName" style="font-weight:800">Guest User</div>
+      <div class="small" id="userEmail">guest@example.test</div>
+    </div>
+  </div>
+
+  <div style="margin-top:12px" class="balance">
+    <div>
+      <div class="small">Balans</div>
+      <div class="amt" id="balanceMain">0.00</div>
     </div>
     <div style="text-align:right">
-      <div class="small" id="userName">Foydalanuvchi</div>
-      <div class="small" id="userId">ID: 0001</div>
+      <div class="small">Valyuta</div>
+      <div class="currency" id="currency">USDT</div>
     </div>
   </div>
 
-  <div class="deposit">
-    <h3>Hisob to‘ldirish</h3>
-    <div class="small" style="margin-bottom:8px">Tanlang — Kartadan yoki HUMO orqali (demo)</div>
-    <div class="pay-row">
-      <button class="pay-btn" onclick="openDeposit('card')">
-        Kartadan
-      </button>
-      <button class="pay-btn" onclick="openDeposit('humo')">
-        HUMO
-      </button>
-    </div>
-    <div style="margin-top:10px">
-      <input id="amountInput" type="number" placeholder="Summani kiriting (UZS)" style="width:100%;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#fff">
-    </div>
-    <div style="margin-top:8px;display:flex;gap:8px">
-      <button class="btn primary" onclick="doDeposit()">To‘ldirish (demo)</button>
-      <button class="btn" onclick="quickPlus()">+100k</button>
-    </div>
+  <div class="actions">
+    <button id="depositBtn" class="btn">Depozit</button>
+    <button id="withdrawBtn" class="btn ghost">Chiqish</button>
   </div>
 
-  <div class="history" id="history">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-      <div class="small">Oxirgi tranzaksiyalar</div>
-      <div class="tag">Demo</div>
-    </div>
-    <!-- dynamic history items -->
+  <div style="margin-top:12px" class="small">
+		・	Kichik demo. Haqiqiy to‘lov emas.<br>
+		・	Ma’lumotlar localStorage’da saqlanadi.
   </div>
-</aside>
+</div>
 
-<!-- MAIN AREA -->
-<main class="main">
-  <div class="header">
-    <div class="brand">
-      <div style="width:40px;height:40px;border-radius:8px;background:linear-gradient(90deg,var(--accent),#ff9f1c);display:flex;align-items:center;justify-content:center;font-weight:800;color:#071427">QX</div>
-      <div>
-        <div class="logo">QXVcasino</div>
-        <div class="small">Jonli demo panel</div>
-      </div>
-    </div>
-
-    <div style="display:flex;align-items:center;gap:12px">
-      <div class="nav">
-        <button class="active" id="casinoTab" onclick="switchTab('casino')">Casino</button>
-        <button id="footballTab" onclick="switchTab('football')">Football</button>
-      </div>
-      <div style="display:flex;flex-direction:column;align-items:flex-end">
-        <div class="clock" id="clock">--:--:--</div>
-        <div class="small" id="liveStatus">Jonli</div>
-      </div>
-    </div>
+<div id="quickControls" class="card">
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <div class="small">Tez tanlov</div>
+    <div><button id="resetBtn" class="btn ghost">Reset</button></div>
   </div>
-
-  <section id="casinoSection">
-    <h3 style="
+  <div style="margin-top:10px">
+    <div class="small">Tez miqdor:</div>
+    <div style="display:flex;gap:8px;margin-top:8

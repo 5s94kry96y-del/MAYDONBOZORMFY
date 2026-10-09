@@ -4,494 +4,379 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>qxvBET</title>
-
+<title>QXV BET</title>
 <style>
-* {
-  box-sizing: border-box;
-}
-body {
-  margin: 0;
-  background: #050505;
-  color: white;
-  font-family: Arial, sans-serif;
-}
-:root {
-  --gold: #d6ad52;
-}
-button, input {
-  font: inherit;
-}
-button {
-  cursor: pointer;
-  padding: 12px 16px;
-  border: 1px solid var(--gold);
-  border-radius: 9px;
-  background: var(--gold);
-  color: #080808;
-  font-weight: bold;
-}
-input {
-  display: block;
-  width: 100%;
-  padding: 13px;
-  margin: 10px 0 16px;
-  border: 1px solid #80652c;
-  border-radius: 8px;
-  background: #111;
-  color: white;
-}
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px;
-  border-bottom: 1px solid #5a451d;
-}
-.logo {
-  color: var(--gold);
-  font-size: 26px;
-  font-weight: 900;
-  letter-spacing: 3px;
-}
-main {
-  max-width: 900px;
-  padding: 18px;
-  margin: auto;
-}
-.panel {
-  background: #111;
-  border: 1px solid #59451f;
-  border-radius: 14px;
-  padding: 20px;
-  margin: 16px 0;
-}
-.gold {
-  color: var(--gold);
-}
-.hidden {
-  display: none !important;
-}
-.splash {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  background: #030303;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-.splash .logo {
-  font-size: clamp(42px, 10vw, 76px);
-}
-.loading {
-  color: var(--gold);
-  margin-top: 20px;
-}
-.count {
-  color: var(--gold);
-  font-size: 64px;
-  margin-top: 15px;
-  font-weight: 900;
-}
-.row {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-.row > * {
-  flex: 1;
-}
-.balance {
-  font-size: 27px;
-  color: var(--gold);
-  font-weight: 900;
-}
-.grid {
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fit, minmax(210px, 1fr)
-  );
-  gap: 12px;
-}
-.game {
-  padding: 18px;
-  border: 1px solid #80652c;
-  border-radius: 12px;
-  background: linear-gradient(140deg, #251b09, #090909);
-}
-.card {
-  background: linear-gradient(130deg, #242014, #050505);
-  border: 1px solid var(--gold);
-  border-radius: 12px;
-  padding: 20px;
-  color: #f0d17e;
-  cursor: pointer;
-  overflow-wrap: anywhere;
-}
-.card-number {
-  font-size: clamp(19px, 5vw, 25px);
-  font-weight: bold;
-  margin: 20px 0;
-}
-.muted {
-  color: #aaa;
-  font-size: 13px;
-  line-height: 1.5;
-}
-.modal {
-  position: fixed;
-  inset: 0;
-  background: #000c;
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-}
-.modal .panel {
-  width: min(440px, 100%);
-}
+*{box-sizing:border-box}
+body{margin:0;background:#080808;color:#f5c542;font-family:Arial,sans-serif;text-align:center;transition:.3s}
+header{padding:24px;background:#111;border-bottom:2px solid #d4af37}
+h1{margin:0;font-size:36px;letter-spacing:4px}
+main{padding:16px;max-width:650px;margin:auto}
+.panel{background:#151515;border:1px solid #b8952e;border-radius:14px;padding:18px;margin:16px 0}
+input,select,button{width:100%;padding:13px;margin:7px 0;border-radius:8px;font-size:16px}
+input,select{background:#222;color:white;border:1px solid #777}
+button{background:linear-gradient(90deg,#a77b10,#ffe28a);color:#111;border:0;font-weight:bold;cursor:pointer}
+button:active{transform:scale(.98)}
+.game{padding:18px;background:#222;border-radius:10px;margin:12px 0;color:white}
+.small{font-size:12px;color:#bbb;line-height:1.6}
+.hidden{display:none!important}
+.gold{color:#f5c542}
+#balance{font-size:28px;font-weight:bold}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.badge{border:1px solid #d4af37;padding:5px 12px;border-radius:20px;display:inline-block}
+#intro{position:fixed;inset:0;background:#080808;z-index:10;display:flex;align-items:center;justify-content:center;flex-direction:column}
+#intro h1{font-size:42px}
 </style>
 </head>
-
 <body>
 
-<!-- OCHILISH ANIMATSIYASI -->
-<div class="splash" id="splash">
-  <div class="logo">qxvBET</div>
-  <div class="loading">Yuklanmoqda...</div>
-  <div class="count" id="count">6</div>
+<div id="intro">
+  <h1>QXV BET</h1>
+  <p class="gold">PREMIUM ENTERTAINMENT</p>
+  <h2 id="countdown">5</h2>
+  <p id="loading">Sayt yuklanmoqda...</p>
 </div>
 
 <header>
-  <div class="logo">qxvBET</div>
-  <div class="row">
-    <button onclick="openDeposit()">Balans to‘ldirish</button>
-    <button onclick="openSettings()">● ● ●</button>
-  </div>
+  <h1>QXV BET</h1>
+  <p>PREMIUM ENTERTAINMENT</p>
+  <span class="badge">DEMO VERSION</span>
 </header>
 
 <main>
-
-<!-- ISM VA YOSH -->
-<section class="panel hidden" id="identity">
-  <h2 class="gold">Xush kelibsiz!</h2>
-  <p class="muted">
-    Ismingizni va yoshingizni kiriting.
-    18 yoshdan boshlab ruxsat etiladi.
-  </p>
-
-  <form id="identityForm">
-    <label>Ismingiz</label>
-    <input id="name" required maxlength="60"
-           placeholder="Ismingizni kiriting">
-
-    <label>Yoshingiz</label>
-    <input id="age" type="number" min="1" max="120"
-           required placeholder="Yoshingiz">
-
-    <button type="submit">Kirish</button>
-  </form>
-</section>
-
-<!-- ASOSIY SAHIFA -->
-<section id="inside" class="hidden">
-
-  <div class="panel row">
-    <div>
-      <p class="muted">Profil</p>
-      <strong id="userName">Foydalanuvchi</strong>
-    </div>
-    <div>
-      <p class="muted">Balans</p>
-      <div class="balance">
-        <span id="balance">0</span> UZS
-      </div>
-    </div>
-  </div>
-
   <section class="panel">
-    <h2 class="gold">O‘yinlar</h2>
+    <h2 id="welcome">Xush kelibsiz!</h2>
+    <label for="lang">Til / Language / Язык</label>
+    <select id="lang" onchange="setLanguage()">
+      <option value="uz">O‘zbekcha</option>
+      <option value="en">English</option>
+      <option value="ru">Русский</option>
+    </select>
+    <button id="themeBtn" onclick="toggleTheme()">Mavzuni almashtirish</button>
+  </section>
 
-    <div class="grid">
-      <div class="game">
-        <h3>Big Bass Bonanza 1000</h3>
-        <button onclick="gameInfo()">O‘yinni ochish</button>
-      </div>
+  <section class="panel" id="login">
+    <h2 id="profileTitle">Profil yaratish</h2>
+    <input id="name" placeholder="Ismingiz">
+    <input id="age" type="number" min="18" placeholder="Yoshingiz">
+    <button id="loginBtn" onclick="createProfile()">Kirish</button>
+    <p id="ageNote" class="small">18 yosh va undan kattalar uchun.</p>
+  </section>
 
-      <div class="game">
-        <h3>Bigger Bass Bonanza</h3>
-        <button onclick="gameInfo()">O‘yinni ochish</button>
-      </div>
-
-      <div class="game">
-        <h3>Big Bass Halloween</h3>
-        <button onclick="gameInfo()">O‘yinni ochish</button>
-      </div>
-    </div>
-
-    <p class="muted">
-      Haqiqiy o‘yinlarni ulash uchun rasmiy provayder
-      integratsiyasi kerak.
-    </p>
+  <section class="panel hidden" id="account">
+    <h2 id="balanceTitle">Demo balansingiz</h2>
+    <div id="balance">0 UZS</div>
+    <button id="bonusBtn" onclick="claimBonus()">100 000 UZS DEMO BONUS</button>
+    <p id="bonusNote" class="small">Bonus faqat namoyish uchun, haqiqiy pul emas.</p>
   </section>
 
   <section class="panel">
-    <h2 class="gold">Balans to‘ldirish</h2>
-
-    <label>Qancha pul tushirmoqchisiz? (UZS)</label>
-    <input id="amount" type="number" min="1000"
-           step="1000" placeholder="Masalan, 50000">
-
+    <h2 id="modeTitle">O‘yin rejimi</h2>
     <div class="row">
-      <button onclick="chooseCard('HUMO')">HUMO</button>
-      <button onclick="chooseCard('UZ CARD')">UZ CARD</button>
+      <button onclick="chooseMode('demo')" id="demoBtn">DEMO O‘YIN</button>
+      <button onclick="chooseMode('real')" id="realBtn">REAL SUMMA</button>
+    </div>
+    <p id="modeInfo" class="small">Demo rejimda virtual balans ishlatiladi.</p>
+    <h3 id="gamesTitle">O‘yinlar</h3>
+
+    <div class="game">
+      <h3>Big Bass Bonanza 1000</h3>
+      <p class="small">Demo ko‘rinish</p>
+      <button onclick="playDemo(1)" id="play1">Demo o‘ynash</button>
     </div>
 
-    <p class="muted" id="payMessage">
-      Summani kiriting, keyin karta turini tanlang.
+    <div class="game">
+      <h3>Bigger Bass Bonanza</h3>
+      <p class="small">Demo ko‘rinish</p>
+      <button onclick="playDemo(2)" id="play2">Demo o‘ynash</button>
+    </div>
+
+    <div class="game">
+      <h3>Big Bass Halloween</h3>
+      <p class="small">Demo ko‘rinish</p>
+      <button onclick="playDemo(3)" id="play3">Demo o‘ynash</button>
+    </div>
+
+    <div id="gameResult" class="small">
+      Bu mahalliy demo simulyatsiya. Rasmiy Pragmatic Play o‘yini emas.
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2 id="depositTitle">Pul kiritish</h2>
+    <p>HUMO / UZCARD</p>
+    <p id="cardNumber" class="gold"><b>5614 6848 0855 2572</b></p>
+    <p>QOBILJONOV XOJIAKBAR</p>
+    <button onclick="copyCard()" id="copyBtn">Karta raqamini nusxalash</button>
+    <input id="depositAmount" type="number" min="1" placeholder="Kiritiladigan summa (UZS)">
+    <button onclick="depositRequest()" id="depositBtn">Pul kiritish so‘rovi</button>
+    <p id="depositResult" class="small"></p>
+    <p id="paymentNote" class="small">
+      To‘lov tizimi ulanmagan. Ushbu sahifa haqiqiy to‘lovni qabul qilmaydi.
     </p>
   </section>
-</section>
 
+  <section class="panel">
+    <h2 id="withdrawTitle">Pul chiqarish</h2>
+    <input id="withdrawAmount" type="number" min="1" placeholder="Yechiladigan summa (UZS)">
+    <input id="withdrawCard" placeholder="Karta raqami">
+    <button onclick="withdraw()" id="withdrawBtn">Pul chiqarish so‘rovi</button>
+    <p id="withdrawResult" class="small"></p>
+    <p id="withdrawNote" class="small">
+      Bu demo so‘rov. Haqiqiy pul o‘tkazilmaydi.
+    </p>
+  </section>
+
+  <section class="panel">
+    <h3 id="settingsTitle">Sozlamalar</h3>
+    <button onclick="clearDemo()" id="clearBtn">Demo ma’lumotlarini tozalash</button>
+    <p class="small">
+      QXV BET — namoyish maketi. Haqiqiy pul operatsiyalari mavjud emas.
+    </p>
+  </section>
 </main>
 
-<!-- KARTA TO‘LOV OYNASI -->
-<div class="modal hidden" id="paymentModal">
-  <div class="panel">
-    <div class="row">
-      <h2 class="gold">Karta orqali to‘lov</h2>
-      <button onclick="closePayment()">✕</button>
-    </div>
-
-    <p id="paymentAmount"></p>
-
-    <div class="card" onclick="copyCard()">
-      <div class="muted">KARTA TO‘LOV UCHUN</div>
-
-      <div class="card-number">
-        5614 6848 0855 2572
-      </div>
-
-      <div>QOBILJONOV XOJIAKBAR</div>
-      <p class="muted">
-        Karta raqamini nusxalash uchun bosing.
-      </p>
-    </div>
-
-    <p class="muted" id="paymentStatus">
-      Balans faqat to‘lov tasdiqlangandan keyin
-      oshirilishi kerak.
-    </p>
-
-    <button onclick="confirmPayment()" style="width:100%">
-      Pul to‘ladim
-    </button>
-  </div>
-</div>
-
-<!-- SOZLAMALAR -->
-<div class="modal hidden" id="settingsModal">
-  <div class="panel">
-    <div class="row">
-      <h2 class="gold">Sozlamalar</h2>
-      <button onclick="closeSettings()">✕</button>
-    </div>
-
-    <h3>Til / Language / Язык</h3>
-    <div class="row">
-      <button onclick="setLanguage('uz')">UZB</button>
-      <button onclick="setLanguage('en')">ENG</button>
-      <button onclick="setLanguage('ru')">RUS</button>
-    </div>
-
-    <h3>Orqa fon</h3>
-    <div class="row">
-      <button onclick="setTheme('dark')">Qora</button>
-      <button onclick="setTheme('light')">Oq</button>
-    </div>
-  </div>
-</div>
-
 <script>
-const $ = id => document.getElementById(id);
+const translations = {
+uz:{
+welcome:"Xush kelibsiz!",profile:"Profil yaratish",name:"Ismingiz",
+age:"Yoshingiz",login:"Kirish",ageNote:"18 yosh va undan kattalar uchun.",
+balance:"Demo balansingiz",bonus:"100 000 UZS DEMO BONUS",
+bonusNote:"Bonus faqat namoyish uchun, haqiqiy pul emas.",
+mode:"O‘yin rejimi",demo:"DEMO O‘YIN",real:"REAL SUMMA",
+modeInfo:"Demo rejimda virtual balans ishlatiladi.",
+realInfo:"REAL SUMMA — TEZ KUNDA",games:"O‘yinlar",
+play:"Demo o‘ynash",deposit:"Pul kiritish",copy:"Karta raqamini nusxalash",
+depositAmount:"Kiritiladigan summa (UZS)",depositBtn:"Pul kiritish so‘rovi",
+payment:"To‘lov tizimi ulanmagan. Haqiqiy to‘lov qabul qilinmaydi.",
+withdraw:"Pul chiqarish",withdrawAmount:"Yechiladigan summa (UZS)",
+withdrawCard:"Karta raqami",withdrawBtn:"Pul chiqarish so‘rovi",
+withdrawNote:"Bu demo so‘rov. Haqiqiy pul o‘tkazilmaydi.",
+settings:"Sozlamalar",clear:"Demo ma’lumotlarini tozalash",
+theme:"Mavzuni almashtirish",loading:"Sayt yuklanmoqda...",
+adult:"Kirish uchun yoshingiz 18 yoki undan katta bo‘lishi kerak.",
+created:"Profil yaratildi!",claimed:"Demo bonus balansga qo‘shildi.",
+already:"Demo bonus avval olingan.",copied:"Karta raqami nusxalandi.",
+copyFail:"Nusxalash imkoni bo‘lmadi.",invalid:"Ma’lumotlarni tekshiring.",
+demoOnly:"Faqat demo rejimida ishlaydi.",
+request:"Demo so‘rov yaratildi. Pul o‘tkazilmadi.",
+cleared:"Demo ma’lumotlari tozalandi."
+},
+en:{
+welcome:"Welcome!",profile:"Create profile",name:"Your name",age:"Your age",
+login:"Enter",ageNote:"For users aged 18 and over.",
+balance:"Your demo balance",bonus:"100,000 UZS DEMO BONUS",
+bonusNote:"Demo bonus only. Not real money.",mode:"Game mode",
+demo:"DEMO GAME",real:"REAL MONEY",modeInfo:"Virtual balance is used in demo mode.",
+realInfo:"REAL MONEY — COMING SOON",games:"Games",play:"Play demo",
+deposit:"Deposit",copy:"Copy card number",depositAmount:"Deposit amount (UZS)",
+depositBtn:"Deposit request",payment:"Payment provider is not connected.",
+withdraw:"Withdraw",withdrawAmount:"Withdrawal amount (UZS)",
+withdrawCard:"Card number",withdrawBtn:"Withdrawal request",
+withdrawNote:"Demo request only. No money is transferred.",
+settings:"Settings",clear:"Clear demo data",theme:"Change theme",
+loading:"Loading website...",adult:"You must be at least 18 years old.",
+created:"Profile created!",claimed:"Demo bonus added to balance.",
+already:"Demo bonus already claimed.",copied:"Card number copied.",
+copyFail:"Could not copy.",invalid:"Please check your details.",
+demoOnly:"Available only in demo mode.",
+request:"Demo request created. No money was transferred.",
+cleared:"Demo data cleared."
+},
+ru:{
+welcome:"Добро пожаловать!",profile:"Создать профиль",name:"Ваше имя",
+age:"Ваш возраст",login:"Войти",ageNote:"Для пользователей от 18 лет.",
+balance:"Ваш демо-баланс",bonus:"ДЕМО-БОНУС 100 000 UZS",
+bonusNote:"Только демо-бонус, не реальные деньги.",mode:"Режим игры",
+demo:"ДЕМО-ИГРА",real:"РЕАЛЬНЫЕ ДЕНЬГИ",
+modeInfo:"В демо-режиме используется виртуальный баланс.",
+realInfo:"РЕАЛЬНЫЕ ДЕНЬГИ — СКОРО",games:"Игры",play:"Играть демо",
+deposit:"Пополнение",copy:"Копировать номер карты",
+depositAmount:"Сумма пополнения (UZS)",depositBtn:"Запрос пополнения",
+payment:"Платёжная система не подключена.",withdraw:"Вывод средств",
+withdrawAmount:"Сумма вывода (UZS)",withdrawCard:"Номер карты",
+withdrawBtn:"Запрос на вывод",
+withdrawNote:"Только демо-запрос. Деньги не переводятся.",
+settings:"Настройки",clear:"Очистить демо-данные",
+theme:"Сменить тему",loading:"Загрузка сайта...",
+adult:"Вам должно быть не менее 18 лет.",
+created:"Профиль создан!",claimed:"Демо-бонус добавлен к балансу.",
+already:"Демо-бонус уже получен.",copied:"Номер карты скопирован.",
+copyFail:"Не удалось скопировать.",invalid:"Проверьте данные.",
+demoOnly:"Доступно только в демо-режиме.",
+request:"Демо-запрос создан. Деньги не переведены.",
+cleared:"Демо-данные очищены."
+}
+};
 
-let profile = null;
-let selectedMethod = "";
+let lang="uz";
+let mode="demo";
+let balance=Number(localStorage.getItem("qxv_balance")||0);
+let bonusTaken=localStorage.getItem("qxv_bonus")==="yes";
 
-try {
-  profile = JSON.parse(
-    localStorage.getItem("qxv_profile") || "null"
-  );
-} catch (e) {
-  profile = null;
+function setLanguage(){
+  lang=document.getElementById("lang").value;
+  const t=translations[lang];
+  const set=(id,key)=>document.getElementById(id).textContent=t[key];
+
+  set("welcome","welcome");
+  set("profileTitle","profile");
+  set("loginBtn","login");
+  set("ageNote","ageNote");
+  set("balanceTitle","balance");
+  set("bonusBtn","bonus");
+  set("bonusNote","bonusNote");
+  set("modeTitle","mode");
+  set("demoBtn","demo");
+  set("realBtn","real");
+  set("gamesTitle","games");
+  set("depositTitle","deposit");
+  set("copyBtn","copy");
+  set("depositBtn","depositBtn");
+  set("paymentNote","payment");
+  set("withdrawTitle","withdraw");
+  set("withdrawBtn","withdrawBtn");
+  set("withdrawNote","withdrawNote");
+  set("settingsTitle","settings");
+  set("clearBtn","clear");
+  set("themeBtn","theme");
+
+  document.getElementById("name").placeholder=t.name;
+  document.getElementById("age").placeholder=t.age;
+  document.getElementById("depositAmount").placeholder=t.depositAmount;
+  document.getElementById("withdrawAmount").placeholder=t.withdrawAmount;
+  document.getElementById("withdrawCard").placeholder=t.withdrawCard;
+
+  ["play1","play2","play3"].forEach(id=>{
+    document.getElementById(id).textContent=t.play;
+  });
+  document.getElementById("loading").textContent=t.loading;
+  updateModeText();
+  renderBalance();
 }
 
-/* 6 SONIYALIK KIRISH */
-let seconds = 6;
-$("count").textContent = seconds;
+function createProfile(){
+  const name=document.getElementById("name").value.trim();
+  const age=Number(document.getElementById("age").value);
+  if(!name||age<18){
+    alert(translations[lang].adult);
+    return;
+  }
+  localStorage.setItem("qxv_name",name);
+  document.getElementById("welcome").textContent=
+    translations[lang].created+" "+name;
+  document.getElementById("login").classList.add("hidden");
+  document.getElementById("account").classList.remove("hidden");
+  renderBalance();
+}
 
-const timer = setInterval(() => {
+function renderBalance(){
+  document.getElementById("balance").textContent=
+    balance.toLocaleString()+" UZS";
+}
+
+function claimBonus(){
+  if(bonusTaken){
+    alert(translations[lang].already);
+    return;
+  }
+  balance+=100000;
+  bonusTaken=true;
+  localStorage.setItem("qxv_balance",balance);
+  localStorage.setItem("qxv_bonus","yes");
+  renderBalance();
+  alert(translations[lang].claimed);
+}
+
+function chooseMode(selected){
+  mode=selected;
+  updateModeText();
+}
+
+function updateModeText(){
+  const t=translations[lang];
+  document.getElementById("modeInfo").textContent=
+    mode==="demo"?t.modeInfo:t.realInfo;
+}
+
+function playDemo(number){
+  if(mode!=="demo"){
+    document.getElementById("gameResult").textContent=
+      translations[lang].realInfo;
+    return;
+  }
+  const symbols=[
+    ["🐟","🎣","🪙"],
+    ["🌊","🐠","🎣"],
+    ["🎃","🐟","🌙"]
+  ];
+  const result=symbols[number-1];
+  document.getElementById("gameResult").textContent=
+    result.join("   ")+" — DEMO";
+}
+
+async function copyCard(){
+  const card="5614 6848 0855 2572";
+  try{
+    await navigator.clipboard.writeText(card);
+    alert(translations[lang].copied);
+  }catch(e){
+    window.prompt(translations[lang].copy,card);
+  }
+}
+
+function depositRequest(){
+  const amount=Number(document.getElementById("depositAmount").value);
+  document.getElementById("depositResult").textContent=
+    amount>0?translations[lang].request:translations[lang].invalid;
+}
+
+function withdraw(){
+  const amount=Number(document.getElementById("withdrawAmount").value);
+  const card=document.getElementById("withdrawCard").value.trim();
+  document.getElementById("withdrawResult").textContent=
+    amount>0&&card?translations[lang].request:translations[lang].invalid;
+}
+
+function toggleTheme(){
+  const light=document.body.dataset.theme!=="light";
+  document.body.dataset.theme=light?"light":"dark";
+  document.body.style.background=light?"#f4f4f4":"#080808";
+  document.body.style.color=light?"#171717":"#f5c542";
+  document.querySelectorAll(".panel").forEach(el=>{
+    el.style.background=light?"#fff":"#151515";
+  });
+}
+
+function clearDemo(){
+  localStorage.removeItem("qxv_balance");
+  localStorage.removeItem("qxv_bonus");
+  localStorage.removeItem("qxv_name");
+  balance=0;
+  bonusTaken=false;
+  renderBalance();
+  alert(translations[lang].cleared);
+}
+
+let seconds=5;
+const countdown=document.getElementById("countdown");
+const timer=setInterval(()=>{
   seconds--;
-
-  if (seconds > 0) {
-    $("count").textContent = seconds;
-  } else {
+  countdown.textContent=seconds>0?seconds:"QXV BET";
+  if(seconds<=0){
     clearInterval(timer);
-    $("splash").classList.add("hidden");
-    showPage();
+    document.getElementById("intro").style.display="none";
+    const savedName=localStorage.getItem("qxv_name");
+    if(savedName){
+      document.getElementById("welcome").textContent=
+        translations[lang].welcome+" "+savedName;
+      document.getElementById("login").classList.add("hidden");
+      document.getElementById("account").classList.remove("hidden");
+    }
+    renderBalance();
   }
-}, 1000);
+},1000);
 
-/* PROFIL */
-function showPage() {
-  if (profile) {
-    $("identity").classList.add("hidden");
-    $("inside").classList.remove("hidden");
-    $("userName").textContent =
-      profile.name + " · " + profile.age + " yosh";
-    $("balance").textContent =
-      Number(profile.balance || 0).toLocaleString("uz-UZ");
-  } else {
-    $("identity").classList.remove("hidden");
-    $("inside").classList.add("hidden");
-  }
-}
-
-$("identityForm").addEventListener("submit", event => {
-  event.preventDefault();
-
-  const name = $("name").value.trim();
-  const age = Number($("age").value);
-
-  if (!name || !Number.isInteger(age) || age < 18) {
-    alert("Kirish uchun 18 yosh yoki undan katta bo‘lishingiz kerak.");
-    return;
-  }
-
-  profile = { name, age, balance: 0 };
-
-  localStorage.setItem(
-    "qxv_profile",
-    JSON.stringify(profile)
-  );
-
-  showPage();
-});
-
-/* BALANS TO‘LDIRISH */
-function openDeposit() {
-  if (!profile) {
-    alert("Avval ismingiz va yoshingizni kiriting.");
-    $("identity").scrollIntoView();
-    return;
-  }
-
-  $("amount").focus();
-  $("inside").scrollIntoView({ behavior: "smooth" });
-}
-
-function chooseCard(method) {
-  if (!profile) {
-    alert("Avval profilingizga kiring.");
-    return;
-  }
-
-  const amount = Number($("amount").value);
-
-  if (!Number.isFinite(amount) || amount < 1000) {
-    alert("Avval kamida 1000 UZS summa kiriting.");
-    $("amount").focus();
-    return;
-  }
-
-  selectedMethod = method;
-
-  $("paymentAmount").textContent =
-    "To‘lov usuli: " + method +
-    " | Summa: " + amount.toLocaleString("uz-UZ") +
-    " UZS";
-
-  $("paymentStatus").textContent =
-    "To‘lov tasdiqlanishi kutilmoqda.";
-
-  $("paymentModal").classList.remove("hidden");
-}
-
-function closePayment() {
-  $("paymentModal").classList.add("hidden");
-}
-
-async function copyCard() {
-  const number = "5614684808552572";
-
-  try {
-    await navigator.clipboard.writeText(number);
-    alert("Karta raqami nusxalandi.");
-  } catch (e) {
-    alert("Karta raqami: " + number);
-  }
-}
-
-/*
-  Xavfsizlik:
-  Bu HTML bank to‘lovini tekshira olmaydi.
-  Shu sababli tugma balansga pul qo‘shmaydi.
-  Haqiqiy to‘lov uchun server va to‘lov provayderi
-  orqali tasdiqlash mexanizmi kerak.
-*/
-function confirmPayment() {
-  $("paymentStatus").textContent =
-    "To‘lov hali tasdiqlanmadi. Balans o‘zgartirilmadi. " +
-    "Haqiqiy to‘lov integratsiyasi kerak.";
-}
-
-/* O‘YINLAR */
-function gameInfo() {
-  alert(
-    "Haqiqiy o‘yin provayderi ulanmagan. " +
-    "Rasmiy integratsiya talab qilinadi."
-  );
-}
-
-/* SOZLAMALAR */
-function openSettings() {
-  $("settingsModal").classList.remove("hidden");
-}
-
-function closeSettings() {
-  $("settingsModal").classList.add("hidden");
-}
-
-function setTheme(theme) {
-  document.body.style.background =
-    theme === "light" ? "#f5f5f5" : "#050505";
-
-  document.body.style.color =
-    theme === "light" ? "#171717" : "#ffffff";
-
-  localStorage.setItem("qxv_theme", theme);
-}
-
-function setLanguage(language) {
-  localStorage.setItem("qxv_language", language);
-
-  if (language === "uz") {
-    alert("O‘zbek tili tanlandi.");
-  } else if (language === "en") {
-    alert("English selected.");
-  } else {
-    alert("Выбран русский язык.");
-  }
-}
-
-/* SAQLANGAN FONNI QAYTA QO‘LLASH */
-if (localStorage.getItem("qxv_theme") === "light") {
-  setTheme("light");
-}
+setLanguage();
 </script>
-
 </body>
 </html>

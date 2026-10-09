@@ -1,368 +1,497 @@
+
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>qxvBET - Haqiqiy Zavq Makoni</title>
-    <style>
-        /* Asosiy CSS o'zgaruvchilari (Mavzular uchun) */
-        :root {
-            --bg-color: #000000;
-            --text-color: #ffffff;
-            --gold-color: #ffd700;
-            --card-bg: #141414;
-            --input-bg: #1f1f1f;
-            --border-color: #ffd700;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>qxvBET</title>
 
-        .light-theme {
-            --bg-color: #ffffff;
-            --text-color: #000000;
-            --gold-color: #b8860b;
-            --card-bg: #f5f5f5;
-            --input-bg: #ffffff;
-            --border-color: #b8860b;
-        }
+<style>
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: #050505;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+:root {
+  --gold: #d6ad52;
+}
+button, input {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+  padding: 12px 16px;
+  border: 1px solid var(--gold);
+  border-radius: 9px;
+  background: var(--gold);
+  color: #080808;
+  font-weight: bold;
+}
+input {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  margin: 10px 0 16px;
+  border: 1px solid #80652c;
+  border-radius: 8px;
+  background: #111;
+  color: white;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px;
+  border-bottom: 1px solid #5a451d;
+}
+.logo {
+  color: var(--gold);
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 3px;
+}
+main {
+  max-width: 900px;
+  padding: 18px;
+  margin: auto;
+}
+.panel {
+  background: #111;
+  border: 1px solid #59451f;
+  border-radius: 14px;
+  padding: 20px;
+  margin: 16px 0;
+}
+.gold {
+  color: var(--gold);
+}
+.hidden {
+  display: none !important;
+}
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: #030303;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.splash .logo {
+  font-size: clamp(42px, 10vw, 76px);
+}
+.loading {
+  color: var(--gold);
+  margin-top: 20px;
+}
+.count {
+  color: var(--gold);
+  font-size: 64px;
+  margin-top: 15px;
+  font-weight: 900;
+}
+.row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.row > * {
+  flex: 1;
+}
+.balance {
+  font-size: 27px;
+  color: var(--gold);
+  font-weight: 900;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit, minmax(210px, 1fr)
+  );
+  gap: 12px;
+}
+.game {
+  padding: 18px;
+  border: 1px solid #80652c;
+  border-radius: 12px;
+  background: linear-gradient(140deg, #251b09, #090909);
+}
+.card {
+  background: linear-gradient(130deg, #242014, #050505);
+  border: 1px solid var(--gold);
+  border-radius: 12px;
+  padding: 20px;
+  color: #f0d17e;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+.card-number {
+  font-size: clamp(19px, 5vw, 25px);
+  font-weight: bold;
+  margin: 20px 0;
+}
+.muted {
+  color: #aaa;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.modal {
+  position: fixed;
+  inset: 0;
+  background: #000c;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.modal .panel {
+  width: min(440px, 100%);
+}
+</style>
+</head>
 
-        /* Umumiy reset va sozlamalar */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
+<body>
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            transition: background 0.4s ease, color 0.4s ease;
-            overflow-x: hidden;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
+<!-- OCHILISH ANIMATSIYASI -->
+<div class="splash" id="splash">
+  <div class="logo">qxvBET</div>
+  <div class="loading">Yuklanmoqda...</div>
+  <div class="count" id="count">6</div>
+</div>
 
-        /* 1. ANIMATSIYALIK SANOQ EKRANI */
-        #countdown-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: #000000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 99999;
-            opacity: 1;
-            transition: opacity 0.5s ease-in-out;
-        }
+<header>
+  <div class="logo">qxvBET</div>
+  <div class="row">
+    <button onclick="openDeposit()">Balans to‘ldirish</button>
+    <button onclick="openSettings()">● ● ●</button>
+  </div>
+</header>
 
-        #brand-name {
-            font-size: 4.5rem;
-            color: #ffd700;
-            font-weight: 900;
-            margin-bottom: 10px;
-            letter-spacing: 5px;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
-            animation: pulse 1.5s infinite;
-        }
+<main>
 
-        #timer {
-            font-size: 7rem;
-            color: #ffffff;
-            font-weight: 800;
-            margin-bottom: 30px;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-        }
+<!-- ISM VA YOSH -->
+<section class="panel hidden" id="identity">
+  <h2 class="gold">Xush kelibsiz!</h2>
+  <p class="muted">
+    Ismingizni va yoshingizni kiriting.
+    18 yoshdan boshlab ruxsat etiladi.
+  </p>
 
-        #zavq-text {
-            font-size: 1.5rem;
-            color: #ffd700;
-            font-weight: bold;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            text-align: center;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
-            animation: blink 1.2s infinite;
-        }
+  <form id="identityForm">
+    <label>Ismingiz</label>
+    <input id="name" required maxlength="60"
+           placeholder="Ismingizni kiriting">
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
+    <label>Yoshingiz</label>
+    <input id="age" type="number" min="1" max="120"
+           required placeholder="Yoshingiz">
 
-        @keyframes blink {
-            0% { opacity: 0.3; }
-            50% { opacity: 1; }
-            100% { opacity: 0.3; }
-        }
+    <button type="submit">Kirish</button>
+  </form>
+</section>
 
-        /* TOAST BILDIRISHNOMA */
-        #toast-msg {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #28a745;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 8px;
-            display: none;
-            z-index: 100000;
-            font-weight: bold;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
+<!-- ASOSIY SAHIFA -->
+<section id="inside" class="hidden">
 
-        /* ASOSIY HEADER */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            border-bottom: 2px solid var(--border-color);
-            position: relative;
-            background: rgba(0, 0, 0, 0.05);
-            backdrop-filter: blur(5px);
-        }
+  <div class="panel row">
+    <div>
+      <p class="muted">Profil</p>
+      <strong id="userName">Foydalanuvchi</strong>
+    </div>
+    <div>
+      <p class="muted">Balans</p>
+      <div class="balance">
+        <span id="balance">0</span> UZS
+      </div>
+    </div>
+  </div>
 
-        .header-left {
-            display: flex;
-            gap: 25px;
-            align-items: center;
-        }
+  <section class="panel">
+    <h2 class="gold">O‘yinlar</h2>
 
-        .nav-btn {
-            color: var(--gold-color);
-            font-weight: bold;
-            cursor: pointer;
-            background: none;
-            border: none;
-            font-size: 18px;
-            letter-spacing: 1px;
-            transition: all 0.3s;
-        }
+    <div class="grid">
+      <div class="game">
+        <h3>Big Bass Bonanza 1000</h3>
+        <button onclick="gameInfo()">O‘yinni ochish</button>
+      </div>
 
-        .nav-btn:hover {
-            transform: translateY(-2px);
-            text-shadow: 0 0 8px var(--gold-color);
-        }
+      <div class="game">
+        <h3>Bigger Bass Bonanza</h3>
+        <button onclick="gameInfo()">O‘yinni ochish</button>
+      </div>
 
-        .active-tab {
-            border-bottom: 2px solid var(--gold-color);
-            padding-bottom: 5px;
-        }
+      <div class="game">
+        <h3>Big Bass Halloween</h3>
+        <button onclick="gameInfo()">O‘yinni ochish</button>
+      </div>
+    </div>
 
-        /* Uchta tilla nuqta sozlamalar menyusi */
-        .dots-menu {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 10px;
-            transition: transform 0.2s;
-        }
+    <p class="muted">
+      Haqiqiy o‘yinlarni ulash uchun rasmiy provayder
+      integratsiyasi kerak.
+    </p>
+  </section>
 
-        .dots-menu:hover {
-            transform: scale(1.1);
-        }
+  <section class="panel">
+    <h2 class="gold">Balans to‘ldirish</h2>
 
-        .dot {
-            width: 6px;
-            height: 6px;
-            background-color: var(--gold-color);
-            border-radius: 50%;
-            box-shadow: 0 0 5px var(--gold-color);
-        }
+    <label>Qancha pul tushirmoqchisiz? (UZS)</label>
+    <input id="amount" type="number" min="1000"
+           step="1000" placeholder="Masalan, 50000">
 
-        .settings-dropdown {
-            display: none;
-            position: absolute;
-            top: 75px;
-            right: 40px;
-            background: var(--card-bg);
-            border: 2px solid var(--border-color);
-            padding: 20px;
-            border-radius: 12px;
-            z-index: 9999;
-            width: 240px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-        }
+    <div class="row">
+      <button onclick="chooseCard('HUMO')">HUMO</button>
+      <button onclick="chooseCard('UZ CARD')">UZ CARD</button>
+    </div>
 
-        .settings-dropdown h4 {
-            margin-bottom: 12px;
-            color: var(--gold-color);
-            font-size: 16px;
-            border-bottom: 1px solid rgba(255,215,0,0.2);
-            padding-bottom: 5px;
-        }
+    <p class="muted" id="payMessage">
+      Summani kiriting, keyin karta turini tanlang.
+    </p>
+  </section>
+</section>
 
-        .settings-dropdown label {
-            display: block;
-            margin-top: 10px;
-            margin-bottom: 5px;
-            font-size: 13px;
-        }
+</main>
 
-        .settings-dropdown select {
-            width: 100%;
-            padding: 10px;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-color);
-            color: var(--text-color);
-            cursor: pointer;
-            font-weight: bold;
-            outline: none;
-        }
+<!-- KARTA TO‘LOV OYNASI -->
+<div class="modal hidden" id="paymentModal">
+  <div class="panel">
+    <div class="row">
+      <h2 class="gold">Karta orqali to‘lov</h2>
+      <button onclick="closePayment()">✕</button>
+    </div>
 
-        .settings-dropdown button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 15px;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-            background: var(--gold-color);
-            color: #000000;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
+    <p id="paymentAmount"></p>
 
-        .settings-dropdown button:hover {
-            opacity: 0.9;
-        }
+    <div class="card" onclick="copyCard()">
+      <div class="muted">KARTA TO‘LOV UCHUN</div>
 
-        /* 2. AUTH EKRANI (EMAIL BILAN BOG'LAB KIRISH) */
-        #auth-screen {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 80vh;
-            padding: 20px;
-        }
+      <div class="card-number">
+        5614 6848 0855 2572
+      </div>
 
-        .auth-container {
-            width: 100%;
-            max-width: 450px;
-            padding: 40px;
-            background: var(--card-bg);
-            border-radius: 16px;
-            border: 2px solid var(--border-color);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-            text-align: center;
-        }
+      <div>QOBILJONOV XOJIAKBAR</div>
+      <p class="muted">
+        Karta raqamini nusxalash uchun bosing.
+      </p>
+    </div>
 
-        .auth-container h2 {
-            margin-bottom: 25px;
-            color: var(--gold-color);
-            font-size: 26px;
-            letter-spacing: 2px;
-        }
+    <p class="muted" id="paymentStatus">
+      Balans faqat to‘lov tasdiqlangandan keyin
+      oshirilishi kerak.
+    </p>
 
-        .auth-container input {
-            width: 100%;
-            padding: 14px;
-            margin: 12px 0;
-            border: 1px solid var(--border-color);
-            background: var(--input-bg);
-            color: var(--text-color);
-            border-radius: 8px;
-            font-size: 16px;
-            outline: none;
-            transition: border 0.3s;
-        }
+    <button onclick="confirmPayment()" style="width:100%">
+      Pul to‘ladim
+    </button>
+  </div>
+</div>
 
-        .auth-container input:focus {
-            border: 2px solid var(--gold-color);
-            box-shadow: 0 0 10px rgba(255,215,0,0.2);
-        }
+<!-- SOZLAMALAR -->
+<div class="modal hidden" id="settingsModal">
+  <div class="panel">
+    <div class="row">
+      <h2 class="gold">Sozlamalar</h2>
+      <button onclick="closeSettings()">✕</button>
+    </div>
 
-        .remember-me {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin: 15px 0;
-            justify-content: flex-start;
-            font-size: 14px;
-            cursor: pointer;
-        }
+    <h3>Til / Language / Язык</h3>
+    <div class="row">
+      <button onclick="setLanguage('uz')">UZB</button>
+      <button onclick="setLanguage('en')">ENG</button>
+      <button onclick="setLanguage('ru')">RUS</button>
+    </div>
 
-        .remember-me input {
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-            margin: 0;
-        }
+    <h3>Orqa fon</h3>
+    <div class="row">
+      <button onclick="setTheme('dark')">Qora</button>
+      <button onclick="setTheme('light')">Oq</button>
+    </div>
+  </div>
+</div>
 
-        .auth-btn {
-            width: 100%;
-            padding: 14px;
-            background: var(--gold-color);
-            color: #000000;
-            font-weight: bold;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 20px;
-            font-size: 18px;
-            letter-spacing: 1px;
-            transition: background 0.2s, transform 0.1s;
-        }
+<script>
+const $ = id => document.getElementById(id);
 
-        .auth-btn:hover {
-            opacity: 0.95;
-            transform: translateY(-1px);
-        }
+let profile = null;
+let selectedMethod = "";
 
-        .auth-btn:active {
-            transform: translateY(1px);
-        }
+try {
+  profile = JSON.parse(
+    localStorage.getItem("qxv_profile") || "null"
+  );
+} catch (e) {
+  profile = null;
+}
 
-        /* 3. CASINO AKKAUNT EKRANI */
-        #casino-screen {
-            display: none;
-            padding: 40px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+/* 6 SONIYALIK KIRISH */
+let seconds = 6;
+$("count").textContent = seconds;
 
-        .balance-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: var(--card-bg);
-            padding: 20px 40px;
-            border-radius: 12px;
-            border: 2px solid var(--border-color);
-            margin-bottom: 40px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
+const timer = setInterval(() => {
+  seconds--;
 
-        .balance-title {
-            font-size: 20px;
-            font-weight: bold;
-            color: var(--gold-color);
-            letter-spacing: 1px;
-        }
+  if (seconds > 0) {
+    $("count").textContent = seconds;
+  } else {
+    clearInterval(timer);
+    $("splash").classList.add("hidden");
+    showPage();
+  }
+}, 1000);
 
-        .balance-amount {
-            font-size: 26px;
-            font-weight: bold;
-            color: var(--text-color);
-        }
+/* PROFIL */
+function showPage() {
+  if (profile) {
+    $("identity").classList.add("hidden");
+    $("inside").classList.remove("hidden");
+    $("userName").textContent =
+      profile.name + " · " + profile.age + " yosh";
+    $("balance").textContent =
+      Number(profile.balance || 0).toLocaleString("uz-UZ");
+  } else {
+    $("identity").classList.remove("hidden");
+    $("inside").classList.add("hidden");
+  }
+}
 
-        /* O'yinlar sarlavhasi */
-        .section-title {
-            color: var(--gold-color);
-            font-size: 24px;
-            margin-bottom: 25px;
-            letter-spacing: 1px;
-            border-left: 4px solid var(--gold-color);
-            padding-left: 15px;
-        }
+$("identityForm").addEventListener("submit", event => {
+  event.preventDefault();
 
-        /* O'yinlar Gridi */
-        .games-grid {
+  const name = $("name").value.trim();
+  const age = Number($("age").value);
+
+  if (!name || !Number.isInteger(age) || age < 18) {
+    alert("Kirish uchun 18 yosh yoki undan katta bo‘lishingiz kerak.");
+    return;
+  }
+
+  profile = { name, age, balance: 0 };
+
+  localStorage.setItem(
+    "qxv_profile",
+    JSON.stringify(profile)
+  );
+
+  showPage();
+});
+
+/* BALANS TO‘LDIRISH */
+function openDeposit() {
+  if (!profile) {
+    alert("Avval ismingiz va yoshingizni kiriting.");
+    $("identity").scrollIntoView();
+    return;
+  }
+
+  $("amount").focus();
+  $("inside").scrollIntoView({ behavior: "smooth" });
+}
+
+function chooseCard(method) {
+  if (!profile) {
+    alert("Avval profilingizga kiring.");
+    return;
+  }
+
+  const amount = Number($("amount").value);
+
+  if (!Number.isFinite(amount) || amount < 1000) {
+    alert("Avval kamida 1000 UZS summa kiriting.");
+    $("amount").focus();
+    return;
+  }
+
+  selectedMethod = method;
+
+  $("paymentAmount").textContent =
+    "To‘lov usuli: " + method +
+    " | Summa: " + amount.toLocaleString("uz-UZ") +
+    " UZS";
+
+  $("paymentStatus").textContent =
+    "To‘lov tasdiqlanishi kutilmoqda.";
+
+  $("paymentModal").classList.remove("hidden");
+}
+
+function closePayment() {
+  $("paymentModal").classList.add("hidden");
+}
+
+async function copyCard() {
+  const number = "5614684808552572";
+
+  try {
+    await navigator.clipboard.writeText(number);
+    alert("Karta raqami nusxalandi.");
+  } catch (e) {
+    alert("Karta raqami: " + number);
+  }
+}
+
+/*
+  Xavfsizlik:
+  Bu HTML bank to‘lovini tekshira olmaydi.
+  Shu sababli tugma balansga pul qo‘shmaydi.
+  Haqiqiy to‘lov uchun server va to‘lov provayderi
+  orqali tasdiqlash mexanizmi kerak.
+*/
+function confirmPayment() {
+  $("paymentStatus").textContent =
+    "To‘lov hali tasdiqlanmadi. Balans o‘zgartirilmadi. " +
+    "Haqiqiy to‘lov integratsiyasi kerak.";
+}
+
+/* O‘YINLAR */
+function gameInfo() {
+  alert(
+    "Haqiqiy o‘yin provayderi ulanmagan. " +
+    "Rasmiy integratsiya talab qilinadi."
+  );
+}
+
+/* SOZLAMALAR */
+function openSettings() {
+  $("settingsModal").classList.remove("hidden");
+}
+
+function closeSettings() {
+  $("settingsModal").classList.add("hidden");
+}
+
+function setTheme(theme) {
+  document.body.style.background =
+    theme === "light" ? "#f5f5f5" : "#050505";
+
+  document.body.style.color =
+    theme === "light" ? "#171717" : "#ffffff";
+
+  localStorage.setItem("qxv_theme", theme);
+}
+
+function setLanguage(language) {
+  localStorage.setItem("qxv_language", language);
+
+  if (language === "uz") {
+    alert("O‘zbek tili tanlandi.");
+  } else if (language === "en") {
+    alert("English selected.");
+  } else {
+    alert("Выбран русский язык.");
+  }
+}
+
+/* SAQLANGAN FONNI QAYTA QO‘LLASH */
+if (localStorage.getItem("qxv_theme") === "light") {
+  setTheme("light");
+}
+</script>
+
+</body>
+</html>

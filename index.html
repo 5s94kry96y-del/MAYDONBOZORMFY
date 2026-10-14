@@ -1,382 +1,327 @@
-
 <!DOCTYPE html>
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QXV BET</title>
+<meta name="theme-color" content="#ff3d20">
+<title>QXVfood — Mazali lahzalar!</title>
 <style>
+:root{--orange:#ff3d20;--yellow:#ffd54a;--ink:#191919;--muted:#777;--cream:#fff8ef}
 *{box-sizing:border-box}
-body{margin:0;background:#080808;color:#f5c542;font-family:Arial,sans-serif;text-align:center;transition:.3s}
-header{padding:24px;background:#111;border-bottom:2px solid #d4af37}
-h1{margin:0;font-size:36px;letter-spacing:4px}
-main{padding:16px;max-width:650px;margin:auto}
-.panel{background:#151515;border:1px solid #b8952e;border-radius:14px;padding:18px;margin:16px 0}
-input,select,button{width:100%;padding:13px;margin:7px 0;border-radius:8px;font-size:16px}
-input,select{background:#222;color:white;border:1px solid #777}
-button{background:linear-gradient(90deg,#a77b10,#ffe28a);color:#111;border:0;font-weight:bold;cursor:pointer}
-button:active{transform:scale(.98)}
-.game{padding:18px;background:#222;border-radius:10px;margin:12px 0;color:white}
-.small{font-size:12px;color:#bbb;line-height:1.6}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}
+button,a,input,textarea{font:inherit}
+button{cursor:pointer;border:0}
 .hidden{display:none!important}
-.gold{color:#f5c542}
-#balance{font-size:28px;font-weight:bold}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.badge{border:1px solid #d4af37;padding:5px 12px;border-radius:20px;display:inline-block}
-#intro{position:fixed;inset:0;background:#080808;z-index:10;display:flex;align-items:center;justify-content:center;flex-direction:column}
-#intro h1{font-size:42px}
+#intro{position:fixed;inset:0;z-index:1000;background:radial-gradient(circle at 50% 40%,#ff8a36,#f52d20 60%,#a91519);display:flex;align-items:center;justify-content:center;overflow:hidden;color:#fff}
+.intro-glow{position:absolute;width:260px;height:260px;border-radius:50%;background:#ffe46b;filter:blur(70px);opacity:.55;animation:pulse 1.2s infinite alternate}
+.brand-intro{position:relative;z-index:2;text-align:center;animation:brandPop 1s cubic-bezier(.2,.8,.2,1) both}
+.brand-intro .logo{font-size:clamp(3.5rem,15vw,7rem);font-weight:1000;letter-spacing:-.09em;text-shadow:0 7px 0 #b82718,0 12px 35px #77150e66}
+.brand-intro p{font-size:clamp(1rem,4vw,1.4rem);font-weight:800;letter-spacing:.15em;margin:0}
+.door{position:absolute;top:0;bottom:0;width:50.5%;background:linear-gradient(135deg,#202020,#090909);z-index:3;box-shadow:inset 0 0 35px #0008;transition:transform 1s cubic-bezier(.76,0,.24,1)}
+.door:after{content:"";position:absolute;top:0;bottom:0;width:5px;background:linear-gradient(#ffdf70,#a56b15,#ffdf70);opacity:.8}
+.door.left{left:0;border-right:2px solid #ffcf56}
+.door.left:after{right:20px}
+.door.right{right:0;border-left:2px solid #ffcf56}
+.door.right:after{left:20px}
+#intro.open .door.left{transform:translateX(-100%)}
+#intro.open .door.right{transform:translateX(100%)}
+#intro.closing .door.left{transform:translateX(0)}
+#intro.closing .door.right{transform:translateX(0)}
+.door-label{position:absolute;top:50%;font-size:clamp(1.4rem,5vw,3rem);font-weight:1000;color:#ffd45d;letter-spacing:.08em;writing-mode:vertical-rl;text-shadow:0 2px 12px #ff9b22}
+.door.left .door-label{right:30px;transform:translateY(-50%) rotate(180deg)}
+.door.right .door-label{left:30px;transform:translateY(-50%)}
+.knob{position:absolute;top:50%;width:12px;height:12px;background:#ffdc71;border-radius:50%;box-shadow:0 0 15px #ffce43}
+.door.left .knob{right:10px}
+.door.right .knob{left:10px}
+.intro-caption{position:absolute;bottom:10%;z-index:4;font-weight:800;letter-spacing:.1em;text-align:center;text-shadow:0 2px 8px #0008}
+#countdown{font-size:1.1rem;color:#fff1ae;margin-top:10px}
+@keyframes pulse{to{transform:scale(1.35);opacity:.8}}
+@keyframes brandPop{from{transform:scale(.65) translateY(20px);opacity:0}to{transform:scale(1);opacity:1}}
+header{position:sticky;top:0;z-index:50;background:#fffdf9ed;backdrop-filter:blur(14px);border-bottom:1px solid #f0e6da}
+.nav{max-width:1100px;margin:auto;padding:12px 18px;display:flex;align-items:center;gap:14px}
+.logo-small{font-size:1.7rem;font-weight:1000;letter-spacing:-.08em;color:var(--orange);white-space:nowrap;text-decoration:none}
+.logo-small span{color:#222}
+.search{flex:1;display:flex;align-items:center;gap:8px;background:#f5eee5;border-radius:14px;padding:10px 13px}
+.search input{border:0;outline:0;background:transparent;width:100%;min-width:0}
+.cart-btn{background:#201f1e;color:white;border-radius:13px;padding:11px 14px;font-weight:800;white-space:nowrap}
+.cart-count{background:var(--yellow);color:#111;border-radius:99px;padding:2px 7px;margin-left:4px}
+main{max-width:1100px;margin:auto;padding:18px}
+.hero{position:relative;overflow:hidden;border-radius:28px;padding:28px 24px;min-height:230px;background:linear-gradient(115deg,#ff3d20,#ff7b31 60%,#ffc64a);color:white;display:flex;align-items:center;box-shadow:0 16px 35px #ff55232c}
+.hero:after{content:"🍔";position:absolute;right:4%;bottom:-25px;font-size:clamp(7rem,24vw,13rem);transform:rotate(-12deg);filter:drop-shadow(0 15px 8px #9c230a40);animation:float 3s ease-in-out infinite}
+.hero:before{content:"";position:absolute;width:250px;height:250px;border:2px solid #ffffff40;border-radius:50%;right:0;top:-120px}
+.hero-content{position:relative;z-index:2;max-width:570px}
+.eyebrow{font-weight:900;letter-spacing:.12em;font-size:.78rem;background:#ffffff2b;display:inline-block;padding:7px 10px;border-radius:99px}
+.hero h1{font-size:clamp(2.1rem,7vw,4.2rem);line-height:.98;margin:15px 0 12px;letter-spacing:-.06em}
+.hero p{font-weight:600;max-width:400px;margin:0 0 18px}
+.cta{background:#fff;color:#ed381d;border-radius:13px;padding:12px 16px;font-weight:900;box-shadow:0 5px 0 #d92a18}
+@keyframes float{50%{transform:translateY(-10px) rotate(4deg)}}
+.promo-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0 24px}
+.promo{border-radius:18px;padding:14px;background:white;border:1px solid #f1e6d9;display:flex;align-items:center;gap:10px;font-weight:850}
+.promo .emoji{font-size:1.8rem}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:10px;margin:24px 0 13px}
+.section-head h2{font-size:1.55rem;margin:0;letter-spacing:-.04em}
+.section-head p{color:var(--muted);font-size:.85rem;margin:4px 0 0}
+.categories{display:flex;gap:9px;overflow:auto;padding:2px 0 8px;scrollbar-width:none}
+.categories::-webkit-scrollbar{display:none}
+.cat{flex:0 0 auto;border:1px solid #eee0d2;background:white;padding:11px 15px;border-radius:99px;font-weight:800}
+.cat.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+.product{background:white;border:1px solid #f0e5d9;border-radius:20px;overflow:hidden;box-shadow:0 5px 16px #44200a08;transition:transform .2s,box-shadow .2s}
+.product:hover{transform:translateY(-3px);box-shadow:0 12px 24px #44200a12}
+.food-art{height:130px;display:grid;place-items:center;font-size:4.7rem;background:linear-gradient(140deg,#fff0d9,#ffe0c0);position:relative}
+.food-art .tag{position:absolute;left:10px;top:10px;font-size:.68rem;background:#ff3d20;color:#fff;border-radius:99px;padding:5px 7px;font-weight:900}
+.product-body{padding:12px}
+.product h3{font-size:1rem;margin:0 0 5px}
+.desc{color:var(--muted);font-size:.78rem;min-height:32px}
+.price-row{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:12px}
+.price{font-weight:1000;font-size:1rem}
+.add{width:36px;height:36px;border-radius:12px;background:var(--yellow);font-size:1.35rem;font-weight:900}
+.add:hover{background:#ffc629}
+.empty{grid-column:1/-1;background:#fff;padding:25px;border-radius:18px;color:#777;text-align:center}
+footer{margin-top:35px;background:#201f1e;color:#fff;border-radius:25px 25px 0 0;padding:27px 20px}
+.footer-inner{max-width:1100px;margin:auto;display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:22px}
+.footer-logo{font-size:2rem;font-weight:1000;color:#ff6543;letter-spacing:-.08em}
+.footer-title{font-weight:900;margin-bottom:9px}
+.footer a{color:#ffe07b;text-decoration:none;overflow-wrap:anywhere}
+.footer p{color:#d0ccc8;line-height:1.55;margin:8px 0;font-size:.92rem}
+.demo-note{text-align:center;color:#a9a4a0;font-size:.75rem;margin-top:20px}
+.overlay{position:fixed;inset:0;z-index:200;background:#100d0bd9;display:flex;align-items:flex-end;justify-content:center;padding:12px}
+.drawer{width:min(520px,100%);max-height:90vh;overflow:auto;background:#fff9f1;border-radius:25px 25px 18px 18px;padding:20px;animation:slideup .25s ease}
+.drawer-head{display:flex;justify-content:space-between;align-items:center}
+.drawer h2{margin:0}
+.close{width:38px;height:38px;border-radius:50%;background:#eee4d8;font-size:1.3rem}
+.cart-line{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #eee0d1}
+.cart-line .mini{font-size:2rem}
+.line-info{flex:1}
+.cart-line small{color:#777}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:27px;height:27px;border-radius:8px;background:#ffe4a1;font-weight:900}
+.total{display:flex;justify-content:space-between;font-size:1.15rem;font-weight:1000;margin:18px 0}
+.checkout{width:100%;padding:14px;background:var(--orange);color:white;border-radius:14px;font-weight:950}
+.checkout:disabled{opacity:.4;cursor:not-allowed}
+.notice{padding:12px;border-radius:12px;background:#fff0c8;color:#694800;font-size:.86rem;margin-top:12px}
+.field{display:flex;flex-direction:column;gap:6px;margin:12px 0}
+.field label{font-size:.9rem;font-weight:800}
+.field input,.field textarea{width:100%;padding:12px;border:1px solid #e5d7c8;border-radius:12px;background:#fff;outline-color:var(--orange);font-size:1rem}
+.field textarea{resize:vertical;min-height:76px}
+.form-actions{display:flex;gap:9px;margin-top:14px}
+.secondary{padding:13px 16px;border-radius:13px;background:#eee4d8;font-weight:850}
+.success{background:#e8f8e9;border:1px solid #b9e5bc;border-radius:16px;padding:18px;text-align:center}
+.success .check{font-size:2.5rem}
+.success h3{margin:5px 0 8px}
+.summary-line{display:flex;justify-content:space-between;gap:12px;text-align:left;padding:7px 0;border-bottom:1px solid #d7ead8}
+@keyframes slideup{from{transform:translateY(40px);opacity:.4}to{transform:translateY(0);opacity:1}}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#201f1e;color:white;padding:12px 18px;border-radius:99px;z-index:300;box-shadow:0 10px 30px #0002;white-space:nowrap;animation:brandPop .2s ease}
+@media(max-width:800px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.food-art{height:125px}.promo-row{grid-template-columns:1fr}.promo{padding:10px 13px}.footer-inner{grid-template-columns:1fr 1fr}.footer-inner>div:first-child{grid-column:1/-1}.hero{min-height:245px}.hero:after{right:-15px;bottom:-10px;opacity:.7}.hero-content{max-width:75%}}
+@media(max-width:430px){.nav{gap:8px;padding:10px}.logo-small{font-size:1.35rem}.search{padding:10px}.cart-btn{padding:10px}.cart-label{display:none}main{padding:12px}.hero{padding:22px 18px}.hero-content{max-width:90%}.hero:after{font-size:6.5rem;right:-14px;bottom:-15px;opacity:.4}.hero h1{font-size:2.3rem}.footer-inner{grid-template-columns:1fr}.footer-inner>div:first-child{grid-column:auto}.grid{gap:10px}.product-body{padding:10px}.food-art{height:115px;font-size:4rem}}
 </style>
 </head>
 <body>
-
-<div id="intro">
-  <h1>QXV BET</h1>
-  <p class="gold">PREMIUM ENTERTAINMENT</p>
-  <h2 id="countdown">5</h2>
-  <p id="loading">Sayt yuklanmoqda...</p>
+<div id="intro" aria-label="QXVfood kirish animatsiyasi">
+  <div class="intro-glow"></div>
+  <div class="brand-intro"><div class="logo">QXVfood</div><p>MAZALI LAHZALAR!</p></div>
+  <div class="door left"><div class="door-label">QXV FOOD</div><div class="knob"></div></div>
+  <div class="door right"><div class="door-label">XUSH KELIBSIZ</div><div class="knob"></div></div>
+  <div class="intro-caption">TA’MNI HIS QILING<div id="countdown">Eshiklar ochilmoqda…</div></div>
 </div>
-
 <header>
-  <h1>QXV BET</h1>
-  <p>PREMIUM ENTERTAINMENT</p>
-  <span class="badge">DEMO VERSION</span>
+  <div class="nav">
+    <a class="logo-small" href="#" aria-label="QXVfood bosh sahifa">QXV<span>food</span></a>
+    <label class="search">🔎 <input id="search" type="search" placeholder="Lavash, burger, ichimlik..." aria-label="Taom qidirish"></label>
+    <button class="cart-btn" id="openCart">🛒 <span class="cart-label">Savatcha</span> <span class="cart-count" id="cartCount">0</span></button>
+  </div>
 </header>
-
 <main>
-  <section class="panel">
-    <h2 id="welcome">Xush kelibsiz!</h2>
-    <label for="lang">Til / Language / Язык</label>
-    <select id="lang" onchange="setLanguage()">
-      <option value="uz">O‘zbekcha</option>
-      <option value="en">English</option>
-      <option value="ru">Русский</option>
-    </select>
-    <button id="themeBtn" onclick="toggleTheme()">Mavzuni almashtirish</button>
-  </section>
-
-  <section class="panel" id="login">
-    <h2 id="profileTitle">Profil yaratish</h2>
-    <input id="name" placeholder="Ismingiz">
-    <input id="age" type="number" min="18" placeholder="Yoshingiz">
-    <button id="loginBtn" onclick="createProfile()">Kirish</button>
-    <p id="ageNote" class="small">18 yosh va undan kattalar uchun.</p>
-  </section>
-
-  <section class="panel hidden" id="account">
-    <h2 id="balanceTitle">Demo balansingiz</h2>
-    <div id="balance">0 UZS</div>
-    <button id="bonusBtn" onclick="claimBonus()">100 000 UZS DEMO BONUS</button>
-    <p id="bonusNote" class="small">Bonus faqat namoyish uchun, haqiqiy pul emas.</p>
-  </section>
-
-  <section class="panel">
-    <h2 id="modeTitle">O‘yin rejimi</h2>
-    <div class="row">
-      <button onclick="chooseMode('demo')" id="demoBtn">DEMO O‘YIN</button>
-      <button onclick="chooseMode('real')" id="realBtn">REAL SUMMA</button>
-    </div>
-    <p id="modeInfo" class="small">Demo rejimda virtual balans ishlatiladi.</p>
-    <h3 id="gamesTitle">O‘yinlar</h3>
-
-    <div class="game">
-      <h3>Big Bass Bonanza 1000</h3>
-      <p class="small">Demo ko‘rinish</p>
-      <button onclick="playDemo(1)" id="play1">Demo o‘ynash</button>
-    </div>
-
-    <div class="game">
-      <h3>Bigger Bass Bonanza</h3>
-      <p class="small">Demo ko‘rinish</p>
-      <button onclick="playDemo(2)" id="play2">Demo o‘ynash</button>
-    </div>
-
-    <div class="game">
-      <h3>Big Bass Halloween</h3>
-      <p class="small">Demo ko‘rinish</p>
-      <button onclick="playDemo(3)" id="play3">Demo o‘ynash</button>
-    </div>
-
-    <div id="gameResult" class="small">
-      Bu mahalliy demo simulyatsiya. Rasmiy Pragmatic Play o‘yini emas.
+  <section class="hero">
+    <div class="hero-content">
+      <span class="eyebrow">🔥 QXVFOOD — DEMO MENU</span>
+      <h1>Och qoldingizmi?<br>Biz tayyormiz!</h1>
+      <p>Sevimli taomingizni tanlang. Kayfiyatni ko‘taring, mazali lahzalarni boshlang!</p>
+      <button class="cta" onclick="document.querySelector('#menuTitle').scrollIntoView({behavior:'smooth'})">Menyuni ko‘rish ↓</button>
     </div>
   </section>
-
-  <section class="panel">
-    <h2 id="depositTitle">Pul kiritish</h2>
-    <p>HUMO / UZCARD</p>
-    <p id="cardNumber" class="gold"><b>5614 6848 0855 2572</b></p>
-    <p>QOBILJONOV XOJIAKBAR</p>
-    <button onclick="copyCard()" id="copyBtn">Karta raqamini nusxalash</button>
-    <input id="depositAmount" type="number" min="1" placeholder="Kiritiladigan summa (UZS)">
-    <button onclick="depositRequest()" id="depositBtn">Pul kiritish so‘rovi</button>
-    <p id="depositResult" class="small"></p>
-    <p id="paymentNote" class="small">
-      To‘lov tizimi ulanmagan. Ushbu sahifa haqiqiy to‘lovni qabul qilmaydi.
-    </p>
-  </section>
-
-  <section class="panel">
-    <h2 id="withdrawTitle">Pul chiqarish</h2>
-    <input id="withdrawAmount" type="number" min="1" placeholder="Yechiladigan summa (UZS)">
-    <input id="withdrawCard" placeholder="Karta raqami">
-    <button onclick="withdraw()" id="withdrawBtn">Pul chiqarish so‘rovi</button>
-    <p id="withdrawResult" class="small"></p>
-    <p id="withdrawNote" class="small">
-      Bu demo so‘rov. Haqiqiy pul o‘tkazilmaydi.
-    </p>
-  </section>
-
-  <section class="panel">
-    <h3 id="settingsTitle">Sozlamalar</h3>
-    <button onclick="clearDemo()" id="clearBtn">Demo ma’lumotlarini tozalash</button>
-    <p class="small">
-      QXV BET — namoyish maketi. Haqiqiy pul operatsiyalari mavjud emas.
-    </p>
-  </section>
+  <div class="promo-row">
+    <div class="promo"><span class="emoji">🌯</span><div>Issiq lavashlar<br><small style="color:#777;font-weight:500">Har luqmada lazzat</small></div></div>
+    <div class="promo"><span class="emoji">🍟</span><div>Qarsildoq fastfud<br><small style="color:#777;font-weight:500">Kayfiyatga kayfiyat</small></div></div>
+    <div class="promo"><span class="emoji">🍰</span><div>Shirin tanaffus<br><small style="color:#777;font-weight:500">O‘zingizni siylang</small></div></div>
+  </div>
+  <div class="section-head" id="menuTitle"><div><h2>Bugun nima yeymiz? 😋</h2><p>Yoqtirganingizni tanlang</p></div></div>
+  <nav class="categories" id="categories" aria-label="Taom kategoriyalari">
+    <button class="cat active" data-cat="Hammasi">🍽️ Hammasi</button>
+    <button class="cat" data-cat="Lavash">🌯 Lavashlar</button>
+    <button class="cat" data-cat="Xot-dog">🌭 Xot-doglar</button>
+    <button class="cat" data-cat="Burger">🍔 Burgerlar</button>
+    <button class="cat" data-cat="Fastfud">🍟 Fastfud</button>
+    <button class="cat" data-cat="Shirinlik">🍰 Shirinliklar</button>
+    <button class="cat" data-cat="Ichimlik">🥤 Suvlar va ichimliklar</button>
+  </nav>
+  <div class="section-head"><div><h2 id="categoryTitle">Eng mazalilari</h2><p id="resultCount">Tanlov sizniki</p></div></div>
+  <section class="grid" id="products" aria-live="polite"></section>
 </main>
-
+<footer>
+  <div class="footer-inner">
+    <div><div class="footer-logo">QXVfood</div><p>❤️ Mazali taomlar, yorqin kayfiyat va unutilmas lahzalar!</p><p>Ushbu sayt hozircha demo rejimda ishlaydi.</p></div>
+    <div><div class="footer-title">📞 Call center</div><p>Buyurtma va savollar uchun:</p><p><a href="tel:+998906101976">+998 90 610 19 76</a></p></div>
+    <div><div class="footer-title">💬 Talab va shikoyatlar</div><p>MUROJAT QILING — Instagram orqali yozing.</p><p><a href="https://instagram.com/kobiljonov.x" target="_blank" rel="noopener noreferrer">@kobiljonov.x ↗</a></p></div>
+  </div>
+  <div class="demo-note">© QXVfood · Demo loyiha · Haqiqiy to‘lov amalga oshirilmaydi</div>
+</footer>
+<div class="overlay hidden" id="cartOverlay" role="dialog" aria-modal="true" aria-label="Savatcha">
+  <div class="drawer">
+    <div class="drawer-head"><h2 id="drawerTitle">🛒 Savatchangiz</h2><button class="close" id="closeCart" aria-label="Yopish">×</button></div>
+    <div id="cartView">
+      <div id="cartItems"></div>
+      <div class="total"><span>Jami:</span><span id="cartTotal">0 so‘m</span></div>
+      <button class="checkout" id="goCheckout">Demo buyurtmani davom ettirish →</button>
+      <div class="notice">ℹ️ Demo rejim: buyurtma faqat namoyish uchun. To‘lov va yetkazib berish tizimi ulanmagan.</div>
+    </div>
+    <div id="checkoutView" class="hidden">
+      <div class="notice">📝 Yetkazib berish ma’lumotlari demo namoyish uchun so‘raladi.</div>
+      <div id="checkoutSummary"></div>
+      <form id="checkoutForm">
+        <div class="field"><label for="customerName">Ismingiz</label><input id="customerName" name="customerName" autocomplete="name" placeholder="Ism kiriting" required></div>
+        <div class="field"><label for="customerPhone">Telefon raqamingiz</label><input id="customerPhone" name="customerPhone" type="tel" autocomplete="tel" placeholder="+998 90 123 45 67" required minlength="7"></div>
+        <div class="field"><label for="customerAddress">Yetkazib berish manzili</label><textarea id="customerAddress" name="customerAddress" autocomplete="street-address" placeholder="Shahar, ko‘cha, uy..." required></textarea></div>
+        <div class="form-actions"><button type="button" class="secondary" id="backToCart">← Savatcha</button><button type="submit" class="checkout" style="flex:1">✓ Demo buyurtmani tasdiqlash</button></div>
+      </form>
+    </div>
+    <div id="confirmationView" class="hidden">
+      <div class="success">
+        <div class="check">✅</div><h3>Demo buyurtma tasdiqlandi!</h3>
+        <p id="confirmationMessage"></p><div id="confirmationSummary"></div>
+        <p style="font-size:.82rem;color:#49634b">Bu haqiqiy buyurtma emas. Restoran, to‘lov yoki yetkazib berish tizimiga ma’lumot yuborilmadi.</p>
+        <button class="checkout" id="finishDemo">Tayyor</button>
+      </div>
+    </div>
+  </div>
+</div>
 <script>
-const translations = {
-uz:{
-welcome:"Xush kelibsiz!",profile:"Profil yaratish",name:"Ismingiz",
-age:"Yoshingiz",login:"Kirish",ageNote:"18 yosh va undan kattalar uchun.",
-balance:"Demo balansingiz",bonus:"100 000 UZS DEMO BONUS",
-bonusNote:"Bonus faqat namoyish uchun, haqiqiy pul emas.",
-mode:"O‘yin rejimi",demo:"DEMO O‘YIN",real:"REAL SUMMA",
-modeInfo:"Demo rejimda virtual balans ishlatiladi.",
-realInfo:"REAL SUMMA — TEZ KUNDA",games:"O‘yinlar",
-play:"Demo o‘ynash",deposit:"Pul kiritish",copy:"Karta raqamini nusxalash",
-depositAmount:"Kiritiladigan summa (UZS)",depositBtn:"Pul kiritish so‘rovi",
-payment:"To‘lov tizimi ulanmagan. Haqiqiy to‘lov qabul qilinmaydi.",
-withdraw:"Pul chiqarish",withdrawAmount:"Yechiladigan summa (UZS)",
-withdrawCard:"Karta raqami",withdrawBtn:"Pul chiqarish so‘rovi",
-withdrawNote:"Bu demo so‘rov. Haqiqiy pul o‘tkazilmaydi.",
-settings:"Sozlamalar",clear:"Demo ma’lumotlarini tozalash",
-theme:"Mavzuni almashtirish",loading:"Sayt yuklanmoqda...",
-adult:"Kirish uchun yoshingiz 18 yoki undan katta bo‘lishi kerak.",
-created:"Profil yaratildi!",claimed:"Demo bonus balansga qo‘shildi.",
-already:"Demo bonus avval olingan.",copied:"Karta raqami nusxalandi.",
-copyFail:"Nusxalash imkoni bo‘lmadi.",invalid:"Ma’lumotlarni tekshiring.",
-demoOnly:"Faqat demo rejimida ishlaydi.",
-request:"Demo so‘rov yaratildi. Pul o‘tkazilmadi.",
-cleared:"Demo ma’lumotlari tozalandi."
-},
-en:{
-welcome:"Welcome!",profile:"Create profile",name:"Your name",age:"Your age",
-login:"Enter",ageNote:"For users aged 18 and over.",
-balance:"Your demo balance",bonus:"100,000 UZS DEMO BONUS",
-bonusNote:"Demo bonus only. Not real money.",mode:"Game mode",
-demo:"DEMO GAME",real:"REAL MONEY",modeInfo:"Virtual balance is used in demo mode.",
-realInfo:"REAL MONEY — COMING SOON",games:"Games",play:"Play demo",
-deposit:"Deposit",copy:"Copy card number",depositAmount:"Deposit amount (UZS)",
-depositBtn:"Deposit request",payment:"Payment provider is not connected.",
-withdraw:"Withdraw",withdrawAmount:"Withdrawal amount (UZS)",
-withdrawCard:"Card number",withdrawBtn:"Withdrawal request",
-withdrawNote:"Demo request only. No money is transferred.",
-settings:"Settings",clear:"Clear demo data",theme:"Change theme",
-loading:"Loading website...",adult:"You must be at least 18 years old.",
-created:"Profile created!",claimed:"Demo bonus added to balance.",
-already:"Demo bonus already claimed.",copied:"Card number copied.",
-copyFail:"Could not copy.",invalid:"Please check your details.",
-demoOnly:"Available only in demo mode.",
-request:"Demo request created. No money was transferred.",
-cleared:"Demo data cleared."
-},
-ru:{
-welcome:"Добро пожаловать!",profile:"Создать профиль",name:"Ваше имя",
-age:"Ваш возраст",login:"Войти",ageNote:"Для пользователей от 18 лет.",
-balance:"Ваш демо-баланс",bonus:"ДЕМО-БОНУС 100 000 UZS",
-bonusNote:"Только демо-бонус, не реальные деньги.",mode:"Режим игры",
-demo:"ДЕМО-ИГРА",real:"РЕАЛЬНЫЕ ДЕНЬГИ",
-modeInfo:"В демо-режиме используется виртуальный баланс.",
-realInfo:"РЕАЛЬНЫЕ ДЕНЬГИ — СКОРО",games:"Игры",play:"Играть демо",
-deposit:"Пополнение",copy:"Копировать номер карты",
-depositAmount:"Сумма пополнения (UZS)",depositBtn:"Запрос пополнения",
-payment:"Платёжная система не подключена.",withdraw:"Вывод средств",
-withdrawAmount:"Сумма вывода (UZS)",withdrawCard:"Номер карты",
-withdrawBtn:"Запрос на вывод",
-withdrawNote:"Только демо-запрос. Деньги не переводятся.",
-settings:"Настройки",clear:"Очистить демо-данные",
-theme:"Сменить тему",loading:"Загрузка сайта...",
-adult:"Вам должно быть не менее 18 лет.",
-created:"Профиль создан!",claimed:"Демо-бонус добавлен к балансу.",
-already:"Демо-бонус уже получен.",copied:"Номер карты скопирован.",
-copyFail:"Не удалось скопировать.",invalid:"Проверьте данные.",
-demoOnly:"Доступно только в демо-режиме.",
-request:"Демо-запрос создан. Деньги не переведены.",
-cleared:"Демо-данные очищены."
+const products=[
+{id:1,name:"Klassik lavash",cat:"Lavash",price:26000,emoji:"🌯",desc:"Mol go‘shti, sabzavotlar va maxsus sous",tag:"TOP"},
+{id:2,name:"Pishloqli lavash",cat:"Lavash",price:30000,emoji:"🧀",desc:"Eritilgan pishloq bilan yanada mazali",tag:"HIT"},
+{id:3,name:"Achchiq lavash",cat:"Lavash",price:28000,emoji:"🌯",desc:"Achchiq sousni yoqtiradiganlar uchun",tag:""},
+{id:4,name:"Tovuqli lavash",cat:"Lavash",price:25000,emoji:"🌯",desc:"Mayin tovuq go‘shti va yangi ko‘katlar",tag:""},
+{id:5,name:"Maxi lavash",cat:"Lavash",price:36000,emoji:"🌯",desc:"Katta ishtaha uchun katta lavash",tag:"MAXI"},
+{id:6,name:"Mini lavash",cat:"Lavash",price:19000,emoji:"🌯",desc:"Yengil tamaddi uchun ayni muddao",tag:""},
+{id:7,name:"Klassik xot-dog",cat:"Xot-dog",price:15000,emoji:"🌭",desc:"Sosiska, yumshoq bulochka va sous",tag:""},
+{id:8,name:"Pishloqli xot-dog",cat:"Xot-dog",price:19000,emoji:"🌭",desc:"Pishloqli, mazali va to‘yimli",tag:"TOP"},
+{id:9,name:"Achchiq xot-dog",cat:"Xot-dog",price:17000,emoji:"🌭",desc:"Achchiq sous va qarsildoq piyoz",tag:""},
+{id:10,name:"Double xot-dog",cat:"Xot-dog",price:24000,emoji:"🌭",desc:"Ikki sosiska — ikki karra lazzat",tag:"DOUBLE"},
+{id:11,name:"Klassik burger",cat:"Burger",price:28000,emoji:"🍔",desc:"Kotlet, salat, pomidor va maxsus sous",tag:""},
+{id:12,name:"Cheeseburger",cat:"Burger",price:32000,emoji:"🍔",desc:"Pishloq va shirali kotlet uyg‘unligi",tag:"TOP"},
+{id:13,name:"Double burger",cat:"Burger",price:39000,emoji:"🍔",desc:"Ikki kotletli katta burger",tag:"DOUBLE"},
+{id:14,name:"Tovuqli burger",cat:"Burger",price:27000,emoji:"🍔",desc:"Qarsildoq tovuq va yumshoq bulochka",tag:""},
+{id:15,name:"Kartoshka fri",cat:"Fastfud",price:12000,emoji:"🍟",desc:"Qarsildoq va oltinrang fri",tag:""},
+{id:16,name:"Naggets",cat:"Fastfud",price:18000,emoji:"🍗",desc:"Tovuq naggetslar, sous bilan",tag:""},
+{id:17,name:"Fri + sous",cat:"Fastfud",price:15000,emoji:"🍟",desc:"Sevimli sousingiz bilan",tag:""},
+{id:18,name:"Pishloqli fri",cat:"Fastfud",price:20000,emoji:"🧀",desc:"Pishloq ta’mi bilan boyitilgan fri",tag:""},
+{id:19,name:"Donut",cat:"Shirinlik",price:10000,emoji:"🍩",desc:"Yumshoq, shirin va rang-barang",tag:"SWEET"},
+{id:20,name:"Shokoladli tort",cat:"Shirinlik",price:18000,emoji:"🍰",desc:"Shokoladni sevuvchilar uchun",tag:""},
+{id:21,name:"Muzqaymoq",cat:"Shirinlik",price:9000,emoji:"🍦",desc:"Salqin va yoqimli shirinlik",tag:""},
+{id:22,name:"Pankeyk",cat:"Shirinlik",price:16000,emoji:"🥞",desc:"Shirin sirop bilan yumshoq pankeyk",tag:""},
+{id:23,name:"Gazli ichimlik",cat:"Ichimlik",price:8000,emoji:"🥤",desc:"Salqin, gazli ichimlik",tag:""},
+{id:24,name:"Mineral suv",cat:"Ichimlik",price:5000,emoji:"💧",desc:"Oddiy va mineral suv",tag:""},
+{id:25,name:"Sovuq choy",cat:"Ichimlik",price:9000,emoji:"🧋",desc:"Mevali ta’mli sovuq choy",tag:""},
+{id:26,name:"Sharbat",cat:"Ichimlik",price:10000,emoji:"🧃",desc:"Mevali, tetiklashtiruvchi ichimlik",tag:""}
+];
+
+let selectedCat="Hammasi",query="",cart={};
+const money=n=>n.toLocaleString("uz-UZ")+" so‘m";
+const productRoot=document.getElementById("products");
+
+function renderProducts(){
+ const list=products.filter(p=>(selectedCat==="Hammasi"||p.cat===selectedCat)&&(p.name+" "+p.desc+" "+p.cat).toLowerCase().includes(query.toLowerCase()));
+ document.getElementById("categoryTitle").textContent=selectedCat==="Hammasi"?"Eng mazalilari":selectedCat+" bo‘limi";
+ document.getElementById("resultCount").textContent=list.length+" ta mazali tanlov";
+ productRoot.innerHTML=list.length?list.map(p=>`<article class="product"><div class="food-art"><span>${p.emoji}</span>${p.tag?`<span class="tag">${p.tag}</span>`:""}</div><div class="product-body"><h3>${p.name}</h3><div class="desc">${p.desc}</div><div class="price-row"><span class="price">${money(p.price)}</span><button class="add" aria-label="${p.name} savatchaga qo‘shish" onclick="addToCart(${p.id})">+</button></div></div></article>`).join(""):'<div class="empty">😕 Bu qidiruv bo‘yicha mahsulot topilmadi. Boshqa so‘z yozib ko‘ring.</div>';
 }
+
+function addToCart(id){
+ cart[id]=(cart[id]||0)+1;
+ updateCart();
+ toast("😋 "+products.find(p=>p.id===id).name+" savatchaga qo‘shildi!");
+}
+function totalCount(){return Object.values(cart).reduce((a,b)=>a+b,0)}
+function totalPrice(){return products.reduce((sum,p)=>sum+p.price*(cart[p.id]||0),0)}
+function updateCart(){
+ document.getElementById("cartCount").textContent=totalCount();
+ const lines=products.filter(p=>cart[p.id]).map(p=>`<div class="cart-line"><span class="mini">${p.emoji}</span><div class="line-info"><strong>${p.name}</strong><br><small>${money(p.price)} × ${cart[p.id]}</small></div><div class="qty"><button onclick="changeQty(${p.id},-1)" aria-label="Kamaytirish">−</button><b>${cart[p.id]}</b><button onclick="changeQty(${p.id},1)" aria-label="Ko‘paytirish">+</button></div></div>`).join("");
+ document.getElementById("cartItems").innerHTML=lines||'<div class="empty" style="margin-top:15px">Savatcha hozircha bo‘sh 🍽️<br>Yoqtirgan taomingizni tanlang!</div>';
+ document.getElementById("cartTotal").textContent=money(totalPrice());
+ document.getElementById("goCheckout").disabled=totalCount()===0;
+}
+function changeQty(id,d){cart[id]=(cart[id]||0)+d;if(cart[id]<=0)delete cart[id];updateCart()}
+function toast(msg){
+ const old=document.querySelector(".toast");
+ if(old)old.remove();
+ const el=document.createElement("div");
+ el.className="toast";el.textContent=msg;
+ document.body.appendChild(el);
+ setTimeout(()=>el.remove(),2200);
+}
+document.querySelectorAll(".cat").forEach(btn=>btn.addEventListener("click",()=>{
+ selectedCat=btn.dataset.cat;
+ document.querySelectorAll(".cat").forEach(b=>b.classList.toggle("active",b===btn));
+ renderProducts();
+}));
+document.getElementById("search").addEventListener("input",e=>{query=e.target.value;renderProducts()});
+const overlay=document.getElementById("cartOverlay");
+
+function showView(view){
+ document.getElementById("cartView").classList.toggle("hidden",view!=="cart");
+ document.getElementById("checkoutView").classList.toggle("hidden",view!=="checkout");
+ document.getElementById("confirmationView").classList.toggle("hidden",view!=="confirm");
+ document.getElementById("drawerTitle").textContent=view==="cart"?"🛒 Savatchangiz":view==="checkout"?"📝 Buyurtma ma’lumotlari":"✅ Tasdiqlash";
+}
+document.getElementById("openCart").onclick=()=>{
+ updateCart();showView("cart");overlay.classList.remove("hidden");
+};
+document.getElementById("closeCart").onclick=()=>overlay.classList.add("hidden");
+overlay.addEventListener("click",e=>{if(e.target===overlay)overlay.classList.add("hidden")});
+
+document.getElementById("goCheckout").onclick=()=>{
+ if(!totalCount())return;
+ document.getElementById("checkoutSummary").innerHTML=`<div class="notice">🧾 Buyurtma: ${totalCount()} ta mahsulot · Jami: <strong>${money(totalPrice())}</strong></div>`;
+ showView("checkout");
+};
+document.getElementById("backToCart").onclick=()=>{showView("cart");updateCart()};
+
+document.getElementById("checkoutForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ if(!totalCount())return;
+ const name=document.getElementById("customerName").value.trim();
+ const phone=document.getElementById("customerPhone").value.trim();
+ const address=document.getElementById("customerAddress").value.trim();
+ if(!name||phone.length<7||!address){toast("Iltimos, barcha maydonlarni to‘ldiring.");return}
+ document.getElementById("confirmationMessage").textContent=`Rahmat, ${name}! Buyurtmangiz demo tarzda shakllantirildi.`;
+ document.getElementById("confirmationSummary").innerHTML=
+ `<div class="summary-line"><span>Mahsulotlar</span><strong>${totalCount()} ta</strong></div>
+ <div class="summary-line"><span>Jami</span><strong>${money(totalPrice())}</strong></div>
+ <div class="summary-line"><span>Telefon</span><strong>${escapeHtml(phone)}</strong></div>
+ <div class="summary-line"><span>Manzil</span><strong>${escapeHtml(address)}</strong></div>`;
+ showView("confirm");
+});
+function escapeHtml(s){
+ return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+document.getElementById("finishDemo").onclick=()=>{
+ overlay.classList.add("hidden");
+ cart={};updateCart();
+ document.getElementById("checkoutForm").reset();
+ showView("cart");
+ toast("Demo yakunlandi. Rahmat!");
 };
 
-let lang="uz";
-let mode="demo";
-let balance=Number(localStorage.getItem("qxv_balance")||0);
-let bonusTaken=localStorage.getItem("qxv_bonus")==="yes";
+renderProducts();
+updateCart();
 
-function setLanguage(){
-  lang=document.getElementById("lang").value;
-  const t=translations[lang];
-  const set=(id,key)=>document.getElementById(id).textContent=t[key];
-
-  set("welcome","welcome");
-  set("profileTitle","profile");
-  set("loginBtn","login");
-  set("ageNote","ageNote");
-  set("balanceTitle","balance");
-  set("bonusBtn","bonus");
-  set("bonusNote","bonusNote");
-  set("modeTitle","mode");
-  set("demoBtn","demo");
-  set("realBtn","real");
-  set("gamesTitle","games");
-  set("depositTitle","deposit");
-  set("copyBtn","copy");
-  set("depositBtn","depositBtn");
-  set("paymentNote","payment");
-  set("withdrawTitle","withdraw");
-  set("withdrawBtn","withdrawBtn");
-  set("withdrawNote","withdrawNote");
-  set("settingsTitle","settings");
-  set("clearBtn","clear");
-  set("themeBtn","theme");
-
-  document.getElementById("name").placeholder=t.name;
-  document.getElementById("age").placeholder=t.age;
-  document.getElementById("depositAmount").placeholder=t.depositAmount;
-  document.getElementById("withdrawAmount").placeholder=t.withdrawAmount;
-  document.getElementById("withdrawCard").placeholder=t.withdrawCard;
-
-  ["play1","play2","play3"].forEach(id=>{
-    document.getElementById(id).textContent=t.play;
-  });
-  document.getElementById("loading").textContent=t.loading;
-  updateModeText();
-  renderBalance();
-}
-
-function createProfile(){
-  const name=document.getElementById("name").value.trim();
-  const age=Number(document.getElementById("age").value);
-  if(!name||age<18){
-    alert(translations[lang].adult);
-    return;
-  }
-  localStorage.setItem("qxv_name",name);
-  document.getElementById("welcome").textContent=
-    translations[lang].created+" "+name;
-  document.getElementById("login").classList.add("hidden");
-  document.getElementById("account").classList.remove("hidden");
-  renderBalance();
-}
-
-function renderBalance(){
-  document.getElementById("balance").textContent=
-    balance.toLocaleString()+" UZS";
-}
-
-function claimBonus(){
-  if(bonusTaken){
-    alert(translations[lang].already);
-    return;
-  }
-  balance+=100000;
-  bonusTaken=true;
-  localStorage.setItem("qxv_balance",balance);
-  localStorage.setItem("qxv_bonus","yes");
-  renderBalance();
-  alert(translations[lang].claimed);
-}
-
-function chooseMode(selected){
-  mode=selected;
-  updateModeText();
-}
-
-function updateModeText(){
-  const t=translations[lang];
-  document.getElementById("modeInfo").textContent=
-    mode==="demo"?t.modeInfo:t.realInfo;
-}
-
-function playDemo(number){
-  if(mode!=="demo"){
-    document.getElementById("gameResult").textContent=
-      translations[lang].realInfo;
-    return;
-  }
-  const symbols=[
-    ["🐟","🎣","🪙"],
-    ["🌊","🐠","🎣"],
-    ["🎃","🐟","🌙"]
-  ];
-  const result=symbols[number-1];
-  document.getElementById("gameResult").textContent=
-    result.join("   ")+" — DEMO";
-}
-
-async function copyCard(){
-  const card="5614 6848 0855 2572";
-  try{
-    await navigator.clipboard.writeText(card);
-    alert(translations[lang].copied);
-  }catch(e){
-    window.prompt(translations[lang].copy,card);
-  }
-}
-
-function depositRequest(){
-  const amount=Number(document.getElementById("depositAmount").value);
-  document.getElementById("depositResult").textContent=
-    amount>0?translations[lang].request:translations[lang].invalid;
-}
-
-function withdraw(){
-  const amount=Number(document.getElementById("withdrawAmount").value);
-  const card=document.getElementById("withdrawCard").value.trim();
-  document.getElementById("withdrawResult").textContent=
-    amount>0&&card?translations[lang].request:translations[lang].invalid;
-}
-
-function toggleTheme(){
-  const light=document.body.dataset.theme!=="light";
-  document.body.dataset.theme=light?"light":"dark";
-  document.body.style.background=light?"#f4f4f4":"#080808";
-  document.body.style.color=light?"#171717":"#f5c542";
-  document.querySelectorAll(".panel").forEach(el=>{
-    el.style.background=light?"#fff":"#151515";
-  });
-}
-
-function clearDemo(){
-  localStorage.removeItem("qxv_balance");
-  localStorage.removeItem("qxv_bonus");
-  localStorage.removeItem("qxv_name");
-  balance=0;
-  bonusTaken=false;
-  renderBalance();
-  alert(translations[lang].cleared);
-}
-
-let seconds=5;
-const countdown=document.getElementById("countdown");
-const timer=setInterval(()=>{
-  seconds--;
-  countdown.textContent=seconds>0?seconds:"QXV BET";
-  if(seconds<=0){
-    clearInterval(timer);
-    document.getElementById("intro").style.display="none";
-    const savedName=localStorage.getItem("qxv_name");
-    if(savedName){
-      document.getElementById("welcome").textContent=
-        translations[lang].welcome+" "+savedName;
-      document.getElementById("login").classList.add("hidden");
-      document.getElementById("account").classList.remove("hidden");
-    }
-    renderBalance();
-  }
-},1000);
-
-setLanguage();
+const intro=document.getElementById("intro"),countdown=document.getElementById("countdown");
+setTimeout(()=>{intro.classList.add("open");countdown.textContent="Xush kelibsiz!";},500);
+setTimeout(()=>{countdown.textContent="Mazali lahzalar boshlanmoqda…";},2200);
+setTimeout(()=>{intro.classList.add("closing");countdown.textContent="QXVfood";},3400);
+setTimeout(()=>{intro.style.transition="opacity .55s ease";intro.style.opacity="0";},4300);
+setTimeout(()=>{intro.remove()},4900);
 </script>
 </body>
 </html>

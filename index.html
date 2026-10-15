@@ -312,6 +312,248 @@ document.getElementById("finishDemo").onclick=()=>{
  showView("cart");
  toast("Demo yakunlandi. Rahmat!");
 };
+/* ===== QXVfood: 40 SAVOL VA 10% CHEGIRMA ===== */
+
+const qxvQuizStyle = document.createElement("style");
+qxvQuizStyle.textContent = `
+#qxvQuiz{position:fixed;inset:0;z-index:2000;background:#fff8ef;
+display:flex;align-items:center;justify-content:center;padding:16px;
+font-family:system-ui,sans-serif}
+#qxvQuiz .quiz-box{width:min(520px,100%);max-height:92vh;overflow:auto;
+background:white;border-radius:24px;padding:22px;box-shadow:0 20px 60px #0002}
+#qxvQuiz .quiz-progress{height:9px;background:#eee;border-radius:20px;overflow:hidden;margin:15px 0}
+#qxvQuiz .quiz-progress span{display:block;height:100%;background:#ff3d20;transition:width .2s}
+#qxvQuiz .quiz-option{display:block;width:100%;text-align:left;padding:13px;
+margin:9px 0;border:1px solid #eadfd4;border-radius:13px;background:#fffaf5;
+font-weight:700;color:#222}
+#qxvQuiz .quiz-option:disabled{cursor:default;opacity:.8}
+#qxvQuiz .quiz-option.correct{background:#e5f8e8;border-color:#36a852}
+#qxvQuiz .quiz-option.wrong{background:#ffe8e4;border-color:#ff3d20}
+#qxvQuiz .quiz-next{width:100%;padding:14px;border-radius:13px;
+background:#ff3d20;color:white;font-weight:900;margin-top:12px}
+#qxvQuiz .quiz-note{font-size:.9rem;color:#777;line-height:1.5}
+#qxvQuiz .quiz-score{font-weight:900;color:#ff3d20}
+`;
+document.head.appendChild(qxvQuizStyle);
+
+const qxvIslam = [
+["Islomning nechta ustuni bor?",["3 ta","4 ta","5 ta","6 ta"],2],
+["Musulmonlarning muqaddas kitobi qaysi?",["Injil","Qur’oni Karim","Tavrot","Zabur"],1],
+["Bir kunda nechta farz namoz o‘qiladi?",["3 ta","4 ta","5 ta","6 ta"],2],
+["Ramazon oyida musulmonlar nima qiladi?",["Ro‘za tutadi","Haj qiladi","Faqat sadaqa beradi","Namoz o‘qimaydi"],0],
+["Musulmonlarning qiblasi qayer?",["Madinadagi masjid","Ka’ba","Quddus","Arafot"],1],
+["Islom payg‘ambari kim?",["Muso (a.s.)","Iso (a.s.)","Muhammad (s.a.v.)","Ibrohim (a.s.)"],2],
+["Namozdan oldin odatda nima qilinadi?",["Tahorat","Safar","Savdo","Uyqu"],0],
+["Qur’oni Karim nechta suradan iborat?",["100 ta","110 ta","114 ta","120 ta"],2],
+["Ro‘za qaysi oyda tutiladi?",["Muharram","Ramazon","Shavvol","Rajab"],1],
+["Islomdagi sadaqa nima?",["Yordam va ehson","Jarima","Savdo solig‘i","Qarz"],0],
+["Juma namozi haftaning qaysi kuni?",["Dushanba","Chorshanba","Juma","Yakshanba"],2],
+["Haj ibodati qaysi shaharda ado etiladi?",["Makka","Qohira","Istanbul","Bag‘dod"],0],
+["Musulmonlarning bayramlaridan biri qaysi?",["Navro‘z","Ramazon hayiti","Mustaqillik kuni","Yangi yil"],1],
+["Azon nimaga chaqiradi?",["Ovqatlanishga","Namozga","Sayohatga","Savdoga"],1],
+["Birinchi vahiy qaysi g‘or bilan bog‘liq?",["Savr","Hiro","Uhud","Badr"],1],
+["Qur’oni Karim qaysi tilda nozil bo‘lgan?",["Forscha","Arabcha","Turkcha","Lotincha"],1],
+["Zakot nima?",["Farz moliyaviy ibodat","Safar turi","Taom nomi","Namoz vaqti"],0],
+["Islomiy taqvim qaysi hodisadan boshlanadi?",["Badr jangidan","Hijratdan","Hajdan","Makka fathidan"],1],
+["Musulmonlar salomlashganda ko‘p ishlatadigan ibora qaysi?",["Assalomu alaykum","Xayrli tong","Marhamat","Rahmat"],0],
+["Qurbon hayiti qaysi ibodat bilan chambarchas bog‘liq?",["Qurbonlik","Faqat ro‘za","Faqat safar","Faqat savdo"],0]
+];
+
+const qxvFootball = [
+["Futbol jamoasida maydonda nechta o‘yinchi bo‘ladi?",["9","10","11","12"],2],
+["Futbol uchrashuvining odatiy asosiy vaqti qancha?",["60 daqiqa","80 daqiqa","90 daqiqa","100 daqiqa"],2],
+["2022-yilgi Jahon chempionatida qaysi terma jamoa g‘olib bo‘lgan?",["Fransiya","Argentina","Braziliya","Xorvatiya"],1],
+["Lionel Messi qaysi davlat vakili?",["Ispaniya","Portugaliya","Argentina","Urugvay"],2],
+["Cristiano Ronaldo qaysi davlat vakili?",["Portugaliya","Braziliya","Italiya","Argentina"],0],
+["Futbolda darvozabonning asosiy vazifasi nima?",["Gol urish","Darvozani himoya qilish","Hakamlik qilish","Aut tashlash"],1],
+["Qizil kartochka nimani anglatadi?",["Ogohlantirish","O‘yindan chetlatish","Gol","Tanaffus"],1],
+["Penalti nuqtasi darvozadan taxminan necha metr uzoqda?",["9 metr","10 metr","11 metr","12 metr"],2],
+["FIFA Jahon chempionati odatda necha yilda bir o‘tkaziladi?",["2 yilda","3 yilda","4 yilda","5 yilda"],2],
+["O‘zbekiston terma jamoasi qaysi qit’a konfederatsiyasida o‘ynaydi?",["UEFA","AFC","CONMEBOL","CAF"],1],
+["Futbolda gol qachon hisoblanadi?",["To‘p darvoza chizig‘idan to‘liq o‘tganda","To‘p ustunga tekkanda","To‘p burchakka chiqqanda","Darvozabon ushlaganda"],0],
+["Burchak zarbasi qachon beriladi?",["To‘p yon chiziqdan chiqqanda","Himoyachi tegib to‘p darvoza chizig‘idan tashqariga chiqqanda, gol bo‘lmasa","Har gol urilganda","Tanaffusda"],1],
+["Futbolda sariq kartochka nimani bildiradi?",["Ogohlantirish","Darhol gol","O‘yin tugashi","Penalti"],0],
+["Darvozabon jarima maydonida qo‘li bilan to‘p o‘ynashi mumkinmi?",["Ha, qoidalarga muvofiq","Hech qachon","Faqat raqib maydonida","Faqat burchakda"],0],
+["Angliyaning mashhur futbol ligasi qanday ataladi?",["La Liga","Premier League","Bundesliga","Serie A"],1],
+["Ispaniyaning mashhur futbol ligasi qaysi?",["La Liga","Ligue 1","Eredivisie","MLS"],0],
+["Futbolda ofsayd qoidasi asosan nimani cheklaydi?",["Darvozabon almashtirishni","Hujumchining noqonuniy oldinda turishini","Burchak zarbasini","Tanaffusni"],1],
+["UEFA Chempionlar ligasi qaysi hudud klublari musobaqasi?",["Osiyo","Afrika","Yevropa","Janubiy Amerika"],2],
+["Futbol to‘pi odatda qanday shaklda?",["Kub","Shar","Piramida","Silindr"],1],
+["Uchrashuvda asosiy vaqt teng natija bilan tugasa, har doim penaltilar bo‘ladimi?",["Ha, har doim","Yo‘q, musobaqa qoidalariga bog‘liq","Faqat birinchi bo‘limda","Faqat o‘rtoqlik o‘yinida"],1]
+];
+
+let qxvStage = 0;
+let qxvIndex = 0;
+let qxvCorrect = 0;
+let qxvDiscountUnlocked = false;
+let qxvAnswered = false;
+
+const qxvQuiz = document.createElement("div");
+qxvQuiz.id = "qxvQuiz";
+qxvQuiz.innerHTML = `
+ <div class="quiz-box">
+  <div style="font-size:1.7rem;font-weight:1000;color:#ff3d20">QXVfood</div>
+  <div id="qxvQuizStage" style="font-weight:900;margin-top:8px">🕌 Islomiy bilimlar</div>
+  <div class="quiz-progress"><span id="qxvQuizBar" style="width:0%"></span></div>
+  <div id="qxvQuizCounter" class="quiz-note"></div>
+  <h2 id="qxvQuizQuestion" style="line-height:1.3"></h2>
+  <div id="qxvQuizOptions"></div>
+  <p id="qxvQuizFeedback" aria-live="polite"></p>
+  <button id="qxvQuizNext" class="quiz-next" disabled>Javobni tanlang</button>
+  <p class="quiz-note">Barcha 40 savolga to‘g‘ri javob bersangiz, demo buyurtmaga 10% chegirma ochiladi.</p>
+ </div>`;
+document.body.appendChild(qxvQuiz);
+
+function qxvCurrentQuestions(){
+ return qxvStage === 0 ? qxvIslam : qxvFootball;
+}
+
+function qxvDrawQuestion(){
+ const questions = qxvCurrentQuestions();
+ const q = questions[qxvIndex];
+ qxvAnswered = false;
+
+ document.getElementById("qxvQuizStage").textContent =
+  qxvStage === 0 ? "🕌 Islomiy bilimlar" : "⚽ Futbol bilimlari";
+
+ document.getElementById("qxvQuizCounter").textContent =
+  `Bosqich ${qxvStage+1}/2 · Savol ${qxvIndex+1}/20 · To‘g‘ri javoblar: ${qxvCorrect}/40`;
+
+ document.getElementById("qxvQuizBar").style.width =
+  ((qxvStage*20+qxvIndex+1)/40*100)+"%";
+
+ document.getElementById("qxvQuizQuestion").textContent = q[0];
+
+ const options = document.getElementById("qxvQuizOptions");
+ options.innerHTML = "";
+
+ q[1].forEach((answer,index)=>{
+  const btn = document.createElement("button");
+  btn.className = "quiz-option";
+  btn.textContent = String.fromCharCode(65+index)+". "+answer;
+  btn.onclick = ()=>{
+   if(qxvAnswered)return;
+
+   if(index !== q[2]){
+    document.getElementById("qxvQuizFeedback").textContent =
+     "❌ Noto‘g‘ri. Qayta urinib ko‘ring.";
+    document.getElementById("qxvQuizFeedback").style.color = "#d83220";
+    btn.classList.add("wrong");
+    return;
+   }
+
+   qxvAnswered = true;
+   qxvCorrect++;
+   options.querySelectorAll("button").forEach((b,i)=>{
+    b.disabled = true;
+    if(i===q[2])b.classList.add("correct");
+   });
+
+   document.getElementById("qxvQuizFeedback").textContent = "✅ To‘g‘ri javob!";
+   document.getElementById("qxvQuizFeedback").style.color = "#188038";
+
+   const next = document.getElementById("qxvQuizNext");
+   next.disabled = false;
+   next.textContent = qxvIndex===19
+    ? (qxvStage===0 ? "Futbol bosqichiga o‘tish →" : "Natijani ko‘rish →")
+    : "Keyingi savol →";
+  };
+  options.appendChild(btn);
+ });
+
+ document.getElementById("qxvQuizFeedback").textContent = "";
+ document.getElementById("qxvQuizNext").disabled = true;
+ document.getElementById("qxvQuizNext").textContent = "Javobni tanlang";
+}
+
+document.getElementById("qxvQuizNext").onclick = ()=>{
+ if(!qxvAnswered)return;
+
+ if(qxvIndex < 19){
+  qxvIndex++;
+  qxvDrawQuestion();
+  return;
+ }
+
+ if(qxvStage === 0){
+  qxvStage = 1;
+  qxvIndex = 0;
+  qxvDrawQuestion();
+  return;
+ }
+
+ qxvDiscountUnlocked = true;
+ qxvShowSuccess();
+};
+
+function qxvShowSuccess(){
+ document.getElementById("qxvQuiz").innerHTML = `
+  <div class="quiz-box" style="text-align:center">
+   <div style="font-size:4rem">🏆</div>
+   <h1 style="color:#ff3d20">Tabriklaymiz!</h1>
+   <h2>40 ta savolning barchasi to‘g‘ri!</h2>
+   <p>QXVfood saytidan demo buyurtma qilganingizda</p>
+   <div style="font-size:3rem;font-weight:1000;color:#188038">10% CHEGIRMA</div>
+   <p class="quiz-note">Chegirma savatchada avtomatik hisoblanadi. Bu demo loyiha, haqiqiy to‘lov amalga oshirilmaydi.</p>
+   <button class="quiz-next" id="qxvQuizFinish">Menyuga o‘tish 🍔</button>
+  </div>`;
+
+ document.getElementById("qxvQuizFinish").onclick = ()=>{
+  document.getElementById("qxvQuiz").remove();
+  updateCart();
+  toast("🏆 10% demo chegirma faollashtirildi!");
+ };
+}
+
+/* Chegirma ochilmaguncha odatiy narx; ochilgach 10% chegirma */
+const qxvOriginalTotalPrice = totalPrice;
+totalPrice = function(){
+ const subtotal = qxvOriginalTotalPrice();
+ return qxvDiscountUnlocked ? Math.round(subtotal*0.90) : subtotal;
+};
+
+/* Savatchada chegirmani alohida ko‘rsatish */
+const qxvOriginalUpdateCart = updateCart;
+updateCart = function(){
+ qxvOriginalUpdateCart();
+
+ let row = document.getElementById("qxvDiscountRow");
+ if(!row){
+  row = document.createElement("div");
+  row.id = "qxvDiscountRow";
+  row.className = "total";
+  row.style.fontSize = ".95rem";
+  const total = document.querySelector("#cartView .total");
+  if(total) total.insertAdjacentElement("afterend",row);
+ }
+
+ const subtotal = qxvOriginalTotalPrice();
+ const discount = qxvDiscountUnlocked ? subtotal-Math.round(subtotal*0.90) : 0;
+
+ row.innerHTML = qxvDiscountUnlocked
+  ? `<span style="color:#188038">🎉 10% chegirma:</span><span style="color:#188038">−${money(discount)}</span>`
+  : `<span style="font-size:.9rem;color:#777">🔒 10% chegirma</span><span style="font-size:.9rem;color:#777">Quizdan o‘ting</span>`;
+};
+
+/* Savatcha va buyurtma oynasida yakuniy narxni ko‘rsatish */
+const qxvOriginalGoCheckout = document.getElementById("goCheckout").onclick;
+document.getElementById("goCheckout").addEventListener("click",()=>{
+ if(!totalCount())return;
+ const subtotal = qxvOriginalTotalPrice();
+ const finalTotal = totalPrice();
+ const summary = document.getElementById("checkoutSummary");
+
+ if(qxvDiscountUnlocked){
+  summary.innerHTML += `
+   <div class="notice">🎉 Chegirma: <strong>−${money(subtotal-finalTotal)}</strong><br>
+   To‘lanadigan demo jami: <strong>${money(finalTotal)}</strong></div>`;
+ }
+});
+
+/* Kirish animatsiyasi tugagach quizni ochish */
+setTimeout(()=>{
+ if(document.body.contains(qxvQuiz))qxvDrawQuestion();
+},5000);
 
 renderProducts();
 updateCart();

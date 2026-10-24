@@ -1,905 +1,418 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uz">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#101010">
-<title>MUHAMMAD RASUL PERFUMES</title>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#102b46">
+<meta name="description" content="QXV YORDAM — ariza matnlari, kredit va foiz hisoblagichlari hamda internet xavfsizligi bo‘yicha foydali vositalar.">
+<title>QXV YORDAM — Har kuni kerakli xizmatlar</title>
 <style>
-:root {
-  --bg:#101010;
-  --card:#1b1b1b;
-  --text:#f8f8f8;
-  --muted:#b6b6b6;
-  --gold:#d8c49a;
-  --border:rgba(255,255,255,.15);
-}
-* {box-sizing:border-box}
-html {scroll-behavior:smooth}
-body {
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:Arial,Helvetica,sans-serif;
-  transition:background .5s,color .5s;
-}
-body.light {
-  --bg:#f0f0ed;
-  --card:#fff;
-  --text:#171717;
-  --muted:#626262;
-  --border:rgba(0,0,0,.15);
-  --gold:#92733b;
-}
-button,input,textarea,select {font:inherit}
-button {cursor:pointer}
-button:focus-visible,a:focus-visible,input:focus-visible {
-  outline:2px solid var(--gold);
-  outline-offset:3px;
-}
-a {color:inherit;text-decoration:none}
-img {display:block;max-width:100%}
-.hidden {display:none!important}
-
-/* INTRO */
-#intro {
-  position:fixed;inset:0;z-index:1000;
-  display:flex;align-items:center;justify-content:center;
-  overflow:hidden;background:#080808;color:#fff;
-}
-.intro-glow {
-  position:absolute;width:320px;height:320px;border-radius:50%;
-  background:rgba(218,194,143,.12);filter:blur(80px);
-}
-.intro-content {
-  position:relative;z-index:3;text-align:center;
-  width:90%;animation:fadeIn 1s ease;
-}
-.brand-small {
-  color:#d8c49a;letter-spacing:7px;font-size:10px;
-  margin-bottom:20px;
-}
-.intro-title {
-  font-family:Georgia,serif;
-  font-size:clamp(29px,7vw,60px);
-  letter-spacing:3px;line-height:1.2;margin:0;
-}
-.intro-sub {
-  color:#c9c9c9;letter-spacing:4px;
-  font-size:11px;margin-top:17px;
-}
-.door-stage {
-  width:min(320px,80vw);height:180px;
-  margin:34px auto 20px;perspective:900px;
-  display:flex;position:relative;
-}
-.door {
-  width:50%;height:100%;position:relative;
-  background:linear-gradient(90deg,#101010,#333,#111);
-  border:1px solid #8d7953;
-  transition:transform 1.8s cubic-bezier(.7,0,.2,1);
-  box-shadow:inset 0 0 20px #000;
-}
-.door:before {
-  content:"";position:absolute;inset:9px;
-  border:1px solid rgba(216,196,154,.45);
-}
-.door:after {
-  content:"";position:absolute;top:48%;width:7px;height:7px;
-  border-radius:50%;background:#d8c49a;
-}
-.door.left {transform-origin:left}
-.door.right {transform-origin:right}
-.door.left:after {right:12px}
-.door.right:after {left:12px}
-#intro.open .door.left {transform:rotateY(-115deg)}
-#intro.open .door.right {transform:rotateY(115deg)}
-.intro-progress {
-  width:180px;height:2px;background:#333;margin:22px auto;
-}
-.intro-progress span {
-  display:block;height:100%;width:0;background:#d8c49a;
-  animation:load 5s linear forwards;
-}
-.enter-btn {
-  border:1px solid #d8c49a;background:transparent;color:#fff;
-  padding:12px 25px;letter-spacing:2px;font-size:11px;
-  margin-top:5px;transition:.3s;
-}
-.enter-btn:hover {background:#d8c49a;color:#111}
-@keyframes load {to{width:100%}}
-@keyframes fadeIn {
-  from {opacity:0;transform:translateY(12px)}
-  to {opacity:1;transform:translateY(0)}
-}
-
-/* HEADER */
-header {
-  position:sticky;top:0;z-index:50;
-  background:var(--bg);border-bottom:1px solid var(--border);
-  backdrop-filter:blur(15px);
-}
-.nav {
-  max-width:1200px;margin:auto;padding:15px 22px;
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-}
-.logo {
-  font-family:Georgia,serif;font-size:17px;
-  letter-spacing:2px;line-height:1.5;
-}
-.logo span {display:block;font:9px Arial;letter-spacing:4px;color:var(--gold)}
-.nav-actions {display:flex;gap:9px;align-items:center}
-.icon-btn {
-  background:var(--card);border:1px solid var(--border);
-  color:var(--text);padding:10px 12px;border-radius:30px;
-}
-.cart-count {
-  display:inline-flex;align-items:center;justify-content:center;
-  min-width:19px;height:19px;border-radius:50%;
-  background:var(--gold);color:#111;font-size:11px;
-}
-
-/* HERO */
-.hero {
-  min-height:520px;display:grid;grid-template-columns:1fr 1fr;
-  align-items:center;gap:30px;padding:55px max(6%,calc((100% - 1120px)/2));
-  background:linear-gradient(110deg,var(--bg),#292929,var(--bg));
-  animation:bgShift 12s ease-in-out infinite alternate;
-}
-body.light .hero {
-  background:linear-gradient(110deg,#efefeb,#d7d5cf,#f8f8f4);
-}
-@keyframes bgShift {from{background-position:0%}to{background-position:100%}}
-.eyebrow {color:var(--gold);font-size:11px;letter-spacing:4px}
-.hero h1 {
-  font-family:Georgia,serif;font-weight:400;
-  font-size:clamp(38px,5vw,66px);line-height:1.08;
-  margin:20px 0;
-}
-.hero h1 em {color:var(--gold);font-weight:400}
-.hero p {color:var(--muted);line-height:1.8;max-width:430px;font-size:14px}
-.primary-btn {
-  display:inline-block;margin-top:20px;padding:14px 23px;
-  background:var(--gold);color:#151515;border:1px solid var(--gold);
-  font-size:11px;letter-spacing:1.5px;font-weight:bold;
-  transition:transform .2s;
-}
-.primary-btn:hover {transform:translateY(-3px)}
-.hero-image {
-  position:relative;height:390px;overflow:hidden;
-  border:1px solid var(--border);
-}
-.hero-image img {width:100%;height:100%;object-fit:cover;opacity:.85}
-.hero-image:after {
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(0deg,rgba(0,0,0,.35),transparent 65%);
-}
-.hero-label {
-  position:absolute;z-index:2;bottom:20px;left:20px;
-  font-family:Georgia,serif;font-size:20px;color:#fff;
-}
-
-/* CATALOG */
-.section {max-width:1200px;margin:auto;padding:65px 22px}
-.section-head {
-  display:flex;justify-content:space-between;align-items:end;
-  gap:20px;margin-bottom:27px;
-}
-.section-head h2 {
-  font:clamp(28px,4vw,39px) Georgia,serif;margin:10px 0;
-}
-.section-head p {color:var(--muted);font-size:12px}
-.filters {display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 27px}
-.filter-btn {
-  background:transparent;color:var(--text);
-  border:1px solid var(--border);padding:10px 16px;font-size:12px;
-}
-.filter-btn.active,.filter-btn:hover {
-  background:var(--gold);color:#111;border-color:var(--gold);
-}
-.products {
-  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;
-}
-.product {
-  background:var(--card);border:1px solid var(--border);
-  overflow:hidden;transition:transform .3s,border-color .3s;
-}
-.product:hover {transform:translateY(-5px);border-color:var(--gold)}
-.product-img {height:250px;position:relative;overflow:hidden;background:#242424}
-.product-img img {
-  width:100%;height:100%;object-fit:cover;transition:transform .6s;
-}
-.product:hover .product-img img {transform:scale(1.06)}
-.tag {
-  position:absolute;top:12px;left:12px;
-  background:rgba(0,0,0,.8);color:#e6d1a4;
-  padding:7px 9px;font-size:9px;letter-spacing:1px;
-}
-.product-info {padding:16px}
-.product-category {font-size:9px;color:var(--gold);letter-spacing:2px}
-.product h3 {font:20px Georgia,serif;margin:9px 0}
-.product-desc {font-size:11px;color:var(--muted);line-height:1.6;min-height:32px}
-.product-bottom {
-  display:flex;align-items:center;justify-content:space-between;
-  gap:8px;margin-top:15px;flex-wrap:wrap;
-}
-.price {font-size:15px;font-weight:bold}
-.add-btn {
-  border:1px solid var(--border);background:transparent;
-  color:var(--text);padding:10px 12px;font-size:11px;
-}
-.add-btn:hover {background:var(--gold);color:#111;border-color:var(--gold)}
-.empty-products {grid-column:1/-1;color:var(--muted);padding:25px 0}
-
-/* PROMO */
-.promo {
-  max-width:1156px;margin:0 auto 50px;padding:35px;
-  border:1px solid var(--border);
-  background:linear-gradient(120deg,var(--card),#30302d,var(--card));
-  display:flex;justify-content:space-between;align-items:center;gap:25px;
-}
-body.light .promo {background:linear-gradient(120deg,#fff,#dedbd2,#fff)}
-.promo h2 {font:30px Georgia,serif;margin:10px 0}
-.promo p {font-size:12px;color:var(--muted);line-height:1.7}
-
-/* FOOTER */
-footer {border-top:1px solid var(--border);padding:30px 20px;text-align:center}
-footer .logo {font-size:15px}
-footer p {font-size:11px;color:var(--muted);line-height:1.8}
-
-/* MODALS */
-.modal {
-  position:fixed;inset:0;z-index:200;
-  background:rgba(0,0,0,.75);display:flex;
-  align-items:center;justify-content:center;padding:16px;
-}
-.modal-box {
-  background:var(--card);color:var(--text);
-  border:1px solid var(--border);width:100%;max-width:520px;
-  max-height:90vh;overflow:auto;padding:25px;
-  animation:fadeIn .25s ease;
-}
-.modal-head {
-  display:flex;justify-content:space-between;align-items:center;
-  gap:15px;border-bottom:1px solid var(--border);padding-bottom:15px;
-}
-.modal-head h2 {font:26px Georgia,serif;margin:0}
-.close-btn {
-  background:transparent;border:1px solid var(--border);
-  color:var(--text);width:34px;height:34px;font-size:19px;
-}
-.cart-row {
-  display:grid;grid-template-columns:62px 1fr auto;
-  gap:12px;align-items:center;padding:15px 0;
-  border-bottom:1px solid var(--border);
-}
-.cart-row img {width:62px;height:70px;object-fit:cover}
-.cart-row h4 {font-size:13px;margin:0 0 8px}
-.cart-row small {color:var(--muted)}
-.qty {display:flex;align-items:center;gap:8px;margin-top:8px}
-.qty button {
-  width:25px;height:25px;background:transparent;
-  color:var(--text);border:1px solid var(--border);
-}
-.remove-btn {border:0;background:transparent;color:#d99a9a;font-size:11px;margin-top:5px}
-.cart-total {
-  display:flex;justify-content:space-between;
-  padding:20px 0;font-weight:bold;
-}
-.full-btn {width:100%;margin-top:12px}
-.form-label {display:block;font-size:12px;margin:15px 0 7px}
-.form-input {
-  width:100%;padding:13px;background:var(--bg);
-  border:1px solid var(--border);color:var(--text);border-radius:0;
-}
-.form-input::placeholder {color:var(--muted)}
-.notice {font-size:11px;line-height:1.7;color:var(--muted);margin-top:12px}
-.success {text-align:center;padding:25px 5px}
-.success-icon {
-  width:62px;height:62px;border:1px solid var(--gold);
-  border-radius:50%;display:grid;place-items:center;
-  color:var(--gold);font-size:30px;margin:0 auto 20px;
-}
-.success h2 {font:28px Georgia,serif}
-.success p {font-size:13px;color:var(--muted);line-height:1.8}
-.order-summary {
-  text-align:left;background:var(--bg);padding:14px;
-  font-size:12px;line-height:1.9;white-space:pre-line;
-  overflow-wrap:anywhere;margin:15px 0;
-}
-.toast {
-  position:fixed;z-index:500;bottom:20px;left:50%;
-  transform:translateX(-50%);background:var(--gold);color:#111;
-  padding:13px 20px;font-size:12px;max-width:90%;
-  text-align:center;box-shadow:0 5px 25px #0004;
-}
-@media(max-width:900px) {
-  .products {grid-template-columns:repeat(2,minmax(0,1fr))}
-  .product-img {height:240px}
-  .hero {padding:45px 22px;min-height:420px}
-  .hero-image {height:320px}
-  .promo {margin:0 22px 40px}
-}
-@media(max-width:560px) {
-  .nav {padding:12px 14px}
-  .logo {font-size:13px;letter-spacing:1px}
-  .logo span {font-size:8px;letter-spacing:3px}
-  .icon-btn {padding:9px 10px;font-size:11px}
-  .hero {grid-template-columns:1fr;padding:38px 20px;gap:25px}
-  .hero-image {height:290px}
-  .section {padding:45px 14px}
-  .products {gap:10px}
-  .product-img {height:190px}
-  .product-info {padding:11px}
-  .product h3 {font-size:17px}
-  .product-desc {font-size:10px}
-  .product-bottom {align-items:flex-start;flex-direction:column}
-  .add-btn {width:100%}
-  .section-head {align-items:start;flex-direction:column}
-  .promo {padding:23px;margin:0 14px 35px;flex-direction:column;align-items:flex-start}
-  .modal-box {padding:18px}
-  .cart-row {grid-template-columns:52px 1fr auto;gap:8px}
-  .cart-row img {width:52px;height:62px}
-}
-@media(prefers-reduced-motion:reduce) {
-  *,*:before,*:after {animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
-}
+:root{--navy:#102b46;--blue:#1769aa;--ice:#b9e6ff;--bg:#f3f7fb;--card:#fff;--text:#172536;--muted:#637487;--line:#dce6ef;--green:#16794b;--amber:#fff4d6;--red:#a52a2a;--shadow:0 12px 32px rgba(16,43,70,.08)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.5}button,input,select,textarea{font:inherit}button{cursor:pointer}.wrap{max-width:1060px;margin:auto;padding:0 16px}.top{background:linear-gradient(135deg,#102b46,#174d75);color:#fff;padding:25px 0 30px}.brand{display:flex;align-items:center;gap:12px}.logo{width:54px;height:54px;border:2px solid var(--ice);border-radius:17px;display:grid;place-items:center;color:var(--ice);font-weight:900;font-size:18px;letter-spacing:-1px;flex-shrink:0}.brand h1{margin:0;font-size:25px;letter-spacing:.3px}.brand p{margin:2px 0 0;color:#d4e8f8;font-size:13px}.hero{padding-top:25px}.hero h2{font-size:clamp(27px,5vw,42px);line-height:1.1;margin:0 0 12px;max-width:680px}.hero p{color:#d9e9f6;max-width:650px;margin:0 0 19px}.search{width:100%;border:1px solid #cfe0ed;border-radius:14px;padding:14px 16px;background:#fff;color:var(--text);outline:none}.search:focus,input:focus,select:focus,textarea:focus{border-color:#4a9cdb;box-shadow:0 0 0 3px #1769aa1a;outline:none}.nav{display:flex;gap:8px;overflow-x:auto;padding:14px 0;scrollbar-width:thin}.nav a{white-space:nowrap;text-decoration:none;color:#23445f;background:#e4eef7;border-radius:999px;padding:9px 13px;font-size:14px;font-weight:650}.nav a:hover{background:#cfe7f8}.section{padding:16px 0 8px;scroll-margin-top:14px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:10px;margin:8px 0 14px}.section h2{margin:0;font-size:23px}.section-head p{margin:3px 0 0;color:var(--muted);font-size:14px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow);min-width:0}.card h3{margin:0 0 5px;font-size:18px}.card .desc{margin:0 0 15px;color:var(--muted);font-size:13px}.field{display:flex;flex-direction:column;gap:6px;margin:12px 0}.field label{font-size:13px;font-weight:700;color:#30475d}.field input,.field select,.field textarea{width:100%;border:1px solid #cbd8e4;border-radius:10px;background:#fff;padding:11px 12px;color:var(--text);min-width:0}.field textarea{min-height:100px;resize:vertical}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.btn{border:0;border-radius:11px;padding:11px 15px;font-weight:750;background:var(--blue);color:#fff;display:inline-flex;justify-content:center;align-items:center;gap:8px}.btn:hover{filter:brightness(.95)}.btn.secondary{background:#e5f1fa;color:#164c76}.btn.ghost{background:#f1f5f9;color:#33485b;border:1px solid var(--line)}.btn.danger{background:#9e2c2c}.btn-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.result{background:#f2f8fc;border:1px solid #d5e8f6;border-radius:12px;padding:13px;margin-top:13px;overflow-wrap:anywhere}.result strong{display:block;margin-bottom:4px}.result .big{font-size:23px;font-weight:850;color:#124f7b}.small{font-size:12px;color:var(--muted)}.hidden{display:none!important}.notice{border-radius:13px;padding:13px 15px;background:var(--amber);color:#684b0b;font-size:13px;margin:12px 0}.safety-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.safety-item{border:1px solid var(--line);border-radius:13px;padding:13px;background:#fff}.safety-item b{display:block;margin-bottom:4px}.safety-item p{margin:0;color:var(--muted);font-size:13px}.checkline{display:flex;gap:10px;align-items:flex-start;margin:10px 0}.checkline input{margin-top:5px;accent-color:var(--blue)}.footer{margin-top:30px;padding:25px 0 35px;background:#e8f0f7;color:#40566b;font-size:13px}.footer strong{color:var(--navy)}.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);background:#142c42;color:white;padding:11px 16px;border-radius:999px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.2s;z-index:10;max-width:calc(100vw - 32px);text-align:center;font-size:14px}.toast.show{opacity:1;transform:translate(-50%,0)}.empty{display:none;padding:18px;text-align:center;color:var(--muted)}
+.prayer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px}
+.prayer-time{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px;text-align:center}
+.prayer-time b{display:block;color:#174d75;font-size:13px}.prayer-time span{font-size:20px;font-weight:850}
+.hotline{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:12px 0}
+.hotline:last-child{border-bottom:0}.hotline b{display:block}.hotline small{display:block;color:var(--muted);font-size:12px}
+.hotline a{font-weight:800;text-decoration:none;color:var(--blue);white-space:nowrap}
+.counter{font-size:52px;font-weight:900;text-align:center;color:#174d75;padding:12px}
+.tool-buttons{display:flex;flex-wrap:wrap;gap:8px}
+.quran-tools{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:9px;align-items:end}
+.ayah{padding:14px 0;border-bottom:1px solid var(--line)}.ayah:last-child{border-bottom:0}
+.arabic{font-size:25px;line-height:2.05;text-align:right;direction:rtl;color:#163f5e;font-family:serif}
+.translation{color:#44596c;margin-top:5px}.ayah-num{font-size:12px;color:var(--muted);font-weight:800}
+.live-time{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#ffffff14;border:1px solid #ffffff30;border-radius:14px;padding:12px 14px;margin-top:18px}
+.live-time strong{font-size:24px;color:var(--ice);font-variant-numeric:tabular-nums}
+.quick-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.quick-link{display:flex;flex-direction:column;gap:7px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-decoration:none;color:var(--text);font-weight:750}
+.quick-link span{font-size:12px;font-weight:500;color:var(--muted)}
+@media(max-width:480px){.quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.quran-tools{grid-template-columns:1fr}.arabic{font-size:22px}}
+@media(max-width:420px){.prayer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:680px){.grid{grid-template-columns:1fr}.safety-list{grid-template-columns:1fr}.top{padding-top:19px}.brand h1{font-size:22px}.card{padding:16px}.section h2{font-size:21px}.two{gap:8px}.hero{padding-top:22px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style>
 </head>
-
 <body>
-
-<!-- KIRISH EKRANI -->
-<div id="intro">
-  <div class="intro-glow"></div>
-  <div class="intro-content">
-    <div class="brand-small">PREMIUM COLLECTION</div>
-    <h1 class="intro-title">MUHAMMAD<br>RASUL</h1>
-    <div class="intro-sub">PERFUMES & WATCHES</div>
-
-    <div class="door-stage" aria-hidden="true">
-      <div class="door left"></div>
-      <div class="door right"></div>
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><div class="logo" aria-label="QXV logotipi">QXV</div><div><h1>QXV YORDAM</h1><p>Har kuni kerakli xizmatlar</p></div></div>
+    <div class="hero">
+      <h2>Kerakli ishni osonroq bajaring.</h2>
+      <p>Ariza matnini tayyorlang, kredit yoki foizni hisoblang va internetdagi firibgarliklardan himoyalanish bo‘yicha tavsiyalarni o‘qing.</p>
+      <input class="search" id="siteSearch" type="search" placeholder="Saytdan qidiring: ariza, kredit, firibgarlik..." aria-label="Saytdan qidirish">
+      <div class="live-time"><div><div style="font-size:12px;color:#d9e9f6">Hozirgi mahalliy vaqt</div><div id="liveDate" style="font-size:13px;color:#d9e9f6">Sana yuklanmoqda</div></div><strong id="liveClock">--:--:--</strong></div>
     </div>
-
-    <div style="font-size:10px;letter-spacing:3px;color:#c9c9c9">
-      ELEGANCE IN EVERY DETAIL
-    </div>
-    <div class="intro-progress"><span></span></div>
-    <button class="enter-btn" id="enterBtn">DO‘KONGA KIRISH →</button>
   </div>
-</div>
-
-<header>
-  <nav class="nav">
-    <a href="#" class="logo">
-      MUHAMMAD RASUL
-      <span>PERFUMES</span>
-    </a>
-    <div class="nav-actions">
-      <button class="icon-btn" id="themeBtn" aria-label="Rangni almashtirish">☼ / ☾</button>
-      <button class="icon-btn" id="cartOpen">
-        Savatcha <span class="cart-count" id="cartCount">0</span>
-      </button>
-    </div>
-  </nav>
 </header>
-
-<main>
-  <section class="hero">
-    <div>
-      <div class="eyebrow">SIZNING USLUBINGIZ — SIZNING TANLOVINGIZ</div>
-      <h1>Hashamatni<br><em>his eting.</em></h1>
-      <p>
-        Nafis atirlar va zamonaviy soatlar kolleksiyasi.
-        Har bir detalda did, har bir tanlovda o‘ziga xoslik.
-        O‘zingizga mos mahsulotni tanlang.
-      </p>
-      <a href="#catalog" class="primary-btn">KOLLEKSIYANI KO‘RISH ↗</a>
-    </div>
-    <div class="hero-image">
-      <img
-        src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=900&q=85"
-        alt="Premium atir kolleksiyasi"
-        fetchpriority="high">
-      <div class="hero-label">Your signature. Your story.</div>
-    </div>
-  </section>
-
-  <section class="section" id="catalog">
-    <div class="section-head">
-      <div>
-        <div class="eyebrow">BIZNING TANLOV</div>
-        <h2>Maxsus kolleksiya</h2>
-        <p>O‘zingizga yoqqan mahsulotni tanlang va savatchaga qo‘shing.</p>
+<main class="wrap">
+  <nav class="nav" aria-label="Asosiy bo‘limlar">
+    <a href="#yaqin">📍 Yaqin atrofda</a><a href="#namoz">🕌 Namoz vaqtlari</a><a href="#quron">📖 Qur’on</a><a href="#ariza">📝 Ariza tayyorlash</a><a href="#kredit">🧮 Kredit hisoblagichi</a><a href="#foiz">％ Foiz hisoblash</a><a href="#xavfsizlik">🛡️ Internet xavfsizligi</a>
+  </nav>
+  <section class="section searchable" id="yaqin" data-search="yaqin atrof dorixona apteka shifoxona kasalxona fast food oshxona restoran supermarket bank bankomat yoqilg‘i shoxobchasi Rossiya O‘zbekiston telefon raqam manzil">
+    <div class="section-head"><div><h2>📍 Yaqin atrofdagi xizmatlar</h2><p>Joylashuvingizga ruxsat bersangiz, xaritada yaqin joylarni qidiring.</p></div></div>
+    <div class="card">
+      <div class="notice">Bu bo‘lim xarita qidiruvini ochadi. Natijalar, telefonlar va ish vaqti xarita provayderida mavjud bo‘lsa ko‘rinadi; hammasi tekshirilgan yoki to‘liq bo‘lishi kafolatlanmaydi.</div>
+      <div class="two">
+        <div class="field"><label for="nearCountry">Mamlakat</label><select id="nearCountry"><option value="Uzbekistan">O‘zbekiston</option><option value="Russia">Rossiya</option></select></div>
+        <div class="field"><label for="nearCity">Shahar yoki tuman (ixtiyoriy)</label><input id="nearCity" placeholder="Masalan, Andijon, Moskva"></div>
+      </div>
+      <div class="field"><label for="nearType">Nimani qidiramiz?</label><select id="nearType">
+        <option value="pharmacy">💊 Dorixonalar / aptekalar</option>
+        <option value="hospital">🏥 Shifoxona va klinikalar</option>
+        <option value="fast food">🍔 Fast food va ovqatlanish joylari</option>
+        <option value="restaurant">🍽️ Restoran va oshxonalar</option>
+        <option value="supermarket">🛒 Supermarket va oziq-ovqat do‘konlari</option>
+        <option value="ATM bank">🏧 Bankomat va banklar</option>
+        <option value="gas station">⛽ Yoqilg‘i shoxobchalari</option>
+        <option value="urgent care open now">🕒 Hozir ochiq tibbiy xizmatlar</option>
+        <option value="veterinary clinic">🐾 Veterinariya klinikalari</option>
+        <option value="post office">📦 Pochta va jo‘natma punktlari</option>
+        <option value="police station">👮 Ichki ishlar bo‘limlari</option>
+      </select></div>
+      <div class="btn-row"><button class="btn" id="nearSearch">Xaritadan qidirish</button><button class="btn secondary" id="nearGPS">📍 Joylashuvimdan foydalanish</button></div>
+      <div class="result hidden" id="nearStatus" aria-live="polite"></div>
+      <div class="quick-grid" style="margin-top:14px">
+        <a class="quick-link" href="https://www.google.com/maps/search/pharmacy/" target="_blank" rel="noopener">💊 Dorixona<span>Manzil va telefonlar</span></a>
+        <a class="quick-link" href="https://www.google.com/maps/search/hospital/" target="_blank" rel="noopener">🏥 Shifoxona<span>Yaqin tibbiy yordam</span></a>
+        <a class="quick-link" href="https://www.google.com/maps/search/fast+food/" target="_blank" rel="noopener">🍔 Fast food<span>Ovqatlanish joylari</span></a>
+        <a class="quick-link" href="https://www.google.com/maps/search/supermarket/" target="_blank" rel="noopener">🛒 Do‘konlar<span>Oziq-ovqat xaridi</span></a>
+        <a class="quick-link" href="https://www.google.com/maps/search/ATM/" target="_blank" rel="noopener">🏧 Bankomat<span>Naqd pul olish</span></a>
+        <a class="quick-link" href="https://www.google.com/maps/search/gas+station/" target="_blank" rel="noopener">⛽ Zapravkalar<span>Yaqin yoqilg‘i</span></a>
       </div>
     </div>
-
-    <div class="filters" aria-label="Mahsulot kategoriyasi">
-      <button class="filter-btn active" data-filter="all">Barchasi</button>
-      <button class="filter-btn" data-filter="perfume">Atirlar</button>
-      <button class="filter-btn" data-filter="watch">Soatlar</button>
-    </div>
-
-    <div class="products" id="products"></div>
   </section>
 
-  <section class="promo">
-    <div>
-      <div class="eyebrow">MUHAMMAD RASUL PERFUMES</div>
-      <h2>Uslubingizni kashf eting.</h2>
-      <p>Har bir kuningizga nafislik qo‘shing.<br>
-      Siz uchun tanlangan mahsulotlar bir joyda.</p>
+  <section class="section searchable" id="quron" data-search="qur’on Quroni Karim sura oyat arabcha tarjima Fotiha Baqara Qur'on o‘qish">
+    <div class="section-head"><div><h2>📖 Qur’oni Karim</h2><p>Surani tanlab, arabcha matnni va mavjud bo‘lsa o‘zbekcha tarjimani yuklang.</p></div></div>
+    <div class="card">
+      <div class="quran-tools">
+        <div class="field" style="margin:0"><label for="surahSelect">Sura</label><select id="surahSelect"><option value="1">1. Al-Fotiha</option></select></div>
+        <button class="btn" id="loadSurah">Surani ochish</button>
+      </div>
+      <div id="surahMeta" class="small" style="margin-top:12px">Qur’on matni internet orqali yuklanadi.</div>
+      <div id="surahContent" style="margin-top:12px"><div class="result">Surani ko‘rish uchun internetga ulaning va “Surani ochish” tugmasini bosing.</div></div>
+      <p class="small">Qur’on matnini tarjima bilan o‘qiganda, tarjima tafsirning o‘rnini to‘liq bosmasligini unutmang. API yoki internet ishlamasa, matn yuklanmasligi mumkin.</p>
     </div>
-    <a class="primary-btn" href="#catalog">XARIDNI BOSHLASH ↗</a>
   </section>
+
+  <section class="section searchable" id="farzlar" data-search="o‘ttiz farz 30 farz imon islom namoz tahorat g‘usl diniy bilim">
+    <div class="section-head"><div><h2>☪️ O‘ttiz farz — o‘rganish uchun</h2><p>Asosiy tushunchalar guruhlangan. Mazhab va o‘quv manbasiga qarab tasnifda farqlar bo‘lishi mumkin.</p></div></div>
+    <div class="card" id="farzList">
+      <h3>1. Imonning 6 sharti</h3>
+      <ol><li>Allohga imon keltirish</li><li>Farishtalarga imon keltirish</li><li>Samoviy kitoblarga imon keltirish</li><li>Payg‘ambarlarga imon keltirish</li><li>Oxirat kuniga imon keltirish</li><li>Qadar — yaxshilik va yomonlik Allohning ilmi va irodasi bilan ekaniga imon keltirish</li></ol>
+      <h3>2. Islomning 5 sharti</h3>
+      <ol><li>Kalima shahodatni aytish va uning ma’nosiga ishonish</li><li>Namozni ado etish</li><li>Ramazon ro‘zasini tutish</li><li>Zakot berish (shartlari topilganda)</li><li>Qodir bo‘lgan kishining haj qilishi</li></ol>
+      <h3>3. Namozning 12 farzi</h3>
+      <p><b>Namozdan tashqaridagi 7 shart:</b></p>
+      <ol><li>Hadastan poklanish (tahorat yoki zarur bo‘lsa g‘usl)</li><li>Najasatdan poklanish</li><li>Avratni yopish</li><li>Qiblaga yuzlanish</li><li>Namoz vaqti kirishi</li><li>Niyat qilish</li><li>Takbiri tahrima</li></ol>
+      <p><b>Namoz ichidagi 5 rukn:</b></p>
+      <ol><li>Qiyom (qodir bo‘lganga tik turish)</li><li>Qiroat</li><li>Ruku</li><li>Sajda</li><li>Oxirgi qa’da (o‘tirish)</li></ol>
+      <h3>4. Tahoratning 4 farzi</h3>
+      <ol><li>Yuzni yuvish</li><li>Qo‘llarni tirsaklar bilan qo‘shib yuvish</li><li>Boshning bir qismiga mas’h tortish</li><li>Oyoqlarni to‘piqlar bilan qo‘shib yuvish</li></ol>
+      <h3>5. G‘uslning 3 farzi (Hanafiy ta’limotida)</h3>
+      <ol><li>Og‘izni chayish</li><li>Burunni chayish</li><li>Butun badanga suv yetkazish</li></ol>
+      <div class="notice">Muhim: yuqoridagi guruhlar odatda o‘rgatiladigan farzlar ro‘yxatidan tuzilgan, lekin “30 farz” deb nomlashdagi hisob va namoz ruknlari tasnifi manbalarda farq qilishi mumkin. Diniy hukm uchun ishonchli mahalliy imom yoki ustoz bilan tekshiring.</div>
+    </div>
+  </section>
+
+  <section class="section searchable" id="ariza" data-search="ariza hujjat ishga kirish ishdan bo‘shash tarjimai hol tushuntirish xati murojaat">
+    <div class="section-head"><div><h2>📝 Ariza va matn tayyorlash</h2><p>Turini tanlang, ma’lumotlarni kiriting va tayyor matnni nusxalang.</p></div></div>
+    <div class="card">
+      <div class="field"><label for="docType">Hujjat turi</label><select id="docType">
+        <option value="work">Ishga qabul qilish arizasi</option>
+        <option value="leave">Ishdan bo‘shash arizasi</option>
+        <option value="explain">Tushuntirish xati</option>
+        <option value="request">Umumiy murojaat</option>
+        <option value="bio">Qisqa tarjimai hol</option>
+      </select></div>
+      <div class="two">
+        <div class="field"><label for="fullName">F.I.Sh.</label><input id="fullName" autocomplete="name" placeholder="Masalan, Aliyev Vali Vali o‘g‘li"></div>
+        <div class="field"><label for="recipient">Kimga / tashkilot</label><input id="recipient" placeholder="Tashkilot yoki rahbar nomi"></div>
+      </div>
+      <div class="field" id="positionField"><label for="position">Lavozim (kerak bo‘lsa)</label><input id="position" placeholder="Masalan, operator"></div>
+      <div class="field" id="reasonField"><label for="reason">Sabab yoki qo‘shimcha ma’lumot</label><textarea id="reason" placeholder="Vaziyatni qisqacha yozing..."></textarea></div>
+      <div class="field" id="dateField"><label for="docDate">Sana</label><input id="docDate" type="date"></div>
+      <div class="result hidden" id="docResult"><strong>Tayyor matn</strong><textarea id="docOutput" aria-label="Tayyor hujjat matni" rows="10" style="width:100%;border:1px solid #cbd8e4;border-radius:9px;padding:10px;background:white"></textarea><div class="btn-row"><button class="btn" id="copyDoc">Matnni nusxalash</button><button class="btn secondary" id="downloadDoc">TXT fayl qilib saqlash</button></div></div>
+      <div class="btn-row"><button class="btn" id="makeDoc">Matn tayyorlash</button><button class="btn ghost" id="clearDoc">Tozalash</button></div>
+      <p class="small">Eslatma: bu shablonlar umumiy namuna. Tashkilot talablari va vaziyatingizga moslab tekshiring; rasmiy yoki yuridik maslahat o‘rnini bosmaydi.</p>
+    </div>
+  </section>
+
+  <section class="section searchable" id="kredit" data-search="kredit qarz oylik to‘lov foiz yillik stavka muddat hisoblagich">
+    <div class="section-head"><div><h2>🧮 Kredit hisoblagichi</h2><p>Taxminiy oylik to‘lovni annuitet usulida hisoblaydi.</p></div></div>
+    <div class="card">
+      <div class="two">
+        <div class="field"><label for="loanAmount">Kredit summasi (so‘m)</label><input id="loanAmount" type="number" min="1" step="100000" value="10000000" inputmode="decimal"></div>
+        <div class="field"><label for="loanRate">Yillik foiz (%)</label><input id="loanRate" type="number" min="0" max="500" step="0.1" value="24" inputmode="decimal"></div>
+      </div>
+      <div class="field"><label for="loanMonths">Muddat (oy)</label><input id="loanMonths" type="number" min="1" max="600" step="1" value="24" inputmode="numeric"></div>
+      <div class="btn-row"><button class="btn" id="calcLoan">Hisoblash</button><button class="btn ghost" id="resetLoan">Namunaviy qiymatlar</button></div>
+      <div class="result hidden" id="loanResult" aria-live="polite"></div>
+      <p class="small">Hisob taxminiy: bank komissiyasi, sug‘urta, qo‘shimcha to‘lovlar va bankning yaxlitlash qoidalari kiritilmagan. Haqiqiy to‘lov bank shartnomasiga bog‘liq.</p>
+    </div>
+  </section>
+
+  <section class="section searchable" id="foiz" data-search="foiz chegirma ustama soliq narx hisoblash foiz kalkulyator">
+    <div class="section-head"><div><h2>％ Foiz va chegirma hisoblagichi</h2><p>Foiz miqdorini, chegirmadan keyingi narxni yoki ustama qo‘shilgan summani toping.</p></div></div>
+    <div class="card">
+      <div class="field"><label for="percentMode">Hisob turi</label><select id="percentMode"><option value="part">Summaning foizini hisoblash</option><option value="discount">Chegirmadan keyingi narx</option><option value="increase">Ustama qo‘shilgan narx</option></select></div>
+      <div class="two">
+        <div class="field"><label for="baseAmount">Boshlang‘ich summa (so‘m)</label><input id="baseAmount" type="number" min="0" step="1000" value="200000" inputmode="decimal"></div>
+        <div class="field"><label for="percentValue">Foiz (%)</label><input id="percentValue" type="number" min="0" max="100000" step="0.1" value="15" inputmode="decimal"></div>
+      </div>
+      <div class="btn-row"><button class="btn" id="calcPercent">Hisoblash</button></div>
+      <div class="result hidden" id="percentResult" aria-live="polite"></div>
+      <div class="btn-row"><button class="btn secondary" id="copyPercent">Natijani nusxalash</button></div>
+    </div>
+  </section>
+
+  <section class="section searchable" id="namoz" data-search="namoz vaqtlari bomdod quyosh peshin asr shom xufton qibla tasbeh zikr">
+    <div class="section-head"><div><h2>🕌 Namoz vaqtlari</h2><p>Shaharni tanlang. Vaqtlar internet orqali hisoblash xizmatidan olinadi.</p></div></div>
+    <div class="card">
+      <div class="field"><label for="prayerCity">Shahar</label><select id="prayerCity">
+        <option value="Tashkent">Toshkent shahri</option><option value="Andijan">Andijon</option><option value="Bukhara">Buxoro</option><option value="Fergana">Farg‘ona</option><option value="Jizzakh">Jizzax</option><option value="Karshi">Qarshi</option><option value="Namangan">Namangan</option><option value="Navoi">Navoiy</option><option value="Nukus">Nukus</option><option value="Samarkand">Samarqand</option><option value="Termez">Termiz</option><option value="Urgench">Urganch</option><option value="Gulistan">Guliston</option><option value="Chirchiq">Chirchiq</option><option value="Kokand">Qo‘qon</option>
+      </select></div>
+      <div class="btn-row"><button class="btn" id="loadPrayer">Namoz vaqtlarini olish</button><button class="btn ghost" id="todayPrayer">Bugungi sana</button></div>
+      <div id="prayerDate" class="small" style="margin-top:12px"></div>
+      <div id="prayerResult" class="prayer-grid" aria-live="polite"><div class="result">Namoz vaqtlarini ko‘rish uchun tugmani bosing. Internet kerak bo‘ladi.</div></div>
+      <p class="small">Vaqtlar tashqi xizmatdan olinadi va hisoblash usuliga qarab farq qilishi mumkin. Mahalliy masjid taqvimi bilan solishtiring. Bu sayt azon bildirishnomasini yubormaydi.</p>
+    </div>
+  </section>
+
+  <section class="section searchable" id="dorixona" data-search="dorixona apteka dori farmatsiya telefon yaqin atrof manzil Andijon Toshkent viloyat">
+    <div class="section-head"><div><h2>💊 Dorixona topish</h2><p>Hududni tanlab, yaqin dorixonalarni xaritadan qidiring.</p></div></div>
+    <div class="card">
+      <div class="field"><label for="pharmacyRegion">Viloyat yoki shahar</label><select id="pharmacyRegion">
+        <option>Andijon</option><option>Buxoro</option><option>Farg‘ona</option><option>Jizzax</option><option>Namangan</option><option>Navoiy</option><option>Qashqadaryo</option><option>Samarqand</option><option>Sirdaryo</option><option>Surxondaryo</option><option>Toshkent viloyati</option><option>Toshkent shahri</option><option>Xorazm</option><option>Qoraqalpog‘iston Respublikasi</option>
+      </select></div>
+      <div class="field"><label for="pharmacyArea">Tuman yoki shahar (ixtiyoriy)</label><input id="pharmacyArea" placeholder="Masalan, Asaka yoki Shahrixon"></div>
+      <div class="btn-row"><button class="btn" id="findPharmacy">Xaritadan dorixona topish</button><button class="btn secondary" id="findOpenPharmacy">24 soat ishlaydigan dorixona</button></div>
+      <div class="notice">Dorixonalarning manzili, ish vaqti va telefon raqami o‘zgarishi mumkin. Xaritada ko‘rsatilgan ma’lumotni borishdan oldin tekshiring. Sayt tasdiqlanmagan telefon raqamlarini o‘zi to‘qib chiqarmaydi.</div>
+    </div>
+  </section>
+
+  <section class="section searchable" id="aloqa" data-search="call center telefon raqam tez yordam favqulodda vaziyat ichki ishlar sog‘liqni saqlash ishonch telefoni">
+    <div class="section-head"><div><h2>☎️ Muhim telefonlar</h2><p>Rasmiy manbalarda ko‘rsatilgan foydali raqamlar.</p></div></div>
+    <div class="card">
+      <div class="hotline"><div><b>Tez tibbiy yordam</b><small>Hayot yoki sog‘liqqa xavf tug‘ilganda</small></div><a href="tel:103">103 — qo‘ng‘iroq</a></div>
+      <div class="hotline"><div><b>Sog‘liqni saqlash vazirligi</b><small>Ishonch telefoni</small></div><a href="tel:1003">1003 — qo‘ng‘iroq</a></div>
+      <div class="hotline"><div><b>Ichki ishlar vazirligi</b><small>Rasmiy ishonch telefoni ro‘yxatida</small></div><a href="tel:1102">1102 — qo‘ng‘iroq</a></div>
+      <div class="hotline"><div><b>Favqulodda vaziyatlar vazirligi</b><small>Rasmiy ishonch telefoni ro‘yxatida</small></div><a href="tel:1050">1050 — qo‘ng‘iroq</a></div>
+      <div class="hotline"><div><b>Prezident virtual qabulxonasi</b><small>Murojaat uchun</small></div><a href="tel:1000">1000 — qo‘ng‘iroq</a></div>
+      <div class="hotline"><div><b>Bosh prokuratura</b><small>Ishonch telefoni</small></div><a href="tel:1007">1007 — qo‘ng‘iroq</a></div>
+      <div class="btn-row"><a class="btn secondary" href="https://gov.uz/oz/ssv/contacts" target="_blank" rel="noopener">SSV rasmiy aloqalari</a><a class="btn ghost" href="https://advice.adliya.uz/oz/document/2263" target="_blank" rel="noopener">Boshqa ishonch telefonlari</a></div>
+      <p class="small">Raqamlar o‘zgarishi mumkin. Ishlatishdan oldin rasmiy manbadan tekshiring. Favqulodda raqamlarni faqat zarur holatda tering.</p>
+    </div>
+  </section>
+
+  <section class="section searchable" id="tasbeh" data-search="tasbeh zikr hisoblagich namoz kundalik">
+    <div class="section-head"><div><h2>📿 Tasbeh hisoblagichi</h2><p>Zikr sonini telefonda hisoblang. Hisob faqat shu sahifa ochiq turganida saqlanadi.</p></div></div>
+    <div class="card">
+      <div class="counter" id="tasbihCount" aria-live="polite">0</div>
+      <div class="tool-buttons" style="justify-content:center">
+        <button class="btn" id="tasbihAdd">+1 qo‘shish</button><button class="btn secondary" id="tasbih33">33 ga</button><button class="btn secondary" id="tasbih99">99 ga</button><button class="btn ghost" id="tasbihReset">Qayta boshlash</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section searchable" id="yosh" data-search="yosh hisoblash tug‘ilgan sana kun oy yil yosh kalkulyator">
+    <div class="section-head"><div><h2>🎂 Yoshni hisoblash</h2><p>Tug‘ilgan sanadan taxminiy yoshni hisoblang.</p></div></div>
+    <div class="card">
+      <div class="field"><label for="birthDate">Tug‘ilgan sana</label><input type="date" id="birthDate"></div>
+      <div class="btn-row"><button class="btn" id="calcAge">Yoshni hisoblash</button></div>
+      <div class="result hidden" id="ageResult" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="section searchable" id="xavfsizlik" data-search="firibgarlik kiberxavfsizlik soxta sovrin karta sms kod parol havola scam internet">
+    <div class="section-head"><div><h2>🛡️ Firibgarlikdan himoyalanish</h2><p>Shubhali xabar yoki taklifni ko‘rsangiz, avval tekshiring.</p></div></div>
+    <div class="safety-list">
+      <div class="safety-item"><b>🎁 “Sovrin yutdingiz, pul yuboring”</b><p>Sovrinni olish uchun bojxona yoki yetkazib berish puli so‘ralsa, mustaqil rasmiy manbadan tekshirmasdan pul yubormang.</p></div>
+      <div class="safety-item"><b>🔐 SMS-kod va parol</b><p>SMS tasdiqlash kodi, bank ilovasi paroli yoki PIN-kodni hech kimga aytmang. Bank xodimi deb tanishtirgan odamga ham bermang.</p></div>
+      <div class="safety-item"><b>🔗 Shubhali havola</b><p>Havoladagi manzilni tekshiring. Bank yoki davlat xizmatiga tegishli sahifani o‘zingiz rasmiy ilova yoki manzildan oching.</p></div>
+      <div class="safety-item"><b>💳 Karta ma’lumotlari</b><p>Karta raqami, amal qilish muddati va CVV kodini noma’lum shaxsga yubormang. Pul qabul qilish uchun odatda SMS-kod kerak bo‘lmaydi.</p></div>
+      <div class="safety-item"><b>📱 Telefoningizga kirish</b><p>Noma’lum APK yoki profilni o‘rnatmang, ekran ulashish dasturini begona odam aytgani uchun yoqmang.</p></div>
+      <div class="safety-item"><b>🚨 Agar aldanib qolgan bo‘lsangiz</b><p>Bankingizga darhol rasmiy raqam orqali murojaat qiling, kartani bloklatish imkonini so‘rang, yozishmalarni saqlang va tegishli huquqni muhofaza qiluvchi organga xabar bering.</p></div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <h3>Shubhali taklifni tekshirish ro‘yxati</h3>
+      <p class="desc">Har bir bandni tekshirib chiqing. Bu avtomatik tekshiruv emas, shaxsiy nazorat ro‘yxati.</p>
+      <label class="checkline"><input type="checkbox"> Mendan oldindan pul yoki “bojxona to‘lovi” so‘ralyaptimi?</label>
+      <label class="checkline"><input type="checkbox"> SMS-kod, PIN, parol yoki karta CVV so‘ralyaptimi?</label>
+      <label class="checkline"><input type="checkbox"> Shoshiltirishyaptimi yoki “hoziroq to‘lang” deyishyaptimi?</label>
+      <label class="checkline"><input type="checkbox"> Taklifni rasmiy, mustaqil manbadan tekshirdimmi?</label>
+      <div class="notice">Biror band shubhali bo‘lsa, pul yuborishni va maxfiy ma’lumot berishni to‘xtating. Faqat skrinshot yoki havolaga qarab firibgarlikni har doim aniq tasdiqlab bo‘lmaydi.</div>
+    </div>
+  </section>
+  <div class="empty" id="emptySearch">Mos bo‘lim topilmadi. Boshqa so‘z bilan qidirib ko‘ring.</div>
 </main>
-
-<footer>
-  <div class="logo">MUHAMMAD RASUL <span>PERFUMES</span></div>
-  <p>Nafislik — har bir detalda.</p>
-  <p>© <span id="year"></span> Muhammad Rasul Perfumes</p>
-</footer>
-
-<!-- SAVATCHA -->
-<div class="modal hidden" id="cartModal" role="dialog"
-     aria-modal="true" aria-labelledby="cartTitle">
-  <div class="modal-box">
-    <div class="modal-head">
-      <h2 id="cartTitle">Savatchangiz</h2>
-      <button class="close-btn" data-close="cartModal" aria-label="Yopish">×</button>
-    </div>
-    <div id="cartItems"></div>
-    <div class="cart-total">
-      <span>Jami:</span>
-      <span id="cartTotal">0 so‘m</span>
-    </div>
-    <button class="primary-btn full-btn" id="checkoutBtn">
-      BUYURTMA BERISH →
-    </button>
-    <button class="filter-btn full-btn" data-close="cartModal">
-      Xaridni davom ettirish
-    </button>
-  </div>
-</div>
-
-<!-- BUYURTMA FORMASI -->
-<div class="modal hidden" id="checkoutModal" role="dialog"
-     aria-modal="true" aria-labelledby="checkoutTitle">
-  <div class="modal-box">
-    <div class="modal-head">
-      <h2 id="checkoutTitle">Buyurtma ma’lumotlari</h2>
-      <button class="close-btn" data-close="checkoutModal" aria-label="Yopish">×</button>
-    </div>
-    <p class="notice">Yetkazib berish uchun ma’lumotlaringizni to‘ldiring.</p>
-
-    <form id="orderForm">
-      <label class="form-label" for="firstName">Ismingiz *</label>
-      <input class="form-input" id="firstName" name="firstName"
-        placeholder="Ismingiz" autocomplete="given-name" required maxlength="60">
-
-      <label class="form-label" for="lastName">Familiyangiz *</label>
-      <input class="form-input" id="lastName" name="lastName"
-        placeholder="Familiyangiz" autocomplete="family-name" required maxlength="60">
-
-      <label class="form-label" for="phone">Telefon raqamingiz *</label>
-      <input class="form-input" id="phone" name="phone" type="tel"
-        placeholder="+998 90 123 45 67" autocomplete="tel"
-        required maxlength="20" pattern="[+0-9() -]{9,20}">
-
-      <label class="form-label" for="address">Yetkazib berish manzili *</label>
-      <textarea class="form-input" id="address" name="address"
-        placeholder="Viloyat, shahar, ko‘cha, uy raqami" rows="3"
-        autocomplete="street-address" required maxlength="300"></textarea>
-
-      <label class="form-label" for="comment">Qo‘shimcha izoh (ixtiyoriy)</label>
-      <textarea class="form-input" id="comment" name="comment"
-        placeholder="Mo‘ljal yoki qo‘shimcha ma’lumot" rows="2"
-        maxlength="300"></textarea>
-
-      <div class="cart-total">
-        <span>Buyurtma jami:</span>
-        <span id="checkoutTotal">0 so‘m</span>
-      </div>
-
-      <button class="primary-btn full-btn" type="submit">
-        BUYURTMANI TASDIQLASH ✓
-      </button>
-      <p class="notice">
-        Eslatma: ushbu demo sayt buyurtmani serverga yubormaydi.
-        Haqiqiy buyurtmalarni qabul qilish uchun Telegram bot yoki server ulanishi kerak.
-      </p>
-    </form>
-  </div>
-</div>
-
-<!-- TASDIQ -->
-<div class="modal hidden" id="successModal" role="dialog"
-     aria-modal="true" aria-labelledby="successTitle">
-  <div class="modal-box">
-    <div class="success">
-      <div class="success-icon">✓</div>
-      <div class="eyebrow">MUHAMMAD RASUL PERFUMES</div>
-      <h2 id="successTitle">Buyurtmangiz qabul qilindi!</h2>
-      <p id="successMessage">
-        Ishonchingiz uchun katta rahmat.
-        Siz bilan tez orada bog‘lanamiz.
-      </p>
-      <div class="order-summary" id="orderSummary"></div>
-      <button class="primary-btn full-btn" id="finishBtn">
-        XARIDNI DAVOM ETTIRISH
-      </button>
-    </div>
-  </div>
-</div>
-
-<div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
-
+<footer class="footer"><div class="wrap"><strong>QXV YORDAM</strong><p>Foydali vositalar — sodda, tushunarli va qulay.</p><p>Ushbu sayt ma’lumot berish uchun yaratilgan. Hujjat namunalari rasmiy tasdiq emas; moliyaviy hisoblar taxminiy; xavfsizlik tavsiyalari professional maslahat o‘rnini bosmaydi.</p><p>© <span id="year"></span> QXV YORDAM</p></div></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
-"use strict";
-
-/*
-  NARXLAR DEMO UCHUN MISOL.
-  Haqiqiy narxlar va mavjud mahsulotlarga moslab o'zgartiring.
-*/
-
-const products = [
-  {
-    id: 1,
-    name: "Noir Essence",
-    category: "perfume",
-    categoryName: "PREMIUM ATIR",
-    price: 185000,
-    badge: "TOP TANLOV",
-    description: "Chuqur, nafis va esda qolarli ifor.",
-    image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=650&q=80"
-  },
-  {
-    id: 2,
-    name: "Golden Oud",
-    category: "perfume",
-    categoryName: "PREMIUM ATIR",
-    price: 220000,
-    badge: "LUXURY",
-    description: "Hashamatli kayfiyat uchun o'ziga xos ifor.",
-    image: "https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=650&q=80"
-  },
-  {
-    id: 3,
-    name: "Velvet Rose",
-    category: "perfume",
-    categoryName: "NAFIS ATIR",
-    price: 165000,
-    badge: "YANGI",
-    description: "Mayin, nafis va kundalik foydalanish uchun.",
-    image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=650&q=80"
-  },
-  {
-    id: 4,
-    name: "Midnight",
-    category: "perfume",
-    categoryName: "PREMIUM ATIR",
-    price: 195000,
-    badge: "ELEGANT",
-    description: "Kechki uchrashuvlar uchun jozibali tanlov.",
-    image: "https://images.unsplash.com/photo-1590736969955-71cc94901144?auto=format&fit=crop&w=650&q=80"
-  },
-  {
-    id: 5,
-    name: "Classic Black",
-    category: "watch",
-    categoryName: "PREMIUM SOAT",
-    price: 350000,
-    badge: "KLASSIK",
-    description: "Har kuni uchun sodda va zamonaviy dizayn.",
-    image: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=650&q=80"
-  },
-  {
-    id: 6,
-    name: "Silver Time",
-    category: "watch",
-    categoryName: "PREMIUM SOAT",
-    price: 420000,
-    badge: "ELEGANT",
-    description: "Kumush rangli ko'rinish va nafis uslub.",
-    image: "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=650&q=80"
-  },
-  {
-    id: 7,
-    name: "Golden Hour",
-    category: "watch",
-    categoryName: "PREMIUM SOAT",
-    price: 390000,
-    badge: "LUXURY",
-    description: "Oltin rang aksentlari bilan ajralib turing.",
-    image: "https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=650&q=80"
-  },
-  {
-    id: 8,
-    name: "Urban Steel",
-    category: "watch",
-    categoryName: "PREMIUM SOAT",
-    price: 310000,
-    badge: "ZAMONAVIY",
-    description: "Zamonaviy obrazga mos universal aksessuar.",
-    image: "https://images.unsplash.com/photo-1539874754764-5a96559165b0?auto=format&fit=crop&w=650&q=80"
-  }
-];
-
-const money = n => new Intl.NumberFormat("uz-UZ").format(n) + " so‘m";
-const $ = id => document.getElementById(id);
-
-let cart = {};
-let activeFilter = "all";
-let toastTimer;
-
-$("year").textContent = new Date().getFullYear();
-
-function safeText(value) {
-  return String(value).replace(/[&<>"']/g, ch => ({
-    "&":"&amp;",
-    "<":"&lt;",
-    ">":"&gt;",
-    '"':"&quot;",
-    "'":"&#39;"
-  }[ch]));
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+const money=n=>new Intl.NumberFormat('uz-UZ',{maximumFractionDigits:0}).format(Math.round(n))+' so‘m';
+function toast(message){const el=$('toast');el.textContent=message;el.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove('show'),2400)}
+async function copyText(text){try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text)}else{const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();const ok=document.execCommand('copy');ta.remove();if(!ok)throw new Error('copy failed')}toast('Nusxalandi!')}catch(e){toast('Nusxalash imkoni bo‘lmadi. Matnni belgilang va nusxalang.')}}
+function safe(v){return (v||'').trim()}
+function dateText(){const v=$('docDate').value;if(!v)return '________________';const p=v.split('-');return p[2]+'.'+p[1]+'.'+p[0]}
+$('docDate').value=new Date().toLocaleDateString('en-CA');
+function buildDoc(){
+ const type=$('docType').value,name=safe($('fullName').value)||'________________',recipient=safe($('recipient').value)||'________________',position=safe($('position').value)||'________________',reason=safe($('reason').value)||'________________',date=dateText();
+ let out='';
+ if(type==='work')out=recipient+' rahbariga\n\n'+name+'dan\n\nARIZA\n\nMeni '+position+' lavozimiga ishga qabul qilishingizni so‘rayman.\n\nSana: '+date+'\nImzo: ________________';
+ if(type==='leave')out=recipient+' rahbariga\n\n'+name+'dan\n\nARIZA\n\nMehnat shartnomasini o‘z xohishimga ko‘ra bekor qilish masalasini amaldagi tartibda ko‘rib chiqishingizni so‘rayman.\n\nSana: '+date+'\nImzo: ________________';
+ if(type==='explain')out=recipient+'ga\n\n'+name+'dan\n\nTUSHUNTIRISH XATI\n\nQuyidagi holat yuzasidan tushuntirish beraman:\n'+reason+'\n\nSana: '+date+'\nImzo: ________________';
+ if(type==='request')out=recipient+'ga\n\n'+name+'dan\n\nMUROJAAT\n\nSizdan quyidagi masalani ko‘rib chiqishingizni so‘rayman:\n'+reason+'\n\nSana: '+date+'\nImzo: ________________';
+ if(type==='bio')out='TARJIMAI HOL\n\nMen, '+name+'. '+reason+'\n\nSana: '+date+'\nImzo: ________________';
+ $('docOutput').value=out;$('docResult').classList.remove('hidden');$('docResult').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
-
-function renderProducts() {
-  const shown = products.filter(p =>
-    activeFilter === "all" || p.category === activeFilter
-  );
-
-  $("products").innerHTML = shown.map(p => `
-    <article class="product">
-      <div class="product-img">
-        <img src="${p.image}" alt="${safeText(p.name)}"
-          loading="lazy" onerror="this.style.opacity='.15'">
-        <span class="tag">${safeText(p.badge)}</span>
-      </div>
-      <div class="product-info">
-        <div class="product-category">${safeText(p.categoryName)}</div>
-        <h3>${safeText(p.name)}</h3>
-        <div class="product-desc">${safeText(p.description)}</div>
-        <div class="product-bottom">
-          <span class="price">${money(p.price)}</span>
-          <button class="add-btn" data-add="${p.id}">
-            + SAVATCHAGA
-          </button>
-        </div>
-      </div>
-    </article>
-  `).join("") || '<p class="empty-products">Mahsulot topilmadi.</p>';
+$('makeDoc').addEventListener('click',buildDoc);
+$('copyDoc').addEventListener('click',()=>$('docOutput').value?copyText($('docOutput').value):toast('Avval matn tayyorlang.'));
+$('downloadDoc').addEventListener('click',()=>{const text=$('docOutput').value;if(!text){toast('Avval matn tayyorlang.');return}const blob=new Blob([text],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='qxv-yordam-hujjat.txt';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);toast('TXT fayl yuklab olindi')});
+$('clearDoc').addEventListener('click',()=>{['fullName','recipient','position','reason'].forEach(id=>$(id).value='');$('docResult').classList.add('hidden');$('docOutput').value='';toast('Maydonlar tozalandi')});
+$('docType').addEventListener('change',()=>{const type=$('docType').value;$('positionField').classList.toggle('hidden',!['work'].includes(type));$('reasonField').classList.toggle('hidden',type==='work'||type==='leave');});
+function calcLoan(){
+ const P=Number($('loanAmount').value),annual=Number($('loanRate').value),n=Number($('loanMonths').value);
+ if(!Number.isFinite(P)||P<=0||!Number.isFinite(annual)||annual<0||annual>500||!Number.isInteger(n)||n<1||n>600){toast('Qiymatlarni tekshiring. Muddat 1–600 oy bo‘lsin.');return}
+ const r=annual/1200,monthly=r===0?P/n:P*r/(1-Math.pow(1+r,-n)),total=monthly*n,interest=total-P;
+ $('loanResult').innerHTML='<strong>Taxminiy natija</strong><div class="big">'+money(monthly)+'/oy</div><p>Jami to‘lov: <b>'+money(total)+'</b></p><p>Foiz xarajati: <b>'+money(interest)+'</b></p><p class="small">Formula: annuitet to‘lovi. Haqiqiy bank jadvali farq qilishi mumkin.</p>';
+ $('loanResult').classList.remove('hidden');
 }
-
-function cartEntries() {
-  return Object.entries(cart)
-    .map(([id, qty]) => ({
-      product: products.find(p => p.id === Number(id)),
-      qty
-    }))
-    .filter(item => item.product && item.qty > 0);
+$('calcLoan').addEventListener('click',calcLoan);
+$('resetLoan').addEventListener('click',()=>{$('loanAmount').value=10000000;$('loanRate').value=24;$('loanMonths').value=24;calcLoan()});
+let percentText='';
+function calcPercent(){
+ const amount=Number($('baseAmount').value),pct=Number($('percentValue').value),mode=$('percentMode').value;
+ if(!Number.isFinite(amount)||amount<0||!Number.isFinite(pct)||pct<0||pct>100000||(mode==='discount'&&pct>100)){toast('Qiymatlarni tekshiring. Chegirma 0–100% oralig‘ida.');return}
+ const part=amount*pct/100;let title='',main=0,detail='';
+ if(mode==='part'){title='Foiz miqdori';main=part;detail='Boshlang‘ich summa: '+money(amount)+' · Foiz: '+pct+'%'}
+ if(mode==='discount'){title='Chegirmadan keyingi narx';main=amount-part;detail='Chegirma miqdori: '+money(part)}
+ if(mode==='increase'){title='Ustama qo‘shilgan narx';main=amount+part;detail='Ustama miqdori: '+money(part)}
+ percentText=title+': '+money(main)+'\n'+detail;
+ $('percentResult').innerHTML='<strong>'+title+'</strong><div class="big">'+money(main)+'</div><p>'+detail+'</p>';
+ $('percentResult').classList.remove('hidden');
 }
+$('calcPercent').addEventListener('click',calcPercent);
+$('copyPercent').addEventListener('click',()=>percentText?copyText(percentText):toast('Avval hisoblang.'));
+$('siteSearch').addEventListener('input',()=>{const q=$('siteSearch').value.trim().toLocaleLowerCase('uz');let count=0;document.querySelectorAll('.searchable').forEach(el=>{const show=!q||(el.innerText+' '+(el.dataset.search||'')).toLocaleLowerCase('uz').includes(q);el.classList.toggle('hidden',!show);if(show)count++});$('emptySearch').style.display=count?'none':'block'});
 
-function cartTotal() {
-  return cartEntries().reduce(
-    (sum, item) => sum + item.product.price * item.qty, 0
-  );
+// Namoz vaqtlari: AlAdhan API, internet mavjud bo‘lsa.
+async function loadPrayer(){
+ const city=$('prayerCity').value;
+ const now=new Date();
+ const date=String(now.getDate()).padStart(2,'0')+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+now.getFullYear();
+ $('prayerResult').innerHTML='<div class="result">Yuklanmoqda…</div>';
+ $('prayerDate').textContent='Sana: '+now.toLocaleDateString('uz-UZ');
+ try{
+  const url='https://api.aladhan.com/v1/timingsByCity/'+date+'?city='+encodeURIComponent(city)+'&country=Uzbekistan&method=3';
+  const response=await fetch(url);if(!response.ok)throw new Error('API');
+  const json=await response.json();if(json.code!==200||!json.data||!json.data.timings)throw new Error('Data');
+  const t=json.data.timings;
+  const entries=[['Bomdod',t.Fajr],['Quyosh',t.Sunrise],['Peshin',t.Dhuhr],['Asr',t.Asr],['Shom',t.Maghrib],['Xufton',t.Isha]];
+  $('prayerResult').innerHTML=entries.map(([n,v])=>'<div class="prayer-time"><b>'+n+'</b><span>'+String(v).slice(0,5)+'</span></div>').join('');
+  $('prayerDate').textContent=city+' · '+(json.data.date.readable||now.toLocaleDateString('uz-UZ'));
+ }catch(e){$('prayerResult').innerHTML='<div class="result">Namoz vaqtlarini yuklab bo‘lmadi. Internetni tekshiring yoki mahalliy masjid taqvimidan foydalaning.</div>'}
 }
-
-function cartQuantity() {
-  return cartEntries().reduce((sum, item) => sum + item.qty, 0);
+$('loadPrayer').addEventListener('click',loadPrayer);
+$('todayPrayer').addEventListener('click',loadPrayer);
+$('prayerCity').addEventListener('change',loadPrayer);
+// Pharmacy search links: directory results are provided by map/search providers.
+function pharmacyQuery(openOnly){
+ const region=$('pharmacyRegion').value,area=safe($('pharmacyArea').value);
+ const query=(openOnly?'24 soat ochiq dorixona ':'dorixona ')+(area?area+', ':'')+region+', O‘zbekiston';
+ window.open('https://www.google.com/maps/search/'+encodeURIComponent(query),'_blank','noopener');
 }
-
-function updateCart() {
-  $("cartCount").textContent = cartQuantity();
-  $("cartTotal").textContent = money(cartTotal());
-  $("checkoutTotal").textContent = money(cartTotal());
-
-  const entries = cartEntries();
-
-  if (!entries.length) {
-    $("cartItems").innerHTML =
-      '<p class="notice">Savatchangiz hozircha bo‘sh. O‘zingizga yoqqan mahsulotni tanlang.</p>';
-    $("checkoutBtn").disabled = true;
-    $("checkoutBtn").style.opacity = ".5";
-    return;
-  }
-
-  $("checkoutBtn").disabled = false;
-  $("checkoutBtn").style.opacity = "1";
-
-  $("cartItems").innerHTML = entries.map(({product:p, qty}) => `
-    <div class="cart-row">
-      <img src="${p.image}" alt="${safeText(p.name)}">
-      <div>
-        <h4>${safeText(p.name)}</h4>
-        <small>${money(p.price)}</small>
-        <div class="qty">
-          <button data-qty="${p.id}" data-delta="-1" aria-label="Kamaytirish">−</button>
-          <span>${qty}</span>
-          <button data-qty="${p.id}" data-delta="1" aria-label="Ko‘paytirish">+</button>
-        </div>
-      </div>
-      <div>
-        <small>${money(p.price * qty)}</small><br>
-        <button class="remove-btn" data-remove="${p.id}">O‘chirish</button>
-      </div>
-    </div>
-  `).join("");
-}
-
-function showToast(message) {
-  clearTimeout(toastTimer);
-  $("toast").textContent = message;
-  $("toast").classList.remove("hidden");
-  toastTimer = setTimeout(() => $("toast").classList.add("hidden"), 2600);
-}
-
-function openModal(id) {
-  $(id).classList.remove("hidden");
-  document.body.style.overflow = "hidden";
-}
-
-function closeModal(id) {
-  $(id).classList.add("hidden");
-  if (!document.querySelector(".modal:not(.hidden)")) {
-    document.body.style.overflow = "";
-  }
-}
-
-document.addEventListener("click", event => {
-  const add = event.target.closest("[data-add]");
-  const qtyButton = event.target.closest("[data-qty]");
-  const remove = event.target.closest("[data-remove]");
-  const close = event.target.closest("[data-close]");
-  const filter = event.target.closest("[data-filter]");
-
-  if (add) {
-    const id = Number(add.dataset.add);
-    cart[id] = (cart[id] || 0) + 1;
-    updateCart();
-    showToast("Mahsulot savatchaga qo‘shildi ✓");
-  }
-
-  if (qtyButton) {
-    const id = Number(qtyButton.dataset.qty);
-    cart[id] = (cart[id] || 0) + Number(qtyButton.dataset.delta);
-    if (cart[id] <= 0) delete cart[id];
-    updateCart();
-  }
-
-  if (remove) {
-    delete cart[Number(remove.dataset.remove)];
-    updateCart();
-    showToast("Mahsulot savatchadan o‘chirildi");
-  }
-
-  if (close) closeModal(close.dataset.close);
-
-  if (filter) {
-    activeFilter = filter.dataset.filter;
-    document.querySelectorAll("[data-filter]").forEach(btn => {
-      btn.classList.toggle("active", btn === filter);
-    });
-    renderProducts();
-  }
+$('findPharmacy').addEventListener('click',()=>pharmacyQuery(false));
+$('findOpenPharmacy').addEventListener('click',()=>pharmacyQuery(true));
+// Tasbeh count exists only in current page session.
+let tasbih=0;function showTasbih(){$('tasbihCount').textContent=tasbih}
+$('tasbihAdd').addEventListener('click',()=>{tasbih++;showTasbih()});
+$('tasbih33').addEventListener('click',()=>{tasbih=33;showTasbih()});
+$('tasbih99').addEventListener('click',()=>{tasbih=99;showTasbih()});
+$('tasbihReset').addEventListener('click',()=>{tasbih=0;showTasbih()});
+// Age calculator uses local calendar dates.
+$('calcAge').addEventListener('click',()=>{
+ const value=$('birthDate').value;if(!value){toast('Tug‘ilgan sanani kiriting.');return}
+ const b=new Date(value+'T12:00:00'),today=new Date();
+ if(Number.isNaN(b.getTime())||b>today){toast('Sanani to‘g‘ri kiriting.');return}
+ let years=today.getFullYear()-b.getFullYear(),months=today.getMonth()-b.getMonth(),days=today.getDate()-b.getDate();
+ if(days<0){months--;days+=new Date(today.getFullYear(),today.getMonth(),0).getDate()}
+ if(months<0){years--;months+=12}
+ $('ageResult').innerHTML='<strong>Hisoblangan yosh</strong><div class="big">'+years+' yosh</div><p>'+months+' oy, '+days+' kun</p>';
+ $('ageResult').classList.remove('hidden');
 });
 
-$("cartOpen").addEventListener("click", () => {
-  updateCart();
-  openModal("cartModal");
-});
 
-$("checkoutBtn").addEventListener("click", () => {
-  if (!cartEntries().length) return;
-  closeModal("cartModal");
-  updateCart();
-  openModal("checkoutModal");
-});
-
-$("themeBtn").addEventListener("click", () => {
-  document.body.classList.toggle("light");
-  const light = document.body.classList.contains("light");
-  $("themeBtn").setAttribute("aria-label",
-    light ? "Qorong‘i rangga o‘tish" : "Yorug‘ rangga o‘tish");
-});
-
-document.querySelectorAll(".modal").forEach(modal => {
-  modal.addEventListener("click", event => {
-    if (event.target === modal) closeModal(modal.id);
-  });
-});
-
-document.addEventListener("keydown", event => {
-  if (event.key === "Escape") {
-    document.querySelectorAll(".modal:not(.hidden)").forEach(modal => {
-      closeModal(modal.id);
-    });
-  }
-});
-
-/* Eshiklar 5 soniyadan so'ng ochiladi */
-let introFinished = false;
-
-function enterStore() {
-  if (introFinished) return;
-  introFinished = true;
-  $("intro").classList.add("open");
-
-  setTimeout(() => {
-    $("intro").style.display = "none";
-    document.body.style.overflow = "";
-  }, 1500);
+// Live clock shown inside the page.
+function updateLiveClock(){
+ const d=new Date();
+ $('liveClock').textContent=d.toLocaleTimeString('uz-UZ',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
+ $('liveDate').textContent=d.toLocaleDateString('uz-UZ',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
 }
+updateLiveClock();setInterval(updateLiveClock,1000);
 
-document.body.style.overflow = "hidden";
-$("enterBtn").addEventListener("click", enterStore);
-setTimeout(enterStore, 5000);
-
-/* Buyurtma tasdiqlash */
-$("orderForm").addEventListener("submit", event => {
-  event.preventDefault();
-
-  const entries = cartEntries();
-  if (!entries.length) {
-    closeModal("checkoutModal");
-    showToast("Avval savatchaga mahsulot qo‘shing.");
-    return;
-  }
-
-  const data = new FormData(event.currentTarget);
-  const firstName = String(data.get("firstName") || "").trim();
-  const lastName = String(data.get("lastName") || "").trim();
-  const phone = String(data.get("phone") || "").trim();
-  const address = String(data.get("address") || "").trim();
-  const comment = String(data.get("comment") || "").trim();
-
-  if (!firstName || !lastName || !phone || !address) {
-    showToast("Iltimos, barcha majburiy maydonlarni to‘ldiring.");
-    return;
-  }
-
-  const itemLines = entries.map(({product, qty}) =>
-    `${product.name} × ${qty} — ${money(product.price * qty)}`
-  );
-
-  const summary = [
-    `Mijoz: ${firstName} ${lastName}`,
-    `Telefon: ${phone}`,
-    `Manzil: ${address}`,
-    "",
-    "Buyurtma:",
-    ...itemLines,
-    "",
-    `Jami: ${money(cartTotal())}`,
-    comment ? `Izoh: ${comment}` : ""
-  ].filter(Boolean).join("\n");
-
-  $("successMessage").textContent =
-    `Hurmatli ${firstName}, buyurtmangiz qabul qilindi! ` +
-    "Bizni tanlaganingiz uchun rahmat. Siz bilan tez orada bog‘lanamiz.";
-
-  $("orderSummary").textContent = summary;
-
-  closeModal("checkoutModal");
-  openModal("successModal");
-
-  /* Bu faqat demo: buyurtma serverga yuborilmaydi. */
-  cart = {};
-  updateCart();
-  event.currentTarget.reset();
+// Open a map search. GPS is optional; never request it without a button tap.
+let userCoords=null;
+function makeMapSearch(){
+ const country=$('nearCountry').value,city=safe($('nearCity').value),type=$('nearType').value;
+ const label=type+' near '+(userCoords?userCoords.lat+','+userCoords.lon:(city?city+', '+country:country));
+ const url='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(label);
+ window.open(url,'_blank','noopener');
+ $('nearStatus').textContent='Xarita qidiruvi ochildi. Natijadagi telefon va ish vaqtini xarita sahifasida tekshiring.';
+ $('nearStatus').classList.remove('hidden');
+}
+$('nearSearch').addEventListener('click',makeMapSearch);
+$('nearGPS').addEventListener('click',()=>{
+ if(!navigator.geolocation){toast('Bu brauzer joylashuvni qo‘llab-quvvatlamaydi. Shaharni kiriting.');return}
+ $('nearStatus').textContent='Joylashuv so‘ralmoqda…';$('nearStatus').classList.remove('hidden');
+ navigator.geolocation.getCurrentPosition(pos=>{
+  userCoords={lat:pos.coords.latitude,lon:pos.coords.longitude};
+  $('nearStatus').textContent='Joylashuv olindi. Endi “Xaritadan qidirish” tugmasini bosing.';
+  toast('Joylashuv olindi');
+ },err=>{
+  userCoords=null;
+  $('nearStatus').textContent='Joylashuvga ruxsat olinmadi. Shahar yoki tumanni qo‘lda kiriting.';
+  toast('Joylashuv olinmadi');
+ },{enableHighAccuracy:false,timeout:10000,maximumAge:300000});
 });
 
-$("finishBtn").addEventListener("click", () => {
-  closeModal("successModal");
-  window.scrollTo({top:0,behavior:"smooth"});
-});
+// Quran reader: surah list, Arabic text and optional Uzbek translation from AlQuran Cloud.
+function escHTML(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+async function fetchJson(url){const r=await fetch(url);if(!r.ok)throw new Error('HTTP '+r.status);const j=await r.json();if(j.code&&j.code!==200)throw new Error('API error');return j.data}
+async function initSurahList(){
+ try{
+  const list=await fetchJson('https://api.alquran.cloud/v1/surah');
+  const select=$('surahSelect');select.innerHTML='';
+  list.forEach(s=>{const op=document.createElement('option');op.value=s.number;op.textContent=s.number+'. '+s.englishName+' — '+s.name+' ('+s.numberOfAyahs+' oyat)';select.appendChild(op)});
+  select.value='1';
+ }catch(e){/* Keep the built-in Al-Fotiha option if API is unavailable. */}
+}
+async function loadSurah(){
+ const id=Number($('surahSelect').value)||1;
+ $('surahContent').innerHTML='<div class="result">Qur’on matni yuklanmoqda…</div>';
+ try{
+  const arab=await fetchJson('https://api.alquran.cloud/v1/surah/'+id+'/quran-uthmani');
+  let uz=null;
+  try{uz=await fetchJson('https://api.alquran.cloud/v1/surah/'+id+'/uz.sodik')}catch(e){}
+  const ayahs=arab.ayahs||[];
+  $('surahMeta').textContent=arab.englishName+' · '+arab.name+' · '+arab.numberOfAyahs+' oyat';
+  $('surahContent').innerHTML=ayahs.map((a,i)=>{
+   const translation=uz&&uz.ayahs&&uz.ayahs[i]?'<div class="translation">'+escHTML(uz.ayahs[i].text)+'</div>':'';
+   return '<article class="ayah"><div class="ayah-num">'+arab.number+':'+a.numberInSurah+'</div><div class="arabic" lang="ar" translate="no">'+escHTML(a.text)+'</div>'+translation+'</article>';
+  }).join('');
+ }catch(e){
+  $('surahContent').innerHTML='<div class="result">Qur’on matni hozir yuklanmadi. Internetni tekshiring yoki keyin qayta urinib ko‘ring. Qur’on matni API xizmatidan olinadi.</div>';
+ }
+}
+$('loadSurah').addEventListener('click',loadSurah);
+initSurahList();
+loadSurah();
+// Populate prayer times when page opens; users can change city manually.
+loadPrayer();
 
-renderProducts();
-updateCart();
+$('year').textContent=new Date().getFullYear();
+calcLoan();calcPercent();
+})();
 </script>
 </body>
 </html>

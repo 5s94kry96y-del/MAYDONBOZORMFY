@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#102b46">
+<meta name="description" content="QXV YORDAM — ariza matnlari, kredit va foiz hisoblagichlari hamda internet xavfsizligi bo‘yicha foydali vositalar.">
+<title>QXV YORDAM — Har kuni kerakli xizmatlar</title>
+<style>
+:root{--navy:#102b46;--blue:#1769aa;--ice:#b9e6ff;--bg:#f3f7fb;--card:#fff;--text:#172536;--muted:#637487;--line:#dce6ef;--green:#16794b;--amber:#fff4d6;--red:#a52a2a;--shadow:0 12px 32px rgba(16,43,70,.08)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.5}button,input,select,textarea{font:inherit}button{cursor:pointer}.wrap{max-width:1060px;margin:auto;padding:0 16px}.top{background:linear-gradient(135deg,#102b46,#174d75);color:#fff;padding:25px 0 30px}.brand{display:flex;align-items:center;gap:12px}.logo{width:54px;height:54px;border:2px solid var(--ice);border-radius:17px;display:grid;place-items:center;color:var(--ice);font-weight:900;font-size:18px;letter-spacing:-1px;flex-shrink:0}.brand h1{margin:0;font-size:25px;letter-spacing:.3px}.brand p{margin:2px 0 0;color:#d4e8f8;font-size:13px}.hero{padding-top:25px}.hero h2{font-size:clamp(27px,5vw,42px);line-height:1.1;margin:0 0 12px;max-width:680px}.hero p{color:#d9e9f6;max-width:650px;margin:0 0 19px}.search{width:100%;border:1px solid #cfe0ed;border-radius:14px;padding:14px 16px;background:#fff;color:var(--text);outline:none}.search:focus,input:focus,select:focus,textarea:focus{border-color:#4a9cdb;box-shadow:0 0 0 3px #1769aa1a;outline:none}.nav{display:flex;gap:8px;overflow-x:auto;padding:14px 0;scrollbar-width:thin}.nav a{white-space:nowrap;text-decoration:none;color:#23445f;background:#e4eef7;border-radius:999px;padding:9px 13px;font-size:14px;font-weight:650}.nav a:hover{background:#cfe7f8}.section{padding:16px 0 8px;scroll-margin-top:14px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:10px;margin:8px 0 14px}.section h2{margin:0;font-size:23px}.section-head p{margin:3px 0 0;color:var(--muted);font-size:14px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow);min-width:0}.card h3{margin:0 0 5px;font-size:18px}.card .desc{margin:0 0 15px;color:var(--muted);font-size:13px}.field{display:flex;flex-direction:column;gap:6px;margin:12px 0}.field label{font-size:13px;font-weight:700;color:#30475d}.field input,.field select,.field textarea{width:100%;border:1px solid #cbd8e4;border-radius:10px;background:#fff;padding:11px 12px;color:var(--text);min-width:0}.field textarea{min-height:100px;resize:vertical}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.btn{border:0;border-radius:11px;padding:11px 15px;font-weight:750;background:var(--blue);color:#fff;display:inline-flex;justify-content:center;align-items:center;gap:8px}.btn:hover{filter:brightness(.95)}.btn.secondary{background:#e5f1fa;color:#164c76}.btn.ghost{background:#f1f5f9;color:#33485b;border:1px solid var(--line)}.btn.danger{background:#9e2c2c}.btn-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.result{background:#f2f8fc;border:1px solid #d5e8f6;border-radius:12px;padding:13px;margin-top:13px;overflow-wrap:anywhere}.result strong{display:block;margin-bottom:4px}.result .big{font-size:23px;font-weight:850;color:#124f7b}.small{font-size:12px;color:var(--muted)}.hidden{display:none!important}.notice{border-radius:13px;padding:13px 15px;background:var(--amber);color:#684b0b;font-size:13px;margin:12px 0}.safety-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.safety-item{border:1px solid var(--line);border-radius:13px;padding:13px;background:#fff}.safety-item b{display:block;margin-bottom:4px}.safety-item p{margin:0;color:var(--muted);font-size:13px}.checkline{display:flex;gap:10px;align-items:flex-start;margin:10px 0}.checkline input{margin-top:5px;accent-color:var(--blue)}.footer{margin-top:30px;padding:25px 0 35px;background:#e8f0f7;color:#40566b;font-size:13px}.footer strong{color:var(--navy)}.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);background:#142c42;color:white;padding:11px 16px;border-radius:999px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.2s;z-index:10;max-width:calc(100vw - 32px);text-align:center;font-size:14px}.toast.show{opacity:1;transform:translate(-50%,0)}.empty{display:none;padding:18px;text-align:center;color:var(--muted)}
+.prayer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px}
+.prayer-time{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px;text-align:center}
+.prayer-time b{display:block;color:#174d75;font-size:13px}.prayer-time span{font-size:20px;font-weight:850}
+.hotline{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:12px 0}
+.hotline:last-child{border-bottom:0}.hotline b{display:block}.hotline small{display:block;color:var(--muted);font-size:12px}
+.hotline a{font-weight:800;text-decoration:none;color:var(--blue);white-space:nowrap}
+.counter{font-size:52px;font-weight:900;text-align:center;color:#174d75;padding:12px}
+.tool-buttons{display:flex;flex-wrap:wrap;gap:8px}
+.quran-tools{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:9px;align-items:end}
+.ayah{padding:14px 0;border-bottom:1px solid var(--line)}.ayah:last-child{border-bottom:0}
+.arabic{font-size:25px;line-height:2.05;text-align:right;direction:rtl;color:#163f5e;font-family:serif}
+.translation{color:#44596c;margin-top:5px}.ayah-num{font-size:12px;color:var(--muted);font-weight:800}
+.live-time{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#ffffff14;border:1px solid #ffffff30;border-radius:14px;padding:12px 14px;margin-top:18px}
+.live-time strong{font-size:24px;color:var(--ice);font-variant-numeric:tabular-nums}
+.quick-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.quick-link{display:flex;flex-direction:column;gap:7px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-decoration:none;color:var(--text);font-weight:750}
+.quick-link span{font-size:12px;font-weight:500;color:var(--muted)}
+@media(max-width:480px){.quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.quran-tools{grid-template-columns:1fr}.arabic{font-size:22px}}
+@media(max-width:420px){.prayer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:680px){.grid{grid-template-columns:1fr}.safety-list{grid-template-columns:1fr}.top{padding-top:19px}.brand h1{font-size:22px}.card{padding:16px}.section h2{font-size:21px}.two{gap:8px}.hero{padding-top:22px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><div class="logo" aria-label="QXV logotipi">QXV</div><div><h1>QXV YORDAM</h1><p>Har kuni kerakli xizmatlar</p></div></div>
+    <div class="hero">
+      <h2>Kerakli ishni osonroq bajaring.</h2>
+      <p>Ariza matnini tayyorlang, kredit yoki foizni hisoblang va internetdagi firibgarliklardan himoyalanish bo‘yicha tavsiyalarni o‘qing.</p>
+      <input class="search" id="siteSearch" type="search" placeholder="Saytdan qidiring: ariza, kredit, firibgarlik..." aria-label="Saytdan qidirish">
+      <div class="live-time"><div><div style="font-size:12px;color:#d9e9f6">Hozirgi mahalliy vaqt</div><div id="liveDate" style="font-size:13px;color:#d9e9f6">Sana yuklanmoqda</div></div><strong id="liveClock">--:--:--</strong></div>
+    </div>
+  </div>
+</header>
+<main class="wrap">
+  <nav class="nav" aria-label="Asosiy bo‘limlar">
+    <a href="#yaqin">📍 Yaqin atrofda</a><a href="#namoz">🕌 Namoz vaqtlari</a><a href="#quron">📖 Qur’on</a><a href="#ariza">📝 Ariza tayyorlash</a><a href="#kredit">🧮 Kredit hisoblagichi</a><a href="#foiz">％ Foiz hisoblash</a><a href="#xavfsizlik">🛡️ Internet xavfsizligi</a>
+  </nav>
+  <section class="section searchable" id="yaqin" data-search="yaqin atrof dorixona apteka shifoxona kasalxona fast food oshxona restoran supermarket bank bankomat yoqilg‘i shoxobchasi Rossiya O‘zbekiston telefon raqam manzil">
+    <div class="section-head"><div><h2>📍 Yaqin atrofdagi xizmatlar</h2><p>Joylashuvingizga ruxsat bersangiz, xaritada yaqin joylarni qidiring.</p></div></div>
+    <div class="card">
+      <div class="notice">Bu bo‘lim xarita qidiruvini ochadi. Natijalar, telefonlar va ish vaqti xarita provayderida mavjud bo‘lsa ko‘rinadi; hammasi tekshirilgan yoki to‘liq bo‘lishi kafolatlanmaydi.</div>
+      <div class="two">
+        <div class="field"><label for="nearCountry">Mamlakat</label><select id="nearCountry"><option value="Uzbekistan">O‘zbekiston</option><option value="Russia">Rossiya</option></select></div>
+        <div class="field"><label for="nearCity">Shahar yoki tuman (ixtiyoriy)</label><input id="nearCity" placeholder="Masalan, Andijon, Moskva"></div>
+      </div>
+      <div class="field"><label for="nearType">Nimani qidiramiz?</label><select id="nearType">
+        <option value="pharmacy">💊 Dorixonalar / aptekalar</option>
+        <option value="hospital">🏥 Shifoxona va klinikalar</option>
+        <option value="fast food">🍔 Fast food va ovqatlanish joylari</option>
+        <option value="restaurant">🍽️ Restoran va oshxonalar</option>
+        <option value="supermarket">🛒 Supermarket va oziq-ovqat do‘konlari</option>
+        <option value="ATM bank">🏧 Bankomat va banklar</option>
+        <option value="gas station">⛽ Yoqilg‘i shoxobchalari</option>
+        <option value="urgent care open now">🕒 Hozir ochiq tibbiy xizmatlar</option>
+        <option value="veterinary clinic">🐾 Veterinariya klinikalari</option>
+        <option value="post office">📦 Pochta va jo‘natma punktlari</option>
+        <option value="police station">👮 Ichki ishlar bo‘limlari</option>
+      </select></div>
+      <div class="btn-row"><button class="btn" id="nearSearch">Xaritadan qidirish</button><button class="btn secondary" id="nearGPS">📍 Joylashuvimdan foydalanish</button></div>
+      <div class="result hidden" id="nearStatus" aria-live="polite"></div>
+      <div class="quick-grid" style="margin-top:14px">
+        <a class="quick-link" href="https://www.google.com/maps/search/pharmacy/" target="_blank" rel="noopener">💊 Dorixona<span>Manzil va telefonlar</span></a>
+        <a class="quick-link" href="https://www.google.com/maps/search/hospital/" target="_blank" rel="noopener">🏥 Shifoxona<span>Yaqin tibbiy yordam</span></a>
+        <a class="quick-link" href="https://www.google.com/maps/search/fast+food/" target="_blank" rel="noopener">🍔 Fast food<span>Ovqatlanish joylari</span></a>
+        <a class="quick-link" href="https://www.google.com/maps/search/supermarket/" target="_blank" rel="noopener">🛒 Do‘konlar<span>Oziq-ovqat xaridi</span></a>
+        <a class="quick-link" href="https://www.google.com/maps/search/ATM/" target="_blank" rel="noopener">🏧 Bankomat<span>Naqd pul olish</span></a>
+        <a class="quick-link" href="https://www.google.com/maps/search/gas+station/" target="_blank" rel="noopener">⛽ Zapravkalar<span>Yaqin yoqilg‘i</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section searchable" id="quron" data-search="qur’on Quroni Karim sura oyat arabcha tarjima Fotiha Baqara Qur'on o‘qish">
+    <div class="section-head"><div><h2>📖 Qur’oni Karim</h2><p>Surani tanlab, arabcha matnni va mavjud bo‘lsa o‘zbekcha tarjimani yuklang.</p></div></div>
+    <div class="card">
+      <div class="quran-tools">
+        <div class="field" style="margin:0"><label for="surahSelect">Sura</label><select id="surahSelect"><option value="1">1. Al-Fotiha</option></select></div>
+        <button class="btn" id="loadSurah">Surani ochish</button>
+      </div>
+      <div id="surahMeta" class="small" style="margin-top:12px">Qur’on matni internet orqali yuklanadi.</div>
+      <div id="surahContent" style="margin-top:12px"><div class="result">Surani ko‘rish uchun internetga ulaning va “Surani ochish” tugmasini bosing.</div></div>
+      <p class="small">Qur’on matnini tarjima bilan o‘qiganda, tarjima tafsirning o‘rnini to‘liq bosmasligini unutmang. API yoki internet ishlamasa, matn yuklanmasligi mumkin.</p>
+    </div>
+  </section>
+
+  <section class="section searchable" id="farzlar" data-search="o‘ttiz farz 30 farz imon islom namoz tahorat g‘usl diniy bilim">
+    <div class="section-head"><div><h2>☪️ O‘ttiz farz — o‘rganish uchun</h2><p>Asosiy tushunchalar guruhlangan. Mazhab va o‘quv manbasiga qarab tasnifda farqlar bo‘lishi mumkin.</p></div></div>
+    <div class="card" id="farzList">
+      <h3>1. Imonning 6 sharti</h3>
+      <ol><li>Allohga imon keltirish</li><li>Farishtalarga imon keltirish</li><li>Samoviy kitoblarga imon keltirish</li><li>Payg‘ambarlarga imon keltirish</li><li>Oxirat kuniga imon keltirish</li><li>Qadar — yaxshilik va yomonlik Allohning ilmi va irodasi bilan ekaniga imon keltirish</li></ol>
+      <h3>2. Islomning 5 sharti</h3>
+      <ol><li>Kalima shahodatni aytish va uning ma’nosiga ishonish</li><li>Namozni ado etish</li><li>Ramazon ro‘zasini tutish</li><li>Zakot berish (shartlari topilganda)</li><li>Qodir bo‘lgan kishining haj qilishi</li></ol>
+      <h3>3. Namozning 12 farzi</h3>
+      <p><b>Namozdan tashqaridagi 7 shart:</b></p>
+      <ol><li>Hadastan poklanish (tahorat yoki zarur bo‘lsa g‘usl)</li><li>Najasatdan poklanish</li><li>Avratni yopish</li><li>Qiblaga yuzlanish</li><li>Namoz vaqti kirishi</li><li>Niyat qilish</li><li>Takbiri tahrima</li></ol>
+      <p><b>Namoz ichidagi 5 rukn:</b></p>
+      <ol><li>Qiyom (qodir bo‘lganga tik turish)</li><li>Qiroat</li><li>Ruku</li><li>Sajda</li><li>Oxirgi qa’da (o‘tirish)</li></ol>
+      <h3>4. Tahoratning 4 farzi</h3>
+      <ol><li>Yuzni yuvish</li><li>Qo‘llarni tirsaklar bilan qo‘shib yuvish</li><li>Boshning bir qismiga mas’h tortish</li><li>Oyoqlarni to‘piqlar bilan qo‘shib yuvish</li></ol>
+      <h3>5. G‘uslning 3 farzi (Hanafiy ta’limotida)</h3>
+      <ol><li>Og‘izni chayish</li><li>Burunni chayish</li><li>Butun badanga suv yetkazish</li></ol>
+      <div class="notice">Muhim: yuqoridagi guruhlar odatda o‘rgatiladigan farzlar ro‘yxatidan tuzilgan, lekin “30 farz” deb nomlashdagi hisob va namoz ruknlari tasnifi manbalarda farq qilishi mumkin. Diniy hukm uchun ishonchli mahalliy imom yoki ustoz bilan tekshiring.</div>
+    </div>
+  </section>
+
+  <section class="section searchable" id="ariza" data-search="ariza hujjat ishga kirish ishdan bo‘shash tarjimai hol tushuntirish xati murojaat">
+    <div class="section-head"><div><h2>📝 Ariza va matn tayyorlash</h2><p>Turini tanlang, ma’lumotlarni kiriting va tayyor matnni nusxalang.</p></div></div>
+    <div class="card">
+      <div class="field"><label for="docType">Hujjat turi</label><select id="docType">
+        <option value="work">Ishga qabul qilish arizasi</option>
+        <option value="leave">Ishdan bo‘shash arizasi</option>
+        <option value="explain">Tushuntirish xati</option>
+        <option value="request">Umumiy murojaat</option>
+        <option value="bio">Qisqa tarjimai hol</option>
+      </select></div>
+      <div class="two">
+        <div class="field"><label for="fullName">F.I.Sh.</label><input id="fullName" autocomplete="name" placeholder="Masalan, Aliyev Vali Vali o‘g‘li"></div>
+        <div class="field"><label for="recipient">Kimga / tashkilot</label><input id="recipient" placeholder="Tashkilot yoki rahbar nomi"></div>
+      </div>
+      <div class="field" id="positionField"><label for="position">Lavozim (kerak bo‘lsa)</label><input id="position" placeholder="Masalan, operator"></div>
+      <div class="field" id="reasonField"><label for="reason">Sabab yoki qo‘shimcha ma’lumot</label><textarea id="reason" placeholder="Vaziyatni qisqacha yozing..."></textarea></div>
+      <div class="field" id="dateField"><label for="docDate">Sana</label><input id="docDate" type="date"></div>
+      <div class="result hidden" id="docResult"><strong>Tayyor matn</strong><textarea id="docOutput" aria-label="Tayyor hujjat matni" rows="10" style="width:100%;border:1px solid #cbd8e4;border-radius:9px;padding:10px;background:white"></textarea><div class="btn-row"><button class="btn" id="copyDoc">Matnni nusxalash</button><button class="btn secondary" id="downloadDoc">TXT fayl qilib saqlash</button></div></div>
+      <div class="btn-row"><button class="btn" id="makeDoc">Matn tayyorlash</button><button class="btn ghost" id="clearDoc">Tozalash</button></div>
+      <p class="small">Eslatma: bu shablonlar umumiy namuna. Tashkilot talablari va vaziyatingizga moslab tekshiring; rasmiy yoki yuridik maslahat o‘rnini bosmaydi.</p>
+    </div>
+  </section>
+
+  <section class="section searchable" id="kredit" data-search="kredit qarz oylik to‘lov foiz yillik stavka muddat hisoblagich">
+    <div class="section-head"><div><h2>🧮 Kredit hisoblagichi</h2><p>Taxminiy oylik to‘lovni annuitet usulida hisoblaydi.</p></div></div>
+    <div class="card">
+      <div class="two">
+        <div class="field"><label for="loanAmount">Kredit summasi (so‘m)</label><input id="loanAmount" type="number" min="1" step="100000" value="10000000" inputmode="decimal"></div>
+        <div class="field"><label for="loanRate">Yillik foiz (%)</label><input id="loanRate" type="number" min="0" max="500" step="0.1" value="24" inputmode="decimal"></div>
+      </div>
+      <div class="field"><label for="loanMonths">Muddat (oy)</label><input id="loanMonths" type="number" min="1" max="600" step="1" value="24" inputmode="numeric"></div>
+      <div class="btn-row"><button class="btn" id="calcLoan">Hisoblash</button><button class="btn ghost" id="resetLoan">Namunaviy qiymatlar</button></div>
+      <div class="result hidden" id="loanResult" aria-live="polite"></div>
+      <p class="small">Hisob taxminiy: bank komissiyasi, sug‘urta, qo‘shimcha to‘lovlar va bankning yaxlitlash qoidalari kiritilmagan. Haqiqiy to‘lov bank shartnomasiga bog‘liq.</p>
+    </div>
+  </section>
+
+  <section class="section searchable" id="foiz" data-search="foiz chegirma ustama soliq narx hisoblash foiz kalkulyator">
+    <div class="section-head"><div><h2>％ Foiz va chegirma hisoblagichi</h2><p>Foiz miqdorini, chegirmadan keyingi narxni yoki ustama qo‘shilgan summani toping.</p></div></div>
+    <div class="card">
+      <div class="field"><label for="percentMode">Hisob turi</label><select id="percentMode"><option value="part">Summaning foizini hisoblash</option><option value="discount">Chegirmadan keyingi narx</option><option value="increase">Ustama qo‘shilgan narx</option></select></div>
+      <div class="two">
+        <div class="field"><label for="baseAmount">Boshlang‘ich summa (so‘m)</label><input id="baseAmount" type="number" min="0" step="1000" value="200000" inputmode="decimal"></div>
+        <div class="field"><label for="percentValue">Foiz (%)</label><input id="percentValue" type="number" min="0" max="100000" step="0.1" value="15" inputmode="decimal"></div>
+      </div>
+      <div class="btn-row"><button class="btn" id="calcPercent">Hisoblash</button></div>
+      <div class="result hidden" id="percentResult" aria-live="polite"></div>
+      <div class="btn-row"><button class="btn secondary" id="copyPercent">Natijani nusxalash</button></div>
+    </div>
+  </section>
+
+  <section class="section searchable" id="namoz" data-search="namoz vaqtlari bomdod quyosh peshin asr shom xufton qibla tasbeh zikr">
+    <div class="section-head"><div><h2>🕌 Namoz vaqtlari</h2><p>Shaharni tanlang. Vaqtlar internet orqali hisoblash xizmatidan olinadi.</p></div></div>
+    <div class="card">
+      <div class="field"><label for="prayerCity">Shahar</label><select id="prayerCity">
+        <option value="Tashkent">Toshkent shahri</option><option value="Andijan">Andijon</option><option value="Bukhara">Buxoro</option><option value="Fergana">Farg‘ona</option><option value="Jizzakh">Jizzax</option><option value="Karshi">Qarshi</option><option value="Namangan">Namangan</option><option value="Navoi">Navoiy</option><option value="Nukus">Nukus</option><option value="Samarkand">Samarqand</option><option value="Termez">Termiz</option><option value="Urgench">Urganch</option><option value="Gulistan">Guliston</option><option value="Chirchiq">Chirchiq</option><option value="Kokand">Qo‘qon</option>
+      </select></div>
+      <div class="btn-row"><button class="btn" id="loadPrayer">Namoz vaqtlarini olish</button><button class="btn ghost" id="todayPrayer">Bugungi sana</button></div>
+      <div id="prayerDate" class="small" style="margin-top:12px"></div>
+      <div id="prayerResult" class="prayer-grid" aria-live="polite"><div class="result">Namoz vaqtlarini ko‘rish uchun tugmani bosing. Internet kerak bo‘ladi.</div></div>
+      <p class="small">Vaqtlar tashqi xizmatdan olinadi va hisoblash usuliga qarab farq qilishi mumkin. Mahalliy masjid taqvimi bilan solishtiring. Bu sayt azon bildirishnomasini yubormaydi.</p>
+    </div>
+  </section>
+
+  <section class="section searchable" id="dorixona" data-search="dorixona apteka dori farmatsiya telefon yaqin atrof manzil Andijon Toshkent viloyat">
+    <div class="section-head"><div><h2>💊 Dorixona topish</h2><p>Hududni tanlab, yaqin dorixonalarni xaritadan qidiring.</p></div></div>
+    <div class="card">
+      <div class="field"><label for="pharmacyRegion">Viloyat yoki shahar</label><select id="pharmacyRegion">
+        <option>Andijon</option><option>Buxoro</option><option>Farg‘ona</option><option>Jizzax</option><option>Namangan</option><option>Navoiy</option><option>Qashqadaryo</option><option>Samarqand</option><option>Sirdaryo</option><option>Surxondaryo</option><option>Toshkent viloyati</option><option>Toshkent shahri</option><option>Xorazm</option><option>Qoraqalpog‘iston Respublikasi</option>
+      </select></div>
+      <div class="field"><label for="pharmacyArea">Tuman yoki shahar (ixtiyoriy)</label><input id="pharmacyArea" placeholder="Masalan, Asaka yoki Shahrixon"></div>
+      <div class="btn-row"><button class="btn" id="findPharmacy">Xaritadan dorixona topish</button><button class="btn secondary" id="findOpenPharmacy">24 soat ishlaydigan dorixona</button></div>
+      <div class="notice">Dorixonalarning manzili, ish vaqti va telefon raqami o‘zgarishi mumkin. Xaritada ko‘rsatilgan ma’lumotni borishdan oldin tekshiring. Sayt tasdiqlanmagan telefon raqamlarini o‘zi to‘qib chiqarmaydi.</div>
+    </div>
+  </section>
+
+  <section class="section searchable" id="aloqa" data-search="call center telefon raqam tez yordam favqulodda vaziyat ichki ishlar sog‘liqni saqlash ishonch telefoni">
+    <div class="section-head"><div><h2>☎️ Muhim telefonlar</h2><p>Rasmiy manbalarda ko‘rsatilgan foydali raqamlar.</p></div></div>
+    <div class="card">
+      <div class="hotline"><div><b>Tez tibbiy yordam</b><small>Hayot yoki sog‘liqqa xavf tug‘ilganda</small></div><a href="tel:103">103 — qo‘ng‘iroq</a></div>
+      <div class="hotline"><div><b>Sog‘liqni saqlash vazirligi</b><small>Ishonch telefoni</small></div><a href="tel:1003">1003 — qo‘ng‘iroq</a></div>
+      <div class="hotline"><div><b>Ichki ishlar vazirligi</b><small>Rasmiy ishonch telefoni ro‘yxatida</small></div><a href="tel:1102">1102 — qo‘ng‘iroq</a></div>
+      <div class="hotline"><div><b>Favqulodda vaziyatlar vazirligi</b><small>Rasmiy ishonch telefoni ro‘yxatida</small></div><a href="tel:1050">1050 — qo‘ng‘iroq</a></div>
+      <div class="hotline"><div><b>Prezident virtual qabulxonasi</b><small>Murojaat uchun</small></div><a href="tel:1000">1000 — qo‘ng‘iroq</a></div>
+      <div class="hotline"><div><b>Bosh prokuratura</b><small>Ishonch telefoni</small></div><a href="tel:1007">1007 — qo‘ng‘iroq</a></div>
+      <div class="btn-row"><a class="btn secondary" href="https://gov.uz/oz/ssv/contacts" target="_blank" rel="noopener">SSV rasmiy aloqalari</a><a class="btn ghost" href="https://advice.adliya.uz/oz/document/2263" target="_blank" rel="noopener">Boshqa ishonch telefonlari</a></div>
+      <p class="small">Raqamlar o‘zgarishi mumkin. Ishlatishdan oldin rasmiy manbadan tekshiring. Favqulodda raqamlarni faqat zarur holatda tering.</p>
+    </div>
+  </section>
+
+  <section class="section searchable" id="tasbeh" data-search="tasbeh zikr hisoblagich namoz kundalik">
+    <div class="section-head"><div><h2>📿 Tasbeh hisoblagichi</h2><p>Zikr sonini telefonda hisoblang. Hisob faqat shu sahifa ochiq turganida saqlanadi.</p></div></div>
+    <div class="card">
+      <div class="counter" id="tasbihCount" aria-live="polite">0</div>
+      <div class="tool-buttons" style="justify-content:center">
+        <button class="btn" id="tasbihAdd">+1 qo‘shish</button><button class="btn secondary" id="tasbih33">33 ga</button><button class="btn secondary" id="tasbih99">99 ga</button><button class="btn ghost" id="tasbihReset">Qayta boshlash</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section searchable" id="yosh" data-search="yosh hisoblash tug‘ilgan sana kun oy yil yosh kalkulyator">
+    <div class="section-head"><div><h2>🎂 Yoshni hisoblash</h2><p>Tug‘ilgan sanadan taxminiy yoshni hisoblang.</p></div></div>
+    <div class="card">
+      <div class="field"><label for="birthDate">Tug‘ilgan sana</label><input type="date" id="birthDate"></div>
+      <div class="btn-row"><button class="btn" id="calcAge">Yoshni hisoblash</button></div>
+      <div class="result hidden" id="ageResult" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="section searchable" id="xavfsizlik" data-search="firibgarlik kiberxavfsizlik soxta sovrin karta sms kod parol havola scam internet">
+    <div class="section-head"><div><h2>🛡️ Firibgarlikdan himoyalanish</h2><p>Shubhali xabar yoki taklifni ko‘rsangiz, avval tekshiring.</p></div></div>
+    <div class="safety-list">
+      <div class="safety-item"><b>🎁 “Sovrin yutdingiz, pul yuboring”</b><p>Sovrinni olish uchun bojxona yoki yetkazib berish puli so‘ralsa, mustaqil rasmiy manbadan tekshirmasdan pul yubormang.</p></div>
+      <div class="safety-item"><b>🔐 SMS-kod va parol</b><p>SMS tasdiqlash kodi, bank ilovasi paroli yoki PIN-kodni hech kimga aytmang. Bank xodimi deb tanishtirgan odamga ham bermang.</p></div>
+      <div class="safety-item"><b>🔗 Shubhali havola</b><p>Havoladagi manzilni tekshiring. Bank yoki davlat xizmatiga tegishli sahifani o‘zingiz rasmiy ilova yoki manzildan oching.</p></div>
+      <div class="safety-item"><b>💳 Karta ma’lumotlari</b><p>Karta raqami, amal qilish muddati va CVV kodini noma’lum shaxsga yubormang. Pul qabul qilish uchun odatda SMS-kod kerak bo‘lmaydi.</p></div>
+      <div class="safety-item"><b>📱 Telefoningizga kirish</b><p>Noma’lum APK yoki profilni o‘rnatmang, ekran ulashish dasturini begona odam aytgani uchun yoqmang.</p></div>
+      <div class="safety-item"><b>🚨 Agar aldanib qolgan bo‘lsangiz</b><p>Bankingizga darhol rasmiy raqam orqali murojaat qiling, kartani bloklatish imkonini so‘rang, yozishmalarni saqlang va tegishli huquqni muhofaza qiluvchi organga xabar bering.</p></div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <h3>Shubhali taklifni tekshirish ro‘yxati</h3>
+      <p class="desc">Har bir bandni tekshirib chiqing. Bu avtomatik tekshiruv emas, shaxsiy nazorat ro‘yxati.</p>
+      <label class="checkline"><input type="checkbox"> Mendan oldindan pul yoki “bojxona to‘lovi” so‘ralyaptimi?</label>
+      <label class="checkline"><input type="checkbox"> SMS-kod, PIN, parol yoki karta CVV so‘ralyaptimi?</label>
+      <label class="checkline"><input type="checkbox"> Shoshiltirishyaptimi yoki “hoziroq to‘lang” deyishyaptimi?</label>
+      <label class="checkline"><input type="checkbox"> Taklifni rasmiy, mustaqil manbadan tekshirdimmi?</label>
+      <div class="notice">Biror band shubhali bo‘lsa, pul yuborishni va maxfiy ma’lumot berishni to‘xtating. Faqat skrinshot yoki havolaga qarab firibgarlikni har doim aniq tasdiqlab bo‘lmaydi.</div>
+    </div>
+  </section>
+  <div class="empty" id="emptySearch">Mos bo‘lim topilmadi. Boshqa so‘z bilan qidirib ko‘ring.</div>
+</main>
+<footer class="footer"><div class="wrap"><strong>QXV YORDAM</strong><p>Foydali vositalar — sodda, tushunarli va qulay.</p><p>Ushbu sayt ma’lumot berish uchun yaratilgan. Hujjat namunalari rasmiy tasdiq emas; moliyaviy hisoblar taxminiy; xavfsizlik tavsiyalari professional maslahat o‘rnini bosmaydi.</p><p>© <span id="year"></span> QXV YORDAM</p></div></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+const money=n=>new Intl.NumberFormat('uz-UZ',{maximumFractionDigits:0}).format(Math.round(n))+' so‘m';
+function toast(message){const el=$('toast');el.textContent=message;el.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove('show'),2400)}
+async function copyText(text){try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text)}else{const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();const ok=document.execCommand('copy');ta.remove();if(!ok)throw new Error('copy failed')}toast('Nusxalandi!')}catch(e){toast('Nusxalash imkoni bo‘lmadi. Matnni belgilang va nusxalang.')}}
+function safe(v){return (v||'').trim()}
+function dateText(){const v=$('docDate').value;if(!v)return '________________';const p=v.split('-');return p[2]+'.'+p[1]+'.'+p[0]}
+$('docDate').value=new Date().toLocaleDateString('en-CA');
+function buildDoc(){
+ const type=$('docType').value,name=safe($('fullName').value)||'________________',recipient=safe($('recipient').value)||'________________',position=safe($('position').value)||'________________',reason=safe($('reason').value)||'________________',date=dateText();
+ let out='';
+ if(type==='work')out=recipient+' rahbariga\n\n'+name+'dan\n\nARIZA\n\nMeni '+position+' lavozimiga ishga qabul qilishingizni so‘rayman.\n\nSana: '+date+'\nImzo: ________________';
+ if(type==='leave')out=recipient+' rahbariga\n\n'+name+'dan\n\nARIZA\n\nMehnat shartnomasini o‘z xohishimga ko‘ra bekor qilish masalasini amaldagi tartibda ko‘rib chiqishingizni so‘rayman.\n\nSana: '+date+'\nImzo: ________________';
+ if(type==='explain')out=recipient+'ga\n\n'+name+'dan\n\nTUSHUNTIRISH XATI\n\nQuyidagi holat yuzasidan tushuntirish beraman:\n'+reason+'\n\nSana: '+date+'\nImzo: ________________';
+ if(type==='request')out=recipient+'ga\n\n'+name+'dan\n\nMUROJAAT\n\nSizdan quyidagi masalani ko‘rib chiqishingizni so‘rayman:\n'+reason+'\n\nSana: '+date+'\nImzo: ________________';
+ if(type==='bio')out='TARJIMAI HOL\n\nMen, '+name+'. '+reason+'\n\nSana: '+date+'\nImzo: ________________';
+ $('docOutput').value=out;$('docResult').classList.remove('hidden');$('docResult').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+$('makeDoc').addEventListener('click',buildDoc);
+$('copyDoc').addEventListener('click',()=>$('docOutput').value?copyText($('docOutput').value):toast('Avval matn tayyorlang.'));
+$('downloadDoc').addEventListener('click',()=>{const text=$('docOutput').value;if(!text){toast('Avval matn tayyorlang.');return}const blob=new Blob([text],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='qxv-yordam-hujjat.txt';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);toast('TXT fayl yuklab olindi')});
+$('clearDoc').addEventListener('click',()=>{['fullName','recipient','position','reason'].forEach(id=>$(id).value='');$('docResult').classList.add('hidden');$('docOutput').value='';toast('Maydonlar tozalandi')});
+$('docType').addEventListener('change',()=>{const type=$('docType').value;$('positionField').classList.toggle('hidden',!['work'].includes(type));$('reasonField').classList.toggle('hidden',type==='work'||type==='leave');});
+function calcLoan(){
+ const P=Number($('loanAmount').value),annual=Number($('loanRate').value),n=Number($('loanMonths').value);
+ if(!Number.isFinite(P)||P<=0||!Number.isFinite(annual)||annual<0||annual>500||!Number.isInteger(n)||n<1||n>600){toast('Qiymatlarni tekshiring. Muddat 1–600 oy bo‘lsin.');return}
+ const r=annual/1200,monthly=r===0?P/n:P*r/(1-Math.pow(1+r,-n)),total=monthly*n,interest=total-P;
+ $('loanResult').innerHTML='<strong>Taxminiy natija</strong><div class="big">'+money(monthly)+'/oy</div><p>Jami to‘lov: <b>'+money(total)+'</b></p><p>Foiz xarajati: <b>'+money(interest)+'</b></p><p class="small">Formula: annuitet to‘lovi. Haqiqiy bank jadvali farq qilishi mumkin.</p>';
+ $('loanResult').classList.remove('hidden');
+}
+$('calcLoan').addEventListener('click',calcLoan);
+$('resetLoan').addEventListener('click',()=>{$('loanAmount').value=10000000;$('loanRate').value=24;$('loanMonths').value=24;calcLoan()});
+let percentText='';
+function calcPercent(){
+ const amount=Number($('baseAmount').value),pct=Number($('percentValue').value),mode=$('percentMode').value;
+ if(!Number.isFinite(amount)||amount<0||!Number.isFinite(pct)||pct<0||pct>100000||(mode==='discount'&&pct>100)){toast('Qiymatlarni tekshiring. Chegirma 0–100% oralig‘ida.');return}
+ const part=amount*pct/100;let title='',main=0,detail='';
+ if(mode==='part'){title='Foiz miqdori';main=part;detail='Boshlang‘ich summa: '+money(amount)+' · Foiz: '+pct+'%'}
+ if(mode==='discount'){title='Chegirmadan keyingi narx';main=amount-part;detail='Chegirma miqdori: '+money(part)}
+ if(mode==='increase'){title='Ustama qo‘shilgan narx';main=amount+part;detail='Ustama miqdori: '+money(part)}
+ percentText=title+': '+money(main)+'\n'+detail;
+ $('percentResult').innerHTML='<strong>'+title+'</strong><div class="big">'+money(main)+'</div><p>'+detail+'</p>';
+ $('percentResult').classList.remove('hidden');
+}
+$('calcPercent').addEventListener('click',calcPercent);
+$('copyPercent').addEventListener('click',()=>percentText?copyText(percentText):toast('Avval hisoblang.'));
+$('siteSearch').addEventListener('input',()=>{const q=$('siteSearch').value.trim().toLocaleLowerCase('uz');let count=0;document.querySelectorAll('.searchable').forEach(el=>{const show=!q||(el.innerText+' '+(el.dataset.search||'')).toLocaleLowerCase('uz').includes(q);el.classList.toggle('hidden',!show);if(show)count++});$('emptySearch').style.display=count?'none':'block'});
+
+// Namoz vaqtlari: AlAdhan API, internet mavjud bo‘lsa.
+async function loadPrayer(){
+ const city=$('prayerCity').value;
+ const now=new Date();
+ const date=String(now.getDate()).padStart(2,'0')+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+now.getFullYear();
+ $('prayerResult').innerHTML='<div class="result">Yuklanmoqda…</div>';
+ $('prayerDate').textContent='Sana: '+now.toLocaleDateString('uz-UZ');
+ try{
+  const url='https://api.aladhan.com/v1/timingsByCity/'+date+'?city='+encodeURIComponent(city)+'&country=Uzbekistan&method=3';
+  const response=await fetch(url);if(!response.ok)throw new Error('API');
+  const json=await response.json();if(json.code!==200||!json.data||!json.data.timings)throw new Error('Data');
+  const t=json.data.timings;
+  const entries=[['Bomdod',t.Fajr],['Quyosh',t.Sunrise],['Peshin',t.Dhuhr],['Asr',t.Asr],['Shom',t.Maghrib],['Xufton',t.Isha]];
+  $('prayerResult').innerHTML=entries.map(([n,v])=>'<div class="prayer-time"><b>'+n+'</b><span>'+String(v).slice(0,5)+'</span></div>').join('');
+  $('prayerDate').textContent=city+' · '+(json.data.date.readable||now.toLocaleDateString('uz-UZ'));
+ }catch(e){$('prayerResult').innerHTML='<div class="result">Namoz vaqtlarini yuklab bo‘lmadi. Internetni tekshiring yoki mahalliy masjid taqvimidan foydalaning.</div>'}
+}
+$('loadPrayer').addEventListener('click',loadPrayer);
+$('todayPrayer').addEventListener('click',loadPrayer);
+$('prayerCity').addEventListener('change',loadPrayer);
+// Pharmacy search links: directory results are provided by map/search providers.
+function pharmacyQuery(openOnly){
+ const region=$('pharmacyRegion').value,area=safe($('pharmacyArea').value);
+ const query=(openOnly?'24 soat ochiq dorixona ':'dorixona ')+(area?area+', ':'')+region+', O‘zbekiston';
+ window.open('https://www.google.com/maps/search/'+encodeURIComponent(query),'_blank','noopener');
+}
+$('findPharmacy').addEventListener('click',()=>pharmacyQuery(false));
+$('findOpenPharmacy').addEventListener('click',()=>pharmacyQuery(true));
+// Tasbeh count exists only in current page session.
+let tasbih=0;function showTasbih(){$('tasbihCount').textContent=tasbih}
+$('tasbihAdd').addEventListener('click',()=>{tasbih++;showTasbih()});
+$('tasbih33').addEventListener('click',()=>{tasbih=33;showTasbih()});
+$('tasbih99').addEventListener('click',()=>{tasbih=99;showTasbih()});
+$('tasbihReset').addEventListener('click',()=>{tasbih=0;showTasbih()});
+// Age calculator uses local calendar dates.
+$('calcAge').addEventListener('click',()=>{
+ const value=$('birthDate').value;if(!value){toast('Tug‘ilgan sanani kiriting.');return}
+ const b=new Date(value+'T12:00:00'),today=new Date();
+ if(Number.isNaN(b.getTime())||b>today){toast('Sanani to‘g‘ri kiriting.');return}
+ let years=today.getFullYear()-b.getFullYear(),months=today.getMonth()-b.getMonth(),days=today.getDate()-b.getDate();
+ if(days<0){months--;days+=new Date(today.getFullYear(),today.getMonth(),0).getDate()}
+ if(months<0){years--;months+=12}
+ $('ageResult').innerHTML='<strong>Hisoblangan yosh</strong><div class="big">'+years+' yosh</div><p>'+months+' oy, '+days+' kun</p>';
+ $('ageResult').classList.remove('hidden');
+});
+
+
+// Live clock shown inside the page.
+function updateLiveClock(){
+ const d=new Date();
+ $('liveClock').textContent=d.toLocaleTimeString('uz-UZ',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
+ $('liveDate').textContent=d.toLocaleDateString('uz-UZ',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+}
+updateLiveClock();setInterval(updateLiveClock,1000);
+
+// Open a map search. GPS is optional; never request it without a button tap.
+let userCoords=null;
+function makeMapSearch(){
+ const country=$('nearCountry').value,city=safe($('nearCity').value),type=$('nearType').value;
+ const label=type+' near '+(userCoords?userCoords.lat+','+userCoords.lon:(city?city+', '+country:country));
+ const url='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(label);
+ window.open(url,'_blank','noopener');
+ $('nearStatus').textContent='Xarita qidiruvi ochildi. Natijadagi telefon va ish vaqtini xarita sahifasida tekshiring.';
+ $('nearStatus').classList.remove('hidden');
+}
+$('nearSearch').addEventListener('click',makeMapSearch);
+$('nearGPS').addEventListener('click',()=>{
+ if(!navigator.geolocation){toast('Bu brauzer joylashuvni qo‘llab-quvvatlamaydi. Shaharni kiriting.');return}
+ $('nearStatus').textContent='Joylashuv so‘ralmoqda…';$('nearStatus').classList.remove('hidden');
+ navigator.geolocation.getCurrentPosition(pos=>{
+  userCoords={lat:pos.coords.latitude,lon:pos.coords.longitude};
+  $('nearStatus').textContent='Joylashuv olindi. Endi “Xaritadan qidirish” tugmasini bosing.';
+  toast('Joylashuv olindi');
+ },err=>{
+  userCoords=null;
+  $('nearStatus').textContent='Joylashuvga ruxsat olinmadi. Shahar yoki tumanni qo‘lda kiriting.';
+  toast('Joylashuv olinmadi');
+ },{enableHighAccuracy:false,timeout:10000,maximumAge:300000});
+});
+
+// Quran reader: surah list, Arabic text and optional Uzbek translation from AlQuran Cloud.
+function escHTML(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+async function fetchJson(url){const r=await fetch(url);if(!r.ok)throw new Error('HTTP '+r.status);const j=await r.json();if(j.code&&j.code!==200)throw new Error('API error');return j.data}
+async function initSurahList(){
+ try{
+  const list=await fetchJson('https://api.alquran.cloud/v1/surah');
+  const select=$('surahSelect');select.innerHTML='';
+  list.forEach(s=>{const op=document.createElement('option');op.value=s.number;op.textContent=s.number+'. '+s.englishName+' — '+s.name+' ('+s.numberOfAyahs+' oyat)';select.appendChild(op)});
+  select.value='1';
+ }catch(e){/* Keep the built-in Al-Fotiha option if API is unavailable. */}
+}
+async function loadSurah(){
+ const id=Number($('surahSelect').value)||1;
+ $('surahContent').innerHTML='<div class="result">Qur’on matni yuklanmoqda…</div>';
+ try{
+  const arab=await fetchJson('https://api.alquran.cloud/v1/surah/'+id+'/quran-uthmani');
+  let uz=null;
+  try{uz=await fetchJson('https://api.alquran.cloud/v1/surah/'+id+'/uz.sodik')}catch(e){}
+  const ayahs=arab.ayahs||[];
+  $('surahMeta').textContent=arab.englishName+' · '+arab.name+' · '+arab.numberOfAyahs+' oyat';
+  $('surahContent').innerHTML=ayahs.map((a,i)=>{
+   const translation=uz&&uz.ayahs&&uz.ayahs[i]?'<div class="translation">'+escHTML(uz.ayahs[i].text)+'</div>':'';
+   return '<article class="ayah"><div class="ayah-num">'+arab.number+':'+a.numberInSurah+'</div><div class="arabic" lang="ar" translate="no">'+escHTML(a.text)+'</div>'+translation+'</article>';
+  }).join('');
+ }catch(e){
+  $('surahContent').innerHTML='<div class="result">Qur’on matni hozir yuklanmadi. Internetni tekshiring yoki keyin qayta urinib ko‘ring. Qur’on matni API xizmatidan olinadi.</div>';
+ }
+}
+$('loadSurah').addEventListener('click',loadSurah);
+initSurahList();
+loadSurah();
+// Populate prayer times when page opens; users can change city manually.
+loadPrayer();
+
+$('year').textContent=new Date().getFullYear();
+calcLoan();calcPercent();
+})();
+</script>
+</body>
+</html>
